@@ -73,7 +73,7 @@ Evening check-ins happen at night, often in bed. Night Watch is deep indigo (`#2
 ## App structure (4 tabs + modals)
 
 1. **Today** — the daily rhythm: verse, dawn arc, actions, SOS
-2. **Brothers** — accountability partners, weekly digest, "check on me"
+2. **Allies** — the people who stand with you, weekly digest, "check on me"
 3. **Patterns** — honest data, gently read back
 4. **Armory** — verse memory, reading plans, the battle plan editor
 
@@ -90,7 +90,7 @@ Purpose: a 10-second orientation — who I am, whose I am, what today holds.
 ```
 ┌──────────────────────────────────┐
 │                                  │
-│  Good morning, brother           │
+│  Good morning, David             │
 │  Tuesday, September 30           │
 │                                  │
 │  ╭────────────────────────────╮  │
@@ -111,7 +111,7 @@ Purpose: a 10-second orientation — who I am, whose I am, what today holds.
 │   │   I'M STRUGGLING NOW     │   │
 │   ╰──────────────────────────╯   │
 │                                  │
-│  Today  Brothers  Patterns  Armory│
+│  Today   Allies   Patterns  Armory│
 └──────────────────────────────────┘
 ```
 
@@ -151,7 +151,7 @@ Purpose: the 90 seconds between temptation and decision. Calm the body, point th
 - Full-screen; this screen is *always* in Night Watch colors, even in light mode
 - The breathing circle: 4s in, 4s out, with the word "breathe" fading with it
 - His memorized verse beneath
-- Exits in HIS order (the battle plan he set in the Armory): text brother, call brother, physical move
+- Exits in HIS order (the battle plan he set in the Armory): text an ally, call an ally, physical move
 - "I made it through" logs a **victory**, not a mere non-event
 - Nothing on this screen condemns. It exists to get him out.
 
@@ -193,16 +193,16 @@ Purpose: make getting back up easier and faster than falling.
 ```
 
 - Opens on the sunrise animation: "The sun rose again. So will you."
-- 1 John 1:9, then two honest checkboxes: confess to God (a short guided prayer), tell a brother (optional, pre-set)
+- 1 John 1:9, then two honest checkboxes: confess to God (a short guided prayer), tell an ally (optional, pre-set)
 - Counters reset **without erasing history** — the pattern graph keeps every rise, because a man who falls and keeps rising is the whole story (Prov 24:16)
 - The button at the end is warm gold, and the sun clears the horizon
 
-### Brothers
+### Allies
 
-- Partner cards: name, relationship, digest frequency
+- Ally cards: name, relationship, digest frequency
 - Weekly digest preview — facts, never shame framing: *"Marcus logged 3 struggles this week and reached out once. That's what winning looks like."*
-- **"Check on me tonight"** — sends a real ping to a brother
-- Real-time SOS notifications (opt-in per brother)
+- **"Check on me tonight"** — sends a real ping to an ally
+- Real-time SOS notifications (opt-in per ally)
 
 ### Patterns
 

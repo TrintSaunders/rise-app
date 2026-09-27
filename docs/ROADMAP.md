@@ -2,9 +2,9 @@
 
 ## v0.1 — The Daily Rhythm *(first build)*
 
-- Onboarding: name, life verse, (optionally) first brother
+- Onboarding: name, life verse, (optionally) first ally
 - Today screen: greeting, verse card, dawn arc + counters
-- SOS modal: breathing circle, verse, brother contact links, "I made it through"
+- SOS modal: breathing circle, verse, ally contact links, "I made it through"
 - Evening check-in: 3 questions + gratitude
 - Local notifications: morning arm (user-set time), evening check-in reminder
 - All data local
@@ -15,11 +15,11 @@
 - Patterns screen: hour heat map, trigger ranking, rise line
 - Victory log ("I made it through" moments)
 
-## v0.3 — Brotherhood
+## v0.3 — Allies
 
-- Brother management + "check on me tonight" ping
+- Ally management + "check on me tonight" ping
 - Weekly digest email (tiny serverless function — the only server, stores nothing)
-- Rise Again → "tell a brother" flow
+- Rise Again → "tell an ally" flow
 
 ## v1.0 — Life
 

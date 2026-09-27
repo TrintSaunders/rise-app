@@ -2,7 +2,7 @@
 
 ---
 
-You're working on **Rise** — a grace-forward app helping men fight lust through Scripture, honesty, and brotherhood (mercy, not shame). It's an Expo app: React Native, TypeScript, expo-router. Before writing any code, read `README.md`, `docs/DESIGN.md`, and `docs/ROADMAP.md`, then look at `app/(tabs)/today.tsx`, `app/sos.tsx`, `lib/verses.ts`, and `constants/theme.ts` to absorb the existing patterns.
+You're working on **Rise** — a grace-forward app helping men fight lust through Scripture, honesty, and allies (mercy, not shame). It's an Expo app: React Native, TypeScript, expo-router. Before writing any code, read `README.md`, `docs/DESIGN.md`, and `docs/ROADMAP.md`, then look at `app/(tabs)/today.tsx`, `app/sos.tsx`, `lib/verses.ts`, and `constants/theme.ts` to absorb the existing patterns.
 
 **This task: complete the daily rhythm** (finishes v0.1 and the storage heart of v0.2).
 
@@ -14,6 +14,6 @@ You're working on **Rise** — a grace-forward app helping men fight lust throug
 6. **Rise Again** — when a check-in or log says "I fell," open the grace flow from DESIGN.md: sunrise, 1 John 1:9, a short guided confession, then reset the clean counter *without* deleting any history.
 7. **"I made it through"** on the SOS screen saves a victory entry.
 
-**Constraints:** use only `constants/theme.ts` tokens (no new raw hex); Scripture always in the serif italic with its reference; copy like a warm older brother, never shame (see the copy-tone section of DESIGN.md); reuse `components/Breathing.tsx` for motion. Don't build Brothers (v0.3) or the Patterns charts yet — their placeholder screens stay.
+**Constraints:** use only `constants/theme.ts` tokens (no new raw hex); Scripture always in the serif italic with its reference; copy like a warm older brother, never shame (see the copy-tone section of DESIGN.md); reuse `components/Breathing.tsx` for motion. Don't build Allies (v0.3) or the Patterns charts yet — their placeholder screens stay.
 
 **Definition of done:** a full day works — onboard, see the arc and counters, hit SOS and log a victory, check in honestly, fall and rise again, and everything is still there after closing the app. Verify with `npx tsc --noEmit` and `npx expo export --platform ios`.
