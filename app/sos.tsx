@@ -1,18 +1,23 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Breathing } from '@/components/Breathing';
+import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius, shadow } from '@/constants/theme';
+import { hapticTap } from '@/lib/haptics';
+import { useStore } from '@/lib/store';
 
 const VERSE = {
   text: 'Flee youthful passions; pursue righteousness, faith, love, and peace.',
   ref: '2 Timothy 2:22',
 };
 
-// v0.3 (Brotherhood) replaces this list with the man's own battle plan
-// and his brother's real name and number.
+// A later release replaces this list with the man's own battle plan
+// and the people he chooses to call.
 const MOVES = [
   { icon: 'exit-outline', label: 'Leave the room' },
   { icon: 'water-outline', label: 'Cold water on your face' },
@@ -25,8 +30,12 @@ const MOVES = [
  * Nothing here condemns; it exists to get him out.
  */
 export default function SosScreen() {
+  const { logVictory } = useStore();
+  const [saved, setSaved] = useState(false);
+
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
+      <StatusBar style="light" />
       <ScrollView contentContainerStyle={styles.content}>
         <Breathing period={4} depth={0.35}>
           <View style={styles.breathCircle} />
@@ -45,14 +54,35 @@ export default function SosScreen() {
             </View>
           ))}
           <Text style={styles.movesNote}>
-            your brother’s name and number appear here in v0.3
+            do one of these before you decide anything
           </Text>
         </View>
 
-        <Pressable style={styles.madeItButton} onPress={() => router.back()}>
-          <Ionicons name="sunny" size={18} color={colors.night} />
-          <Text style={styles.madeItText}>I made it through</Text>
-        </Pressable>
+        {saved ? (
+          <View style={styles.savedCard}>
+            <Ionicons name="checkmark-circle" size={26} color={colors.sage} />
+            <Text style={styles.savedTitle}>You made it through. That’s a real win.</Text>
+            <Text style={styles.savedNote}>
+              It’s written down — a victory, not a footnote.
+            </Text>
+            <SpringPress
+              style={styles.backButton}
+              onPress={() => router.back()}>
+              <Text style={styles.backButtonText}>back to today</Text>
+            </SpringPress>
+          </View>
+        ) : (
+          <SpringPress
+            style={styles.madeItButton}
+            onPress={() => {
+              logVictory();
+              hapticTap();
+              setSaved(true);
+            }}>
+            <Ionicons name="sunny" size={18} color={colors.night} />
+            <Text style={styles.madeItText}>I made it through</Text>
+          </SpringPress>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -144,6 +174,43 @@ const styles = StyleSheet.create({
   madeItText: {
     fontFamily: fonts.sansMedium,
     fontSize: 16,
+    color: colors.night,
+  },
+  savedCard: {
+    alignItems: 'center',
+    backgroundColor: colors.nightSoft,
+    borderRadius: radius.card,
+    padding: 24,
+    marginTop: 30,
+    alignSelf: 'stretch',
+  },
+  savedTitle: {
+    fontFamily: fonts.serif,
+    fontSize: 21,
+    lineHeight: 29,
+    color: colors.starlight,
+    textAlign: 'center',
+    marginTop: 12,
+  },
+  savedNote: {
+    fontFamily: fonts.sans,
+    fontSize: 13.5,
+    lineHeight: 19,
+    color: colors.starlightSoft,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  backButton: {
+    backgroundColor: colors.dawn,
+    borderRadius: radius.button,
+    paddingVertical: 14,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    marginTop: 20,
+  },
+  backButtonText: {
+    fontFamily: fonts.sansMedium,
+    fontSize: 15,
     color: colors.night,
   },
 });

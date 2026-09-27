@@ -9,7 +9,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
-import { colors } from '@/constants/theme';
+import { Onboarding } from '@/components/Onboarding';
+import { StoreProvider, useStore } from '@/lib/store';
+import { useAppTheme } from '@/lib/theme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -20,17 +22,8 @@ export const unstable_settings = {
   initialRouteName: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before fonts are loaded.
+// Prevent the splash screen from auto-hiding before fonts and store are ready.
 SplashScreen.preventAutoHideAsync();
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: colors.cream,
-    primary: colors.ink,
-  },
-};
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -44,23 +37,69 @@ export default function RootLayout() {
     if (error) throw error;
   }, [error]);
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
   if (!loaded) {
     return null;
   }
 
   return (
+    <StoreProvider>
+      <RootNavigator />
+    </StoreProvider>
+  );
+}
+
+/**
+ * Holds the splash until the store has loaded from disk, then shows
+ * onboarding on first launch — after that, the app itself.
+ */
+function RootNavigator() {
+  const { ready, data } = useStore();
+  const t = useAppTheme();
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: t.bg,
+      primary: t.text,
+    },
+  };
+
+  useEffect(() => {
+    if (ready) SplashScreen.hideAsync();
+  }, [ready]);
+
+  if (!ready) {
+    return null;
+  }
+
+  if (!data.profile) {
+    return (
+      <>
+        <StatusBar style={t.isNight ? 'light' : 'dark'} />
+        <Onboarding />
+      </>
+    );
+  }
+
+  return (
     <ThemeProvider value={theme}>
-      <StatusBar style="dark" />
+      <StatusBar style={t.isNight ? 'light' : 'dark'} />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="sos"
+          options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        />
+        <Stack.Screen
+          name="checkin"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
+        <Stack.Screen
+          name="log-struggle"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
+        <Stack.Screen
+          name="rise-again"
           options={{ headerShown: false, presentation: 'fullScreenModal' }}
         />
       </Stack>

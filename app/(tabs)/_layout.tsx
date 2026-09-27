@@ -1,18 +1,21 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
 
-import { colors, fonts } from '@/constants/theme';
+import { useAppTheme } from '@/lib/theme';
+import { fonts } from '@/constants/theme';
 
 export default function TabLayout() {
+  const t = useAppTheme();
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.ink,
-        tabBarInactiveTintColor: colors.inkSoft,
+        tabBarActiveTintColor: t.text,
+        tabBarInactiveTintColor: t.textSoft,
         tabBarStyle: {
-          backgroundColor: colors.cream,
-          borderTopColor: colors.mist,
+          backgroundColor: t.bg,
+          borderTopColor: t.card,
         },
         tabBarLabelStyle: {
           fontFamily: fonts.sansMedium,
@@ -25,15 +28,6 @@ export default function TabLayout() {
           title: 'Today',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="sunny-outline" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="brothers"
-        options={{
-          title: 'Brothers',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="people-outline" size={size} color={color} />
           ),
         }}
       />

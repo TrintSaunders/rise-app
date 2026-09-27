@@ -9,6 +9,7 @@ import {
 import type { ReactNode } from 'react';
 
 import type { Verse } from './verses';
+import { sampleHistory } from './sample';
 
 // ─── The record ──────────────────────────────────────────────────────────────
 // Everything lives on this device alone (sacred privacy, DESIGN.md).
@@ -50,12 +51,24 @@ export type TemptationEntry = {
   at: string;
   feelings: Feeling[];
   outcome: TemptationOutcome;
+  /** Present only on entries from the Patterns "sample history" demo tool. */
+  demo?: true;
 };
 
 export type VictoryEntry = {
   id: string;
   at: string;
+  demo?: true;
 };
+
+/** Every completed Rise Again — kept forever, like the falls it answers. */
+export type RiseEntry = {
+  id: string;
+  at: string;
+  demo?: true;
+};
+
+export type ThemeMode = 'auto' | 'night' | 'day';
 
 export type StoreData = {
   version: 1;
@@ -63,11 +76,14 @@ export type StoreData = {
   days: DayRecord[];
   temptations: TemptationEntry[];
   victories: VictoryEntry[];
+  rises: RiseEntry[];
   /** The day the current clean streak began (onboarding day, or the day he last rose again). */
   cleanSince: string;
   /** A fall is on the books and the sun hasn't come back up yet. */
   needsRise: boolean;
   lastRisenAt: string | null;
+  /** Night Watch: follow the sun automatically, or hold a mode he chose. */
+  themeMode: ThemeMode;
 };
 
 // ─── Local-day helpers ───────────────────────────────────────────────────────
@@ -136,9 +152,11 @@ const EMPTY: StoreData = {
   days: [],
   temptations: [],
   victories: [],
+  rises: [],
   cleanSince: todayStr(),
   needsRise: false,
   lastRisenAt: null,
+  themeMode: 'auto',
 };
 
 function newId(): string {
@@ -154,9 +172,18 @@ type StoreApi = {
     tempted: TemptedAnswer;
     gratitude: string | null;
   }) => void;
-  logTemptation: (feelings: readonly Feeling[], outcome: TemptationOutcome) => void;
+  logTemptation: (
+    feelings: readonly Feeling[],
+    outcome: TemptationOutcome,
+    /** When it actually happened — defaults to right now. */
+    at?: string
+  ) => void;
   logVictory: () => void;
   completeRise: () => void;
+  /** Demo tool on Patterns: two weeks of flagged entries, real history untouched. */
+  seedSampleData: () => void;
+  clearSampleData: () => void;
+  setThemeMode: (mode: ThemeMode) => void;
 };
 
 const StoreContext = createContext<StoreApi | null>(null);
@@ -223,12 +250,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             needsRise: prev.needsRise || tempted === 'fell',
           };
         }),
-      logTemptation: (feelings, outcome) =>
+      logTemptation: (feelings, outcome, at = new Date().toISOString()) =>
         update((prev) => ({
           ...prev,
           temptations: [
             ...prev.temptations,
-            { id: newId(), at: new Date().toISOString(), feelings: [...feelings], outcome },
+            { id: newId(), at, feelings: [...feelings], outcome },
           ],
           needsRise: prev.needsRise || outcome === 'fell',
         })),
@@ -243,7 +270,27 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           cleanSince: todayStr(),
           needsRise: false,
           lastRisenAt: new Date().toISOString(),
+          rises: [...prev.rises, { id: newId(), at: new Date().toISOString() }],
         })),
+      seedSampleData: () =>
+        update((prev) => {
+          if (prev.temptations.some((t) => t.demo)) return prev; // already filled
+          const sample = sampleHistory();
+          return {
+            ...prev,
+            temptations: [...prev.temptations, ...sample.temptations],
+            victories: [...prev.victories, ...sample.victories],
+            rises: [...prev.rises, ...sample.rises],
+          };
+        }),
+      clearSampleData: () =>
+        update((prev) => ({
+          ...prev,
+          temptations: prev.temptations.filter((t) => !t.demo),
+          victories: prev.victories.filter((v) => !v.demo),
+          rises: prev.rises.filter((r) => !r.demo),
+        })),
+      setThemeMode: (mode) => update((prev) => ({ ...prev, themeMode: mode })),
     };
   }, [ready, data]);
 
