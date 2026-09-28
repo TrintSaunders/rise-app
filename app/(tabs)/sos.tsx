@@ -2,10 +2,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { router, useFocusEffect } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Breathing } from '@/components/Breathing';
+import { SosAllies } from '@/components/SosAllies';
 import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius, shadow } from '@/constants/theme';
 import { hapticTap } from '@/lib/haptics';
@@ -16,8 +17,7 @@ const VERSE = {
   ref: '2 Timothy 2:22',
 };
 
-// A later release replaces this list with the man's own battle plan
-// and the people he chooses to call.
+// A later release replaces this list with the man's own battle plan.
 const MOVES = [
   { icon: 'exit-outline', label: 'Leave the room' },
   { icon: 'water-outline', label: 'Cold water on your face' },
@@ -34,6 +34,8 @@ export default function SosScreen() {
   const { logVictory } = useStore();
   const [saved, setSaved] = useState(false);
   const [focused, setFocused] = useState(false);
+  // Bumped on every visit so the allies card remounts fresh too.
+  const [visit, setVisit] = useState(0);
 
   // Tabs stay mounted: once he leaves, the next visit starts fresh with the
   // "I made it through" button, never last time's victory card — and the
@@ -41,6 +43,7 @@ export default function SosScreen() {
   useFocusEffect(
     useCallback(() => {
       setFocused(true);
+      setVisit((v) => v + 1);
       return () => {
         setFocused(false);
         setSaved(false);
@@ -51,60 +54,67 @@ export default function SosScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       {focused && <StatusBar style="light" />}
-      <ScrollView contentContainerStyle={styles.content}>
-        <Breathing period={4} depth={0.35}>
-          <View style={styles.breathCircle} />
-        </Breathing>
-        <Text style={styles.breatheLabel}>breathe with it — in as it grows, out as it settles</Text>
+      <KeyboardAvoidingView
+        style={styles.flex}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+          <Breathing period={4} depth={0.35}>
+            <View style={styles.breathCircle} />
+          </Breathing>
+          <Text style={styles.breatheLabel}>breathe with it — in as it grows, out as it settles</Text>
 
-        <Text style={styles.verse}>“{VERSE.text}”</Text>
-        <Text style={styles.verseRef}>— {VERSE.ref}</Text>
+          <Text style={styles.verse}>“{VERSE.text}”</Text>
+          <Text style={styles.verseRef}>— {VERSE.ref}</Text>
 
-        <View style={styles.movesCard}>
-          <Text style={styles.movesTitle}>the way out, in order</Text>
-          {MOVES.map((move) => (
-            <View key={move.label} style={styles.moveRow}>
-              <Ionicons name={move.icon} size={18} color={colors.starlightSoft} />
-              <Text style={styles.moveLabel}>{move.label}</Text>
-            </View>
-          ))}
-          <Text style={styles.movesNote}>
-            do one of these before you decide anything
-          </Text>
-        </View>
-
-        {saved ? (
-          <View style={styles.savedCard}>
-            <Ionicons name="checkmark-circle" size={26} color={colors.sage} />
-            <Text style={styles.savedTitle}>You made it through. That’s a real win.</Text>
-            <Text style={styles.savedNote}>
-              It’s written down — a victory, not a footnote.
+          <View style={styles.movesCard}>
+            <Text style={styles.movesTitle}>the way out, in order</Text>
+            {MOVES.map((move) => (
+              <View key={move.label} style={styles.moveRow}>
+                <Ionicons name={move.icon} size={18} color={colors.starlightSoft} />
+                <Text style={styles.moveLabel}>{move.label}</Text>
+              </View>
+            ))}
+            <Text style={styles.movesNote}>
+              do one of these before you decide anything
             </Text>
-            <SpringPress
-              style={styles.backButton}
-              onPress={() => router.navigate('/today')}>
-              <Text style={styles.backButtonText}>back to today</Text>
-            </SpringPress>
           </View>
-        ) : (
-          <SpringPress
-            style={styles.madeItButton}
-            onPress={() => {
-              logVictory();
-              hapticTap();
-              setSaved(true);
-            }}>
-            <Ionicons name="sunny" size={18} color={colors.night} />
-            <Text style={styles.madeItText}>I made it through</Text>
-          </SpringPress>
-        )}
-      </ScrollView>
+
+          <SosAllies key={visit} />
+
+          {saved ? (
+            <View style={styles.savedCard}>
+              <Ionicons name="checkmark-circle" size={26} color={colors.sage} />
+              <Text style={styles.savedTitle}>You made it through. That’s a real win.</Text>
+              <Text style={styles.savedNote}>
+                It’s written down — a victory, not a footnote.
+              </Text>
+              <SpringPress
+                style={styles.backButton}
+                onPress={() => router.navigate('/today')}>
+                <Text style={styles.backButtonText}>back to today</Text>
+              </SpringPress>
+            </View>
+          ) : (
+            <SpringPress
+              style={styles.madeItButton}
+              onPress={() => {
+                logVictory();
+                hapticTap();
+                setSaved(true);
+              }}>
+              <Ionicons name="sunny" size={18} color={colors.night} />
+              <Text style={styles.madeItText}>I made it through</Text>
+            </SpringPress>
+          )}
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.night },
+  flex: { flex: 1 },
   content: {
     alignItems: 'center',
     paddingHorizontal: 24,

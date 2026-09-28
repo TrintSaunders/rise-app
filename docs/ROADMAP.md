@@ -17,6 +17,7 @@
 
 ## v0.3 — Allies
 
+- ~~SOS "tell my allies I'm tempted"~~ — done early (2026-09-28): allies added on the SOS tab, local group text; optional server path awaiting Trint's pick
 - Ally management + "check on me tonight" ping
 - Weekly digest email (tiny serverless function — the only server, stores nothing)
 - Rise Again → "tell an ally" flow

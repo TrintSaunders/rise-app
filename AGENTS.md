@@ -60,8 +60,9 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
   `log-struggle` are card modals).
 - `app/(tabs)/` — `today` (dawn arc, streak counters, SOS button),
   `sos` (the Way of Escape — always night colors, its tab bar too; resets
-  on blur), `patterns` (honest-data readback), `armory` (placeholder until v1.0;
-  with `flags.armoryMemory` on it becomes verse memory).
+  on blur; holds the "your allies" card), `patterns` (honest-data
+  readback), `armory` (verse memory; the old placeholder shows if
+  `flags.armoryMemory` is turned off).
   A fifth tab, Allies (formerly Brothers), is planned for v0.3 — see
   DESIGN.md. Do not build it without asking the owner.
 - `lib/store.tsx` — the store. Append-only history: check-ins, struggles,
@@ -73,10 +74,16 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 - `lib/theme.ts` — Night Watch: a semantic Day/Night palette via
   `useAppTheme()`. Night follows the clock (19:00–06:00) unless the user
   pins a mode (toggle on Today, persisted in the store).
-- `lib/flags.ts` — features built but shipped dark. `armoryMemory`
-  gates the Armory verse memory: `lib/memory.ts` (verse library, review
-  schedule, share codes), `components/ArmoryMemory.tsx`, and the
-  `app/memory/` routes, each wrapped in `MemoryGate`.
+- `lib/flags.ts` — feature switches. `armoryMemory` (on) gates the Armory
+  verse memory: `lib/memory.ts` (verse library, review schedule, share
+  codes), `components/ArmoryMemory.tsx`, and the `app/memory/` routes,
+  each wrapped in `MemoryGate`. `allyAlerts` picks how SOS tells allies:
+  `'local'` or `'server'`.
+- `lib/allyAlert.ts` + `components/SosAllies.tsx` — SOS "tell them I'm
+  tempted". Allies live in the store (`data.allies`), on the phone only.
+  The server path always falls back to the local group text.
+- `server/ally-alert/` — optional Deno Edge Function for the server path;
+  not deployed, excluded from the app's tsconfig. See `server/README.md`.
 - `lib/verses.ts` — verse of the day; `lib/sample.ts` — flagged demo data
   behind the Patterns "sample history" button (removable before release);
   `lib/haptics.ts` — `hapticTap()` for completions only, never for falls.
@@ -95,7 +102,12 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
    copy-tone section.
 4. One glowing element per screen, maximum. Gold and ember are spices.
 5. Reuse the motion components instead of inventing new animations.
-6. Sacred privacy: no analytics, no network calls, no data off-device.
+6. Sacred privacy: no analytics, no accounts, no data off-device. The only
+   things that leave the phone are messages he chooses to send from it:
+   the SOS "I'm being tempted" text to his allies, shared memory folders,
+   and progress notes. They carry nothing beyond what he sees. The
+   optional `server/ally-alert` path is the one exception under review —
+   see `server/README.md`.
 
 ## First-push checklist for a new collaborator
 

@@ -74,6 +74,13 @@ export type RiseEntry = {
 
 export type ThemeMode = 'auto' | 'night' | 'day';
 
+/** Someone SOS can text "I'm being tempted". Kept only on this phone. */
+export type Ally = {
+  id: string;
+  name: string;
+  phone: string;
+};
+
 export type StoreData = {
   version: 1;
   profile: Profile | null;
@@ -90,6 +97,7 @@ export type StoreData = {
   themeMode: ThemeMode;
   /** Armory verse memory: his folders and how each verse is holding. */
   memory: MemoryData;
+  allies: Ally[];
 };
 
 // ─── Local-day helpers ───────────────────────────────────────────────────────
@@ -183,6 +191,7 @@ const EMPTY: StoreData = {
   lastRisenAt: null,
   themeMode: 'auto',
   memory: { folders: [], progress: {} },
+  allies: [],
 };
 
 function newId(): string {
@@ -218,6 +227,9 @@ type StoreApi = {
   deleteFolder: (folderId: string) => void;
   /** Progress is kept per verse, so it survives a folder being deleted. */
   reviewVerse: (ref: string, remembered: boolean) => void;
+  /** `phone` should already be cleaned (see cleanPhone in lib/allyAlert). */
+  addAlly: (name: string, phone: string) => void;
+  removeAlly: (id: string) => void;
 };
 
 /** Adds verses a folder doesn't already hold, keeping order. */
@@ -426,6 +438,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             },
           };
         }),
+      addAlly: (name, phone) =>
+        update((prev) => ({
+          ...prev,
+          allies: [...prev.allies, { id: newId(), name: name.trim(), phone }],
+        })),
+      removeAlly: (id) =>
+        update((prev) => ({ ...prev, allies: prev.allies.filter((a) => a.id !== id) })),
     };
   }, [ready, data]);
 

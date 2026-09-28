@@ -146,6 +146,14 @@ export function ArmoryMemory() {
             </SpringPress>
           ))}
         </Reveal>
+
+        <Text style={styles.copyright}>
+          Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard
+          Version®), © 2001 by Crossway, a publishing ministry of Good News Publishers. Used by
+          permission. All rights reserved. Scripture marked NASB is taken from the New American
+          Standard Bible®, © 1960, 1971, 1977, 1995 by The Lockman Foundation. Used by
+          permission. All rights reserved. lockman.org
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -287,6 +295,13 @@ const createStyles = (t: Theme) =>
       marginBottom: 10,
     },
     setCardFirst: { backgroundColor: t.softSage },
+    copyright: {
+      fontFamily: fonts.sans,
+      fontSize: 10.5,
+      lineHeight: 15,
+      color: t.textSoft,
+      marginTop: 24,
+    },
     setTitle: {
       fontFamily: fonts.serif,
       fontSize: 17,

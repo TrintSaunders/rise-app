@@ -8,46 +8,75 @@ every push (see AGENTS.md → "Workflow on this repo").
 it, and the commit subject (not the hash — you're writing the entry before
 the commit exists). Say what changed and why, in a few bullets, and list
 anything left open. Then update "Current state" and "Waiting on a decision"
-if they changed. Keep it short: this is a map, not a changelog of every
+if they changed; when a decision is made, move it to "Decided" with the
+date and who made it. Keep it short: this is a map, not a changelog of every
 line — `git log` has the rest.
 
 ---
 
 ## Current state
 
-- **Tabs:** Today · SOS · Patterns · Armory. Allies (formerly Brothers) is
-  planned as a fifth tab for v0.3 and is not built.
+- **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
+  management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
-  with victory logging, evening check-in, log a struggle (every fall its own
-  entry with its hour), Rise Again, Patterns (last two weeks), Night Watch.
-- **Built but hidden:** Armory verse memory — folders, suggested sets
-  (fight verses + Topical Memory System), spaced-repetition review, sharing
-  folders with friends. Behind `flags.armoryMemory` in `lib/flags.ts`.
-- **Not started:** local notifications (last v0.1 item), Allies (v0.3),
-  battle-plan editor, reading plans, encrypted backup/export.
+  with victory logging and "tell my allies I'm tempted", evening check-in,
+  log a struggle (every fall its own entry with its hour), Rise Again,
+  Patterns (last two weeks), Night Watch, Armory verse memory (folders,
+  suggested sets, spaced-repetition review, sharing folders with friends).
+- **Built but not switched on:** the server path for ally alerts
+  (`server/ally-alert`, not deployed; `flags.allyAlerts` is `'local'`).
+- **Not started:** local notifications (last v0.1 item), the rest of Allies
+  (v0.3), battle-plan editor, reading plans, encrypted backup/export.
 - **Gates:** `npx tsc --noEmit` and
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
 ## Waiting on a decision
 
-- **Allies vs. the privacy rule.** House rule 6 says no network calls, but
-  the v0.3 ping, SOS alerts, and weekly digest need one. Options: share
-  through his own Messages app (no network), a tiny store-nothing server,
-  or real push alerts. Owner: Trint.
-- **Turning on verse memory.** Before `flags.armoryMemory` goes on: check
-  every verse text against a licensed ESV and add its copyright notice
-  (1 Tim 4:7 uses NASB wording on purpose); confirm with The Navigators
-  that the "Topical Memory System" name can be used; decide whether
-  memorizing together should ever sync progress (needs a server — same
-  question as Allies).
-- **Hebrews 2:28** was requested for the fight-verse list but doesn't exist;
-  Hebrews 2:18 is in its place. Confirm with Hayden.
+- **@Trint — how should SOS tell allies?** Both paths are built; compare
+  them in `server/README.md`. Hayden (co-creator) settled the principle on
+  2026-09-28: privacy stays local, and SOS only ever says "I'm being
+  tempted" — never how or why.
+  - **Local (current):** his Messages app opens with the text ready, he taps
+    Send. Free, from his own number, fits house rule 6 as written.
+  - **Server:** one tap, sent from a Rise number via Twilio. Costs money,
+    needs Twilio + A2P 10DLC registration + a Supabase project, and passes
+    his first name and allies' numbers through a server (not stored).
+  To choose server: follow "Turning the server path on" in
+  `server/README.md`. To choose local: delete `server/` and the
+  `'server'` branch in `lib/allyAlert.ts`.
 - **Sample-data button** on Patterns must come out before release.
+
+## Decided
+
+- **2026-09-28 — Privacy (Hayden):** local-first stays. The only things
+  that leave the phone are messages he sends himself (SOS alert, shared
+  folders, progress notes); house rule 6 in AGENTS.md now says so. Memory
+  folders never sync progress.
+- **2026-09-28 — Verse memory (Hayden):** verse texts, ESV/NASB notices,
+  and the Topical Memory System name are checked; `flags.armoryMemory` is on.
+- **2026-09-28 — Hebrews 2:18 (Hayden):** confirmed; "2:28" was a typo.
 
 ---
 
 ## Log
+
+### 2026-09-28 — Hayden (with Claude) — "SOS tells allies; verse memory on; privacy decided"
+- SOS tab gains a "your allies" card: add up to five names and numbers
+  (kept on the phone only), then one button — "tell them I'm tempted".
+  The text says only that; nothing about when, where, or why.
+- Two delivery paths behind `flags.allyAlerts`: `'local'` (default) opens
+  a ready group text via `expo-sms`; `'server'` posts to
+  `server/ally-alert` (Deno Edge Function + Twilio, fixed message, 1–5
+  E.164 recipients, in-memory rate limit, stores nothing) and falls back to
+  local on any failure. The function is not deployed; it was tested in
+  Node against a fake Twilio. Trint picks — see "Waiting on a decision".
+- Added `expo-sms`. `server/` is excluded from the app's tsconfig.
+- Verse memory switched on, with the ESV and NASB copyright notices at the
+  foot of the Armory.
+- House rule 6 in AGENTS.md rewritten for the privacy decision.
+- Not tried on a device yet. Texting only works on a real phone (not the
+  simulator or web — there the SOS card shows the message to copy).
 
 ### 2026-09-28 — Hayden (with Claude) — "Make SOS its own tab; start the progress log"
 - SOS moved from a full-screen modal to its own tab, second in the bar,

@@ -2,8 +2,8 @@
 // Phil 4:8 filling, not just fencing: Scripture hidden in the heart
 // (Ps 119:11) is what's there when the phone isn't.
 //
-// Wordings follow the ESV unless `translation` says otherwise. Before release,
-// check every text against the licensed edition and carry its copyright notice.
+// Wordings follow the ESV unless `translation` says otherwise. Texts were
+// checked 2026-09-28; the ESV and NASB notices sit at the foot of the Armory.
 
 import { shiftDay } from './store';
 
@@ -85,8 +85,7 @@ const TEMPTATION: SuggestedSet = {
 };
 
 // The Navigators' Topical Memory System: five series of twelve topics, two
-// verses each. Confirm with The Navigators before using the TMS name in the
-// shipped app.
+// verses each. Use of the name was checked 2026-09-28.
 const tms = (
   id: string,
   title: string,
