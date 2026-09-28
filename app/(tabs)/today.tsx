@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AlliesCard } from '@/components/AlliesCard';
 import { DawnArc } from '@/components/DawnArc';
 import { Reveal } from '@/components/Reveal';
 import { SpringPress } from '@/components/SpringPress';
@@ -152,15 +153,10 @@ export default function TodayScreen() {
           </View>
         </Reveal>
 
+        <Reveal delay={280} style={styles.stretch}>
+          <AlliesCard />
+        </Reveal>
       </ScrollView>
-
-      {/* Pinned, never scrolled away: help is always one tap from Today. */}
-      <Reveal delay={280} style={styles.sosDock}>
-        <SpringPress style={styles.sosButton} onPress={() => router.navigate({ pathname: '/sos', params: { now: '1' } })}>
-          <Ionicons name="bonfire-outline" size={19} color={colors.ember} />
-          <Text style={styles.sosText}>I’m struggling right now</Text>
-        </SpringPress>
-      </Reveal>
     </SafeAreaView>
   );
 }
@@ -168,7 +164,7 @@ export default function TodayScreen() {
 const createStyles = (t: Theme) =>
   StyleSheet.create({
     safe: { flex: 1, backgroundColor: t.bg },
-    screen: { paddingHorizontal: 24, paddingBottom: 16 },
+    screen: { paddingHorizontal: 24, paddingBottom: 32 },
     stretch: { alignSelf: 'stretch' },
     headerRow: {
       flexDirection: 'row',
@@ -299,29 +295,5 @@ const createStyles = (t: Theme) =>
       fontSize: 12.5,
       lineHeight: 17,
       color: t.textSoft,
-    },
-    sosDock: {
-      paddingHorizontal: 24,
-      paddingTop: 10,
-      paddingBottom: 14,
-      backgroundColor: t.bg,
-    },
-    sosButton: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 9,
-      backgroundColor: t.bg,
-      borderRadius: radius.button,
-      borderWidth: 1.5,
-      borderColor: colors.ember,
-      paddingVertical: 19,
-    },
-    sosText: {
-      fontFamily: fonts.sansMedium,
-      fontSize: 15,
-      letterSpacing: 1.2,
-      textTransform: 'uppercase',
-      color: colors.ember,
     },
   });

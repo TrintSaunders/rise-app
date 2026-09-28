@@ -61,6 +61,18 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-28 — Trint (with ZCode) — Allies manage on Today; SOS button off Today
+- The "I'm struggling right now" button is gone from Today. The SOS tab
+  is one tap away in the bar, so the dock was redundant.
+- Allies are added and removed on the Today screen ("your allies" card
+  under the two actions). SOS keeps only the alert: "tell my allies I'm
+  tempted". Its add form appears only when he has no allies yet, so the
+  moment of need is never a dead end.
+- Shared `components/AlliesForm` (validation and copy in one place) used
+  by both the Today card and the SOS fallback.
+- Also fixed the review carry-over in `SosAllies.tell`: a rejection now
+  lands on the "unavailable" fallback instead of going unhandled.
+
 ### 2026-09-28 — Hayden (with Claude) — "SOS tab opens on a single button"
 - The SOS tab now opens on one large breathing button, "I'm struggling
   right now". Pressing it shows the help page (breathing, verse, allies,
