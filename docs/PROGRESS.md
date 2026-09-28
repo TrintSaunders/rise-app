@@ -33,22 +33,15 @@ line — `git log` has the rest.
 
 ## Waiting on a decision
 
-- **@Trint — how should SOS tell allies?** Both paths are built; compare
-  them in `server/README.md`. Hayden (co-creator) settled the principle on
-  2026-09-28: privacy stays local, and SOS only ever says "I'm being
-  tempted" — never how or why.
-  - **Local (current):** his Messages app opens with the text ready, he taps
-    Send. Free, from his own number, fits house rule 6 as written.
-  - **Server:** one tap, sent from a Rise number via Twilio. Costs money,
-    needs Twilio + A2P 10DLC registration + a Supabase project, and passes
-    his first name and allies' numbers through a server (not stored).
-  To choose server: follow "Turning the server path on" in
-  `server/README.md`. To choose local: delete `server/` and the
-  `'server'` branch in `lib/allyAlert.ts`.
 - **Sample-data button** on Patterns must come out before release.
 
 ## Decided
 
+- **2026-09-28 — Ally alerts stay local (Trint):** SOS keeps the manual
+  path: "tell my allies I'm tempted" opens his Messages app with the
+  text ready, and he taps Send. The server path stays built but off
+  (`flags.allyAlerts` remains `'local'`; `server/` stays for a possible
+  future switch). Revisit only if Trint reopens it.
 - **2026-09-28 — Privacy (Hayden):** local-first stays. The only things
   that leave the phone are messages he sends himself (SOS alert, shared
   folders, progress notes); house rule 6 in AGENTS.md now says so. Memory
