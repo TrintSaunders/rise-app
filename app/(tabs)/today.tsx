@@ -2,7 +2,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useMemo } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AlliesCard } from '@/components/AlliesCard';
@@ -64,8 +71,18 @@ export default function TodayScreen() {
     <SafeAreaView style={styles.safe} edges={['top']}>
       <StatusBar style={t.isNight ? 'light' : 'dark'} />
       {t.isNight && <StarField />}
-      <ScrollView contentContainerStyle={styles.screen} showsVerticalScrollIndicator={false}>
-        <Reveal>
+      {/* The ally form sits low on the page; keep it typing-reachable:
+          the inset lifts the scroll view above the keyboard, and iOS
+          auto-scrolls the focused field into view. */}
+      <KeyboardAvoidingView
+        style={styles.flex}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <ScrollView
+          contentContainerStyle={styles.screen}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          automaticallyAdjustKeyboardInsets>
+          <Reveal>
           <View style={styles.headerRow}>
             <View style={styles.headerText}>
               <Text style={styles.greeting}>{greeting(name)}</Text>
@@ -165,7 +182,8 @@ export default function TodayScreen() {
         <Reveal delay={280} style={styles.stretch}>
           <AlliesCard />
         </Reveal>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -173,7 +191,8 @@ export default function TodayScreen() {
 const createStyles = (t: Theme) =>
   StyleSheet.create({
     safe: { flex: 1, backgroundColor: t.bg },
-    screen: { paddingHorizontal: 24, paddingBottom: 32 },
+    flex: { flex: 1 },
+    screen: { paddingHorizontal: 24, paddingBottom: 160 },
     stretch: { alignSelf: 'stretch' },
     headerRow: {
       flexDirection: 'row',

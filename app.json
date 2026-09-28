@@ -13,6 +13,7 @@
     },
     "android": {
       "package": "com.trintsaunders.rise",
+      "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
         "backgroundColor": "#FBF7EF",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

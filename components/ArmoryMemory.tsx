@@ -2,7 +2,15 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Reveal } from '@/components/Reveal';
@@ -48,8 +56,16 @@ export function ArmoryMemory() {
     <SafeAreaView style={styles.safe} edges={['top']}>
       <StatusBar style={t.isNight ? 'light' : 'dark'} />
       {t.isNight && <StarField />}
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Text style={styles.heading}>Armory</Text>
+      {/* The folder-naming row sits low; lift the page above the keyboard
+          and auto-scroll the field into view on iOS. */}
+      <KeyboardAvoidingView
+        style={styles.flex}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <ScrollView
+          contentContainerStyle={styles.content}
+          keyboardShouldPersistTaps="handled"
+          automaticallyAdjustKeyboardInsets>
+          <Text style={styles.heading}>Armory</Text>
         <Text style={styles.subtitle}>hide the word where temptation can’t take it</Text>
 
         <Reveal delay={0} style={styles.reviewCard}>
@@ -162,7 +178,8 @@ export function ArmoryMemory() {
           Standard Bible®, © 1960, 1971, 1977, 1995 by The Lockman Foundation. Used by
           permission. All rights reserved. lockman.org
         </Text>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -170,7 +187,8 @@ export function ArmoryMemory() {
 const createStyles = (t: Theme) =>
   StyleSheet.create({
     safe: { flex: 1, backgroundColor: t.bg },
-    content: { paddingHorizontal: 24, paddingBottom: 32 },
+    flex: { flex: 1 },
+    content: { paddingHorizontal: 24, paddingBottom: 160 },
     heading: {
       fontFamily: fonts.serif,
       fontSize: 34,
