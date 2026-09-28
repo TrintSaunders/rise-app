@@ -1,5 +1,9 @@
 # Next task — copy this prompt into a fresh session opened at `~/Desktop/rise-app`
 
+> **Done** in "Complete daily rhythm, honest data, and Night Watch" (2026-09-27).
+> Kept for reference; paths below have since moved (SOS is now `app/(tabs)/sos.tsx`).
+> For what's current, read `docs/PROGRESS.md`.
+
 ---
 
 You're working on **Rise** — a grace-forward app helping men fight lust through Scripture, honesty, and allies (mercy, not shame). It's an Expo app: React Native, TypeScript, expo-router. Before writing any code, read `README.md`, `docs/DESIGN.md`, and `docs/ROADMAP.md`, then look at `app/(tabs)/today.tsx`, `app/sos.tsx`, `lib/verses.ts`, and `constants/theme.ts` to absorb the existing patterns.

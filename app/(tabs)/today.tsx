@@ -237,7 +237,7 @@ export default function TodayScreen() {
         <View style={styles.spacer} />
 
         <Reveal delay={280} style={styles.stretch}>
-          <SpringPress style={styles.sosButton} onPress={() => router.push('/sos')}>
+          <SpringPress style={styles.sosButton} onPress={() => router.navigate('/sos')}>
             <Ionicons name="bonfire-outline" size={19} color={colors.ember} />
             <Text style={styles.sosText}>I’m struggling right now</Text>
           </SpringPress>

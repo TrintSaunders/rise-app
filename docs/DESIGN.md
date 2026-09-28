@@ -70,14 +70,15 @@ Gold and ember are **spices, not sauces**. If everything glows, nothing does.
 
 Evening check-ins happen at night, often in bed. Night Watch is deep indigo (`#232946`) with warm gold accents and tiny star points — cozy and watchful, never gloomy. Triggers automatically after sunset; manual toggle.
 
-## App structure (4 tabs + modals)
+## App structure (5 tabs + modals)
 
-1. **Today** — the daily rhythm: verse, dawn arc, actions, SOS
-2. **Allies** — the people who stand with you, weekly digest, "check on me"
-3. **Patterns** — honest data, gently read back
-4. **Armory** — verse memory, reading plans, the battle plan editor
+1. **Today** — the daily rhythm: verse, dawn arc, actions, and the SOS button
+2. **SOS** — the Way of Escape, its own tab so it's one tap from anywhere (its tab bar turns night with it)
+3. **Allies** — the people who stand with you, weekly digest, "check on me" *(v0.3)*
+4. **Patterns** — honest data, gently read back
+5. **Armory** — verse memory, reading plans, the battle plan editor
 
-Modal stack (never more than one tap away): **SOS**, evening check-in, log a struggle, **Rise Again**.
+Modal stack (never more than one tap away): evening check-in, log a struggle, **Rise Again**.
 
 ---
 
@@ -111,7 +112,7 @@ Purpose: a 10-second orientation — who I am, whose I am, what today holds.
 │   │   I'M STRUGGLING NOW     │   │
 │   ╰──────────────────────────╯   │
 │                                  │
-│  Today   Allies   Patterns  Armory│
+│ Today SOS Allies Patterns Armory  │
 └──────────────────────────────────┘
 ```
 
@@ -124,6 +125,8 @@ Purpose: a 10-second orientation — who I am, whose I am, what today holds.
 ### SOS — "The Way of Escape" (1 Cor 10:13)
 
 Purpose: the 90 seconds between temptation and decision. Calm the body, point the eyes, open the exit.
+
+Lives in its own tab (and the Today button jumps there). Every visit starts fresh — the victory card from last time never lingers.
 
 ```
 ┌──────────────────────────────────┐

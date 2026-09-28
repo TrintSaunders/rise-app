@@ -4,7 +4,7 @@
 
 - Onboarding: name, life verse, (optionally) first ally
 - Today screen: greeting, verse card, dawn arc + counters
-- SOS modal: breathing circle, verse, ally contact links, "I made it through"
+- SOS tab: breathing circle, verse, ally contact links, "I made it through"
 - Evening check-in: 3 questions + gratitude
 - Local notifications: morning arm (user-set time), evening check-in reminder
 - All data local

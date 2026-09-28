@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
 
 import { useAppTheme } from '@/lib/theme';
-import { fonts } from '@/constants/theme';
+import { colors, fonts } from '@/constants/theme';
 
 export default function TabLayout() {
   const t = useAppTheme();
@@ -29,6 +29,22 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="sunny-outline" size={size} color={color} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="sos"
+        options={{
+          title: 'SOS',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="bonfire-outline" size={size} color={color} />
+          ),
+          // The SOS screen is always night; its tab bar follows it.
+          tabBarActiveTintColor: colors.starlight,
+          tabBarInactiveTintColor: colors.starlightSoft,
+          tabBarStyle: {
+            backgroundColor: colors.night,
+            borderTopColor: colors.nightSoft,
+          },
         }}
       />
       <Tabs.Screen

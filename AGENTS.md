@@ -1,8 +1,9 @@
 # Rise — setup & house guide for AI assistants (and humans)
 
 Rise is a grace-forward companion app for men fighting for sexual purity —
-built on mercy, not shame. Before writing any code, read `README.md`,
-`docs/DESIGN.md`, and `docs/ROADMAP.md`. The design doc is the source of
+built on mercy, not shame. Before writing any code, read
+`docs/PROGRESS.md` (what's been done lately, and what's waiting on a
+decision), then `README.md`, `docs/DESIGN.md`, and `docs/ROADMAP.md`. The design doc is the source of
 truth for tone, palette, and screen behavior; when code and doc disagree,
 stop and ask which should change.
 
@@ -22,12 +23,21 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 
 - Branch is `main`, direct pushes are allowed (no branch protection).
   Always `git pull --rebase origin main` before pushing.
+- Before every push, add an entry to `docs/PROGRESS.md` — what changed,
+  why, and what's left open — and update its "Current state" and "Waiting
+  on a decision" sections. Two people's assistants share this repo; the
+  log is how each one knows what the other did. If code and a doc now
+  disagree because of your change, fix the doc in the same commit.
 - Before every commit, BOTH gates must pass:
 
   ```bash
   npx tsc --noEmit
   npx expo export --platform ios --platform web
   ```
+
+  Adding or renaming a route? Typed routes live in `.expo/types/`, which
+  only the dev server regenerates — run `npx expo start` once (Ctrl-C when
+  it's up) or `tsc` will reject the new paths.
 
   Export both platforms **in one command**. `expo export` clears `dist/`
   each run, so exporting one platform after the other silently deletes
@@ -46,12 +56,13 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 ## Map of the code
 
 - `app/_layout.tsx` — root: StoreProvider, first-launch onboarding gate,
-  modal stack (`sos` + `rise-again` are fullScreenModal; `checkin` +
+  modal stack (`rise-again` is fullScreenModal; `checkin` +
   `log-struggle` are card modals).
-- `app/(tabs)/` — `today` (dawn arc, streak counters, SOS entry),
-  `patterns` (honest-data readback), `armory` (placeholder until v1.0;
+- `app/(tabs)/` — `today` (dawn arc, streak counters, SOS button),
+  `sos` (the Way of Escape — always night colors, its tab bar too; resets
+  on blur), `patterns` (honest-data readback), `armory` (placeholder until v1.0;
   with `flags.armoryMemory` on it becomes verse memory).
-  A fourth tab, Allies (formerly Brothers), is planned for v0.3 — see
+  A fifth tab, Allies (formerly Brothers), is planned for v0.3 — see
   DESIGN.md. Do not build it without asking the owner.
 - `lib/store.tsx` — the store. Append-only history: check-ins, struggles,
   victories, rises. Mutate only through its actions; read through its

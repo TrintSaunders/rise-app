@@ -87,10 +87,6 @@ function RootNavigator() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
-          name="sos"
-          options={{ headerShown: false, presentation: 'fullScreenModal' }}
-        />
-        <Stack.Screen
           name="checkin"
           options={{ headerShown: false, presentation: 'modal' }}
         />

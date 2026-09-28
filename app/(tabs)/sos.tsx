@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -25,17 +25,32 @@ const MOVES = [
 ] as const;
 
 /**
- * The Way of Escape (1 Cor 10:13). This screen is always in Night Watch
- * colors, even in light mode — calm the body, point the eyes, open the exit.
- * Nothing here condemns; it exists to get him out.
+ * The Way of Escape (1 Cor 10:13). Its own tab, so it's one tap from
+ * anywhere. This screen is always in Night Watch colors, even in light
+ * mode — calm the body, point the eyes, open the exit. Nothing here
+ * condemns; it exists to get him out.
  */
 export default function SosScreen() {
   const { logVictory } = useStore();
   const [saved, setSaved] = useState(false);
+  const [focused, setFocused] = useState(false);
+
+  // Tabs stay mounted: once he leaves, the next visit starts fresh with the
+  // "I made it through" button, never last time's victory card — and the
+  // light status bar goes with him instead of lingering over cream screens.
+  useFocusEffect(
+    useCallback(() => {
+      setFocused(true);
+      return () => {
+        setFocused(false);
+        setSaved(false);
+      };
+    }, [])
+  );
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
-      <StatusBar style="light" />
+      {focused && <StatusBar style="light" />}
       <ScrollView contentContainerStyle={styles.content}>
         <Breathing period={4} depth={0.35}>
           <View style={styles.breathCircle} />
@@ -67,7 +82,7 @@ export default function SosScreen() {
             </Text>
             <SpringPress
               style={styles.backButton}
-              onPress={() => router.back()}>
+              onPress={() => router.navigate('/today')}>
               <Text style={styles.backButtonText}>back to today</Text>
             </SpringPress>
           </View>
