@@ -358,7 +358,7 @@ export function shareMessage(folder: MemoryFolder, from: string | null, link: st
   const refs = folder.verses.map((v) => v.ref).join(', ');
   const who = from ? `${from} wants` : 'I want';
   return (
-    `${who} to memorize “${folder.name}” with you in Rise — ${folder.verses.length} ` +
+    `${who} to memorize “${folder.name}” with you in Rise. ${folder.verses.length} ` +
     `verse${folder.verses.length === 1 ? '' : 's'}: ${refs}.\n\n` +
     `Open this on your phone to add it:\n${link}`
   );
@@ -369,7 +369,7 @@ export function progressMessage(folder: MemoryFolder, memory: MemoryData): strin
   const held = folder.verses.filter((v) => isMemorized(memory.progress[v.ref])).length;
   const started = folder.verses.filter((v) => (memory.progress[v.ref]?.reviews ?? 0) > 0).length;
   return (
-    `“${folder.name}” — ${held} of ${folder.verses.length} memorized, ` +
+    `“${folder.name}”: ${held} of ${folder.verses.length} memorized, ` +
     `${started} started. How are you doing with yours?`
   );
 }

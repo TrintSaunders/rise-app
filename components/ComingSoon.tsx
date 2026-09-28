@@ -30,7 +30,7 @@ export function ComingSoon({ title, verseText, verseRef, body, arrives }: Coming
 
         <View style={styles.verseCard}>
           <Text style={styles.verse}>“{verseText}”</Text>
-          <Text style={styles.ref}>— {verseRef}</Text>
+          <Text style={styles.ref}>{verseRef}</Text>
         </View>
 
         <Text style={styles.body}>{body}</Text>

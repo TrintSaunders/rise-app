@@ -123,7 +123,7 @@ function Folder() {
               <Text style={styles.primaryText}>
                 {due.length > 0
                   ? `review ${due.length} due`
-                  : 'practice anyway — nothing due'}
+                  : 'practice anyway (nothing due)'}
               </Text>
             </SpringPress>
           )}
@@ -138,12 +138,12 @@ function Folder() {
                 style={styles.quietButton}
                 onPress={() => share(progressMessage(folder, data.memory))}>
                 <Ionicons name="chatbubble-outline" size={15} color={t.text} />
-                <Text style={styles.quietButtonText}>send how it’s going</Text>
+                <Text style={styles.quietButtonText}>share progress</Text>
               </SpringPress>
             )}
           </View>
           <Text style={styles.note}>
-            Your friend gets their own copy. Progress stays on each phone — you
+            Your friend gets their own copy. Progress stays on each phone, and you
             tell each other how it’s going.
           </Text>
 
@@ -206,7 +206,7 @@ function Folder() {
             style={styles.input}
             value={ref}
             onChangeText={setRef}
-            placeholder="reference — e.g. Romans 8:1"
+            placeholder="reference, like Romans 8:1"
             placeholderTextColor={t.textSoft}
             maxLength={40}
           />
@@ -239,7 +239,7 @@ function Folder() {
             }}>
             <Text style={styles.deleteText}>
               {confirmDelete
-                ? 'tap again to delete — verses you’ve learned stay learned'
+                ? 'tap again to delete. Verses you’ve learned stay learned.'
                 : 'delete this folder'}
             </Text>
           </Pressable>
@@ -372,9 +372,10 @@ const createStyles = (t: Theme) =>
       width: 7,
       height: 7,
       borderRadius: 4,
-      backgroundColor: t.track,
+      backgroundColor: t.textSoft,
+      opacity: 0.25,
     },
-    dotOn: { backgroundColor: colors.dawn },
+    dotOn: { backgroundColor: colors.dawn, opacity: 1 },
     verseText: {
       fontFamily: fonts.serifItalic,
       fontSize: 15,

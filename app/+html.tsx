@@ -28,7 +28,20 @@ export default function Root({ children }: { children: ReactNode }) {
   );
 }
 
+// Values mirror constants/theme.ts (cream, mist, ink); CSS can't import them.
+// On a laptop-width window the app sits in a phone-width column: it's a phone
+// app, and stretched edge to edge its cards and buttons read as broken.
 const responsiveBackground = `
 body {
   background-color: #FBF7EF;
+}
+@media (min-width: 640px) {
+  body {
+    background-color: #F1E9DB;
+  }
+  #root {
+    max-width: 440px;
+    margin: 0 auto;
+    box-shadow: 0 0 0 1px rgba(44, 42, 38, 0.06), 0 24px 80px rgba(44, 42, 38, 0.1);
+  }
 }`;

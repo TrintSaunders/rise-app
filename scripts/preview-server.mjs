@@ -4,8 +4,8 @@
 //
 // Usage: npm run preview   (after: npx expo export --platform ios --platform web)
 import http from 'node:http';
-import { createReadStream, existsSync, statSync } from 'node:fs';
-import { extname, join, normalize } from 'node:path';
+import { createReadStream, existsSync, readdirSync, statSync } from 'node:fs';
+import { basename, dirname, extname, join, normalize } from 'node:path';
 
 const root = process.argv[2] ?? 'dist';
 const port = Number(process.argv[3] ?? 8080);
@@ -39,6 +39,14 @@ http
     if (!existsSync(file) && !extname(file)) {
       const candidate = `${file}.html`;
       if (existsSync(candidate)) file = candidate;
+      else {
+        // Dynamic routes export as one page, e.g. memory/folder/[id].html;
+        // any /memory/folder/<id> is served that page and the router reads the id.
+        const dir = dirname(file);
+        const dynamic =
+          existsSync(dir) && readdirSync(dir).find((name) => /^\[[^\]]+\]\.html$/.test(name));
+        if (dynamic && basename(file)) file = join(dir, dynamic);
+      }
     }
     if (!existsSync(file) || !statSync(file).isFile()) {
       res.writeHead(404);

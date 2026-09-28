@@ -23,7 +23,7 @@ const RISE_VERSE = {
 
 const CONFESSION = [
   'God, I fell. I’m not hiding it and I’m not dressing it up.',
-  'You said if we confess, you are faithful and just to forgive — I’m taking you at your word.',
+  'You said if we confess, you are faithful and just to forgive. I’m taking you at your word.',
   'Cleanse me, teach me to walk in the light, and put me back on my feet. Amen.',
 ];
 
@@ -120,11 +120,11 @@ export default function RiseAgainScreen() {
               <Text style={styles.subline}>Day one starts now.</Text>
               <View style={styles.card}>
                 <Text style={styles.verseText}>“{RISE_VERSE.text}”</Text>
-                <Text style={styles.verseRef}>— {RISE_VERSE.ref}</Text>
+                <Text style={styles.verseRef}>{RISE_VERSE.ref}</Text>
               </View>
               <Text style={styles.risenNote}>
-                Nothing was erased. Every fall and every rise stays in your story —
-                that’s the whole point of it.
+                Nothing was erased. Every fall and every rise stays in your story.
+                That’s the whole point.
               </Text>
               <SpringPress style={styles.homeButton} onPress={() => router.dismissAll()}>
                 <Text style={styles.homeButtonText}>back to today</Text>
@@ -137,11 +137,11 @@ export default function RiseAgainScreen() {
 
               <View style={styles.card}>
                 <Text style={styles.verseText}>“{VERSE.text}”</Text>
-                <Text style={styles.verseRef}>— {VERSE.ref}</Text>
+                <Text style={styles.verseRef}>{VERSE.ref}</Text>
               </View>
 
               <View style={styles.card}>
-                <Text style={styles.cardLabel}>a short confession — out loud or in your heart</Text>
+                <Text style={styles.cardLabel}>a short confession, out loud or in your heart</Text>
                 {CONFESSION.map((line) => (
                   <Text key={line.slice(0, 24)} style={styles.confessionLine}>
                     {line}

@@ -33,7 +33,7 @@ function allowed(caller: string, now: number): boolean {
 function alertText(name: string): string {
   return (
     `${name} is being tempted right now and asked Rise to let you know. ` +
-    `No details — a quick prayer or a text back would mean a lot.`
+    `No details. A quick prayer or a text back would mean a lot.`
   );
 }
 

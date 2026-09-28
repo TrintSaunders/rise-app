@@ -104,11 +104,11 @@ export default function LogStruggleScreen() {
           <Ionicons name="checkmark-circle" size={40} color={colors.sageDeep} />
           <Text style={styles.savedTitle}>You fled. That’s the win.</Text>
           <Text style={styles.savedNote}>
-            Logged and left behind — it doesn’t get to follow you into tonight.
+            Logged and left behind. It doesn’t get to follow you into tonight.
           </Text>
           <View style={styles.verseCard}>
             <Text style={styles.verseText}>“{ESCAPE_VERSE.text}”</Text>
-            <Text style={styles.verseRef}>— {ESCAPE_VERSE.ref}</Text>
+            <Text style={styles.verseRef}>{ESCAPE_VERSE.ref}</Text>
           </View>
           <SpringPress style={styles.quietButton} onPress={() => router.back()}>
             <Text style={styles.quietButtonText}>back to today</Text>
@@ -143,7 +143,7 @@ export default function LogStruggleScreen() {
             );
           })}
         </View>
-        <Text style={styles.sectionNote}>tap all that apply — or none, that’s fine too</Text>
+        <Text style={styles.sectionNote}>tap all that apply, or none at all</Text>
 
         <Text style={styles.sectionLabel}>when did it happen?</Text>
         <View style={styles.chipRow}>
@@ -167,14 +167,14 @@ export default function LogStruggleScreen() {
         <SpringPress
           style={[styles.outcome, outcome === 'fled' && styles.outcomeFled]}
           onPress={() => setOutcome('fled')}>
-          <Text style={styles.outcomeTitle}>I got away — I fled</Text>
-          <Text style={styles.outcomeNote}>it came, and I walked. Count it.</Text>
+          <Text style={styles.outcomeTitle}>I fled</Text>
+          <Text style={styles.outcomeNote}>It came, and I walked away. Count it.</Text>
         </SpringPress>
         <SpringPress
           style={[styles.outcome, outcome === 'fell' && styles.outcomeFell]}
           onPress={() => setOutcome('fell')}>
-          <Text style={styles.outcomeTitle}>I gave in — I fell</Text>
-          <Text style={styles.outcomeNote}>no shame here. Mercy isn’t finished with you.</Text>
+          <Text style={styles.outcomeTitle}>I fell</Text>
+          <Text style={styles.outcomeNote}>No shame here. Mercy isn’t finished with you.</Text>
         </SpringPress>
 
         <SpringPress
@@ -203,7 +203,6 @@ const createStyles = (t: Theme) =>
       justifyContent: 'space-between',
       alignSelf: 'stretch',
       minHeight: 32,
-      marginBottom: 22,
     },
     title: {
       fontFamily: fonts.sansMedium,
@@ -217,13 +216,14 @@ const createStyles = (t: Theme) =>
       fontSize: 21,
       color: t.text,
       alignSelf: 'flex-start',
+      marginTop: 28,
     },
     sectionNote: {
       fontFamily: fonts.sans,
       fontSize: 12,
       color: t.textSoft,
       alignSelf: 'flex-start',
-      marginTop: 8,
+      marginTop: 10,
     },
     chipRow: {
       flexDirection: 'row',

@@ -54,7 +54,7 @@ export function ArmoryMemory() {
 
         <Reveal delay={0} style={styles.reviewCard}>
           <Text style={styles.verse}>“{HEART_VERSE.text}”</Text>
-          <Text style={styles.verseRef}>— {HEART_VERSE.ref}</Text>
+          <Text style={styles.verseRef}>{HEART_VERSE.ref}</Text>
           {due.length > 0 ? (
             <SpringPress style={styles.reviewButton} onPress={() => router.push('/memory/review')}>
               <Text style={styles.reviewButtonText}>
@@ -64,8 +64,8 @@ export function ArmoryMemory() {
           ) : (
             <Text style={styles.reviewNote}>
               {hasVerses
-                ? 'all caught up today — the verses are resting where they belong'
-                : 'start with a set below, or make a folder of your own'}
+                ? 'All caught up today. The verses are resting where they belong.'
+                : 'Start with a set below, or make a folder of your own.'}
             </Text>
           )}
         </Reveal>
@@ -104,7 +104,7 @@ export function ArmoryMemory() {
                 style={styles.nameInput}
                 value={folderName}
                 onChangeText={setFolderName}
-                placeholder="name it — e.g. late-night verses"
+                placeholder="name it, like “late-night verses”"
                 placeholderTextColor={t.textSoft}
                 autoFocus
                 returnKeyType="done"
@@ -123,7 +123,7 @@ export function ArmoryMemory() {
               </SpringPress>
               <SpringPress style={styles.quietButton} onPress={() => router.push('/memory/import')}>
                 <Ionicons name="people-outline" size={16} color={t.text} />
-                <Text style={styles.quietButtonText}>add a friend’s</Text>
+                <Text style={styles.quietButtonText}>join a friend</Text>
               </SpringPress>
             </View>
           )}
@@ -131,20 +131,28 @@ export function ArmoryMemory() {
 
         <Reveal delay={140} style={styles.section}>
           <Text style={styles.sectionLabel}>suggested</Text>
-          {SUGGESTED_SETS.map((set, i) => (
-            <SpringPress
-              key={set.id}
-              style={[styles.setCard, i === 0 && styles.setCardFirst]}
-              onPress={() => router.push({ pathname: '/memory/set/[id]', params: { id: set.id } })}>
-              <View style={styles.folderText}>
-                <Text style={styles.setTitle}>{set.title}</Text>
-                <Text style={styles.folderMeta}>
-                  {set.subtitle} · {setVerses(set).length} verses
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color={t.textSoft} />
-            </SpringPress>
-          ))}
+          {SUGGESTED_SETS.map((set, i) => {
+            const added = memory.folders.some((f) => f.name === set.title);
+            return (
+              <SpringPress
+                key={set.id}
+                style={[styles.setCard, i === 0 && styles.setCardFirst]}
+                onPress={() => router.push({ pathname: '/memory/set/[id]', params: { id: set.id } })}>
+                <View style={styles.folderText}>
+                  <Text style={styles.setTitle}>{set.title}</Text>
+                  <Text style={styles.folderMeta}>
+                    {set.subtitle} · {setVerses(set).length} verses
+                  </Text>
+                </View>
+                <Ionicons
+                  name={added ? 'checkmark-circle' : 'chevron-forward'}
+                  size={added ? 20 : 18}
+                  color={added ? t.sageText : t.textSoft}
+                  accessibilityLabel={added ? 'in your folders' : undefined}
+                />
+              </SpringPress>
+            );
+          })}
         </Reveal>
 
         <Text style={styles.copyright}>

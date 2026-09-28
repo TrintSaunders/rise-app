@@ -118,7 +118,10 @@ Purpose: a 10-second orientation — who I am, whose I am, what today holds.
 
 - Greeting by time of day; real date
 - Verse card: his life verse, or verse of the day
-- The dawn arc + the two counters (honest first, clean second)
+- The dawn arc (`components/DawnArc.tsx`, SVG): a soft gold dome with the sun riding the arc at the real time of day (6am to 8pm) and a gold trail behind it. The evening check-in fills the rest of the arc and warms the dome
+- The two counters as numbers with small labels: days honest first, days clean second
+- The content scrolls; the SOS button is pinned below it, always visible
+- On the web at laptop width, the whole app sits in a centered phone-width column (`app/+html.tsx`)
 - Two quiet actions; the check-in button begins glowing gold after 8pm if unlogged
 - The SOS button — ember colored, and it *breathes* subtly even at rest
 
@@ -236,3 +239,4 @@ Write like a faithful older friend: warm, direct, hopeful. Never cringe, never p
 - ❌ "Relapse detected."
 - ❌ "Don't fail God again."
 - ❌ Alarms, countdowns, red, shame.
+- ❌ Em dashes in on-screen copy. Use a period, comma, or colon instead. Scripture quotes keep their translation's punctuation, and a reference sits alone under its verse with no leading dash.

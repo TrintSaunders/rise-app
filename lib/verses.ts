@@ -8,7 +8,7 @@ export const verses: Verse[] = [
   { text: 'Though the righteous fall seven times, they rise again.', ref: 'Proverbs 24:16' },
   { text: 'No temptation has overtaken you except what is common to mankind. God is faithful; he will provide a way out.', ref: '1 Corinthians 10:13' },
   { text: 'Flee youthful passions; pursue righteousness, faith, love, and peace.', ref: '2 Timothy 2:22' },
-  { text: 'Whatever is true, whatever is noble, whatever is right — think about such things.', ref: 'Philippians 4:8' },
+  { text: 'Whatever is true, whatever is noble, whatever is right… think about such things.', ref: 'Philippians 4:8' },
   { text: 'If we confess our sins, he is faithful and just to forgive us our sins.', ref: '1 John 1:9' },
   { text: 'I made a covenant with my eyes.', ref: 'Job 31:1' },
   { text: 'Create in me a clean heart, O God, and renew a right spirit within me.', ref: 'Psalm 51:10' },

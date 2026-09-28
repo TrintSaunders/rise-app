@@ -26,7 +26,7 @@ const RISE_VERSE = {
 const SUGGESTIONS: Record<Feeling, string> = {
   'in bed': 'What if the phone slept outside the bedroom tonight?',
   tired: 'Tired is when it usually wins. What would an earlier lights-out change?',
-  lonely: 'Who could you reach out to before it gets heavy — not after?',
+  lonely: 'Who could you reach out to before it gets heavy, not after?',
   bored: 'What’s one thing you’ve been putting off? Ten messy minutes of it, tonight.',
   stressed: 'What’s the one thing actually weighing on you? Name it before it becomes everything.',
   procrastinating: 'The task you’re avoiding is smaller than the fog around it. Start with ten minutes.',
@@ -96,7 +96,7 @@ function buildInsight(f: ReturnType<typeof fortnight>) {
   const ranked = [...f.feelings.entries()].sort((a, b) => b[1] - a[1]);
   const top = ranked.slice(0, 2).map(([feeling]) => feeling);
   const feelingPhrase = top.length
-    ? ` — usually when you’re ${top.join(' and ')}`
+    ? `, usually when you’re ${top.join(' and ')}`
     : '';
   const suggestion = top.length ? SUGGESTIONS[top[0]!] : SUGGESTIONS.tired;
   // Buckets are two hours wide, so the honest claim is a range, not an hour.
@@ -160,7 +160,7 @@ export default function PatternsScreen() {
           <Text style={styles.insightText}>
             {insight
               ? `Most of your struggles come between ${insight.when}${insight.feelingPhrase}. ${insight.suggestion}`
-              : 'Keep logging when it’s hard — after a few honest days, the quiet patterns start to surface here. No verdicts, just facts.'}
+              : 'Keep logging when it’s hard. After a few honest days, the quiet patterns start to surface here. No verdicts, just facts.'}
           </Text>
         </Reveal>
 
@@ -195,7 +195,7 @@ export default function PatternsScreen() {
           <Text style={styles.cardLabel}>what’s usually going on</Text>
           {rankedFeelings.length === 0 ? (
             <Text style={styles.emptyNote}>
-              No feeling tags yet — they show up here when you log a struggle.
+              No feeling tags yet. They show up here when you log a struggle.
             </Text>
           ) : (
             rankedFeelings.map(([feeling, count]) => (
@@ -252,13 +252,13 @@ export default function PatternsScreen() {
             </View>
           </View>
           <Text style={styles.riseVerse}>“{RISE_VERSE.text}”</Text>
-          <Text style={styles.riseVerseRef}>— {RISE_VERSE.ref}</Text>
+          <Text style={styles.riseVerseRef}>{RISE_VERSE.ref}</Text>
         </Reveal>
 
         <Reveal delay={350} style={styles.card}>
           <Text style={styles.cardLabel}>trying the app?</Text>
           <Text style={styles.tryNote}>
-            This screen fills in as you live — ‘log a struggle’ on Today, evening
+            This screen fills in as you live: ‘log a struggle’ on Today, evening
             check-ins, SOS victories. To see it full right now, add two weeks of
             sample entries. They only touch this screen; your real history,
             counters, and profile stay exactly as they are.

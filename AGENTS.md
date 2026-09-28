@@ -98,8 +98,10 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 2. Scripture is always serif italic (`fonts.serifItalic`) with its
    reference, in the centered reading style.
 3. Copy sounds like a warm older friend: honest, hopeful, never a scold.
-   No alarms, countdowns, or shame framing. Examples live in DESIGN.md's
-   copy-tone section.
+   No alarms, countdowns, or shame framing. No em dashes in on-screen
+   copy (Scripture keeps its own punctuation), and verse references stand
+   alone under the verse, without a leading dash. Examples live in
+   DESIGN.md's copy-tone section.
 4. One glowing element per screen, maximum. Gold and ember are spices.
 5. Reuse the motion components instead of inventing new animations.
 6. Sacred privacy: no analytics, no accounts, no data off-device. The only

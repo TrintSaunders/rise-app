@@ -21,7 +21,7 @@ const VERSE = {
 const MOVES = [
   { icon: 'exit-outline', label: 'Leave the room' },
   { icon: 'water-outline', label: 'Cold water on your face' },
-  { icon: 'walk-outline', label: 'A short walk — the phone stays here' },
+  { icon: 'walk-outline', label: 'A short walk. The phone stays here' },
 ] as const;
 
 /**
@@ -61,10 +61,10 @@ export default function SosScreen() {
           <Breathing period={4} depth={0.35}>
             <View style={styles.breathCircle} />
           </Breathing>
-          <Text style={styles.breatheLabel}>breathe with it — in as it grows, out as it settles</Text>
+          <Text style={styles.breatheLabel}>breathe with it: in as it grows, out as it settles</Text>
 
           <Text style={styles.verse}>“{VERSE.text}”</Text>
-          <Text style={styles.verseRef}>— {VERSE.ref}</Text>
+          <Text style={styles.verseRef}>{VERSE.ref}</Text>
 
           {/* Reaching out comes first — above the fold, before the list. */}
           <SosAllies key={visit} />
@@ -87,7 +87,7 @@ export default function SosScreen() {
               <Ionicons name="checkmark-circle" size={26} color={colors.sage} />
               <Text style={styles.savedTitle}>You made it through. That’s a real win.</Text>
               <Text style={styles.savedNote}>
-                It’s written down — a victory, not a footnote.
+                It’s written down: a victory, not a footnote.
               </Text>
               <SpringPress
                 style={styles.backButton}

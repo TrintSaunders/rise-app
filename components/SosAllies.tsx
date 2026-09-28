@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius } from '@/constants/theme';
-import { LOCAL_MESSAGE, alertAllies, cleanPhone } from '@/lib/allyAlert';
+import { LOCAL_MESSAGE, alertAllies, cleanPhone, formatPhone } from '@/lib/allyAlert';
 import type { AlertOutcome } from '@/lib/allyAlert';
 import { useStore } from '@/lib/store';
 
@@ -12,8 +12,8 @@ const MAX_ALLIES = 5;
 
 const OUTCOME_NOTE: Record<Exclude<AlertOutcome, 'unavailable'>, string> = {
   sent: 'Sent. You’re not fighting this alone.',
-  opened: 'Your message is ready — tap Send.',
-  cancelled: 'Not sent — that’s okay. It’s here whenever you need it.',
+  opened: 'Your message is ready. Tap Send.',
+  cancelled: 'Not sent, and that’s okay. It’s here whenever you need it.',
 };
 
 /**
@@ -77,20 +77,22 @@ export function SosAllies() {
             <Ionicons name="people" size={18} color={colors.night} />
             <Text style={styles.tellText}>tell my allies I’m tempted</Text>
           </SpringPress>
-          <Text style={styles.note}>
-            {allies.length === 0
-              ? settingUp
-                ? 'Add someone who’ll pray when you text — then this button reaches them in one tap.'
-                : 'No allies yet — tap to add someone who’ll pray when you text.'
-              : outcome && outcome !== 'unavailable'
-                ? OUTCOME_NOTE[outcome]
-                : `${allies.map((a) => a.name).join(', ')} — they’ll hear only that you’re being tempted, never why.`}
-          </Text>
+          {outcome !== 'unavailable' && (
+            <Text style={styles.note}>
+              {allies.length === 0
+                ? settingUp
+                  ? 'Add someone who’ll pray when you text. Then this button reaches them in one tap.'
+                  : 'No allies yet. Tap to add someone who’ll pray when you text.'
+                : outcome
+                  ? OUTCOME_NOTE[outcome]
+                  : `${allies.map((a) => a.name).join(', ')}. They’ll hear only that you’re being tempted, never why.`}
+            </Text>
+          )}
           {outcome === 'unavailable' && (
             <View style={styles.manual}>
               <Text style={styles.note}>
                 Texting isn’t available on this device. Send this to{' '}
-                {allies.map((a) => `${a.name} (${a.phone})`).join(', ')}:
+                {allies.map((a) => `${a.name} at ${formatPhone(a.phone)}`).join(', ')}:
               </Text>
               <Text selectable style={styles.manualText}>
                 {LOCAL_MESSAGE}
@@ -104,7 +106,7 @@ export function SosAllies() {
         allies.map((ally) => (
           <View key={ally.id} style={styles.allyRow}>
             <Text style={styles.allyText}>
-              {ally.name} <Text style={styles.allyPhone}>{ally.phone}</Text>
+              {ally.name}  <Text style={styles.allyPhone}>{formatPhone(ally.phone)}</Text>
             </Text>
             <Pressable
               hitSlop={10}

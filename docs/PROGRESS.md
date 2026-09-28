@@ -61,6 +61,27 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-28 — Hayden (with Claude) — "Design pass: dawn arc, scrolling, copy, web layout"
+- Dawn arc rebuilt in SVG (`components/DawnArc.tsx`, adds `react-native-svg`):
+  a filled gold dome, the sun on the arc at the real time of day with a gold
+  trail, and the full arc filling gold on check-in. The old version rendered
+  as a blank box on web.
+- Today scrolls, and its SOS button is pinned at the bottom so it is always
+  visible on any screen size; counters are now numbers with labels.
+- Web: at laptop width the app sits in a centered phone-width column; the
+  tab bar is tall enough that labels aren't clipped.
+- Every em dash removed from on-screen copy (rule added to AGENTS.md and
+  DESIGN.md). Scripture keeps its punctuation; references no longer have a
+  leading dash.
+- Check-in: questions centered, three-dot step indicator. Log a struggle:
+  section spacing, "I fled" / "I fell". Memory: clearer set header, visible
+  progress dots, "already added" check on suggested sets, a real empty
+  state for review. SOS: cleaner "texting unavailable" state, phone numbers
+  formatted.
+- `npm run preview` now serves dynamic routes (e.g. `/memory/folder/<id>`).
+- Checked by screenshot in headless Chrome at 375, 390, and 1280 wide, day
+  and night. Not yet on a device.
+
 ### 2026-09-28 — Hayden (with Claude) — "Put the SOS ally button where he can see it"
 - Hayden couldn't find "tell my allies": it only appeared after adding an
   ally, and the card sat below the fold. The button now always shows, right

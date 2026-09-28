@@ -53,12 +53,15 @@ function SuggestedSet() {
             <Ionicons name="chevron-back" size={22} color={t.textSoft} />
           </Pressable>
           <Text style={styles.headerLabel}>
-            {target ? `adding to ${target.name}` : set.subtitle}
+            {target ? 'add verses' : 'suggested set'}
           </Text>
           <View style={styles.headerSpacer} />
         </View>
 
         <Text style={styles.title}>{set.title}</Text>
+        <Text style={styles.subtitle}>
+          {target ? `Tap + to add a verse to ${target.name}.` : `${set.subtitle} · ${setVerses(set).length} verses`}
+        </Text>
 
         {!target && (
           <SpringPress
@@ -140,6 +143,13 @@ const createStyles = (t: Theme) =>
       fontFamily: fonts.serif,
       fontSize: 28,
       color: t.text,
+    },
+    subtitle: {
+      fontFamily: fonts.sans,
+      fontSize: 14,
+      lineHeight: 20,
+      color: t.textSoft,
+      marginTop: 4,
     },
     missing: {
       fontFamily: fonts.sans,

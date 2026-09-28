@@ -57,7 +57,7 @@ export function Onboarding() {
           <Text style={styles.keystone}>
             “Though the righteous fall seven times, they rise again.”
           </Text>
-          <Text style={styles.keystoneRef}>— Proverbs 24:16</Text>
+          <Text style={styles.keystoneRef}>Proverbs 24:16</Text>
 
           <View style={styles.card}>
             <Text style={styles.label}>what should we call you?</Text>
@@ -74,7 +74,7 @@ export function Onboarding() {
 
           <View style={styles.card}>
             <Text style={styles.label}>a life verse to carry?</Text>
-            <Text style={styles.labelNote}>optional — leave it blank and we’ll walk with the verse of the day</Text>
+            <Text style={styles.labelNote}>optional. Leave it blank and we’ll walk with the verse of the day.</Text>
             <TextInput
               style={styles.input}
               value={verseText}
@@ -87,7 +87,7 @@ export function Onboarding() {
               style={[styles.input, styles.inputRef]}
               value={verseRef}
               onChangeText={setVerseRef}
-              placeholder="its reference — e.g. Lamentations 3:22–23"
+              placeholder="its reference, like Lamentations 3:22–23"
               placeholderTextColor={t.textSoft}
               autoCorrect={false}
             />
@@ -96,7 +96,7 @@ export function Onboarding() {
           <View style={styles.privacyRow}>
             <Ionicons name="lock-closed-outline" size={13} color={t.textSoft} />
             <Text style={styles.privacy}>
-              everything stays on this device — your words never leave the phone
+              everything stays on this device. Your words never leave the phone.
             </Text>
           </View>
 

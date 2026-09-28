@@ -1,8 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
+import { Platform } from 'react-native';
 
 import { useAppTheme } from '@/lib/theme';
 import { colors, fonts } from '@/constants/theme';
+
+// On web the bar has no safe-area inset to grow into, and its default 49px
+// squeezes each label to a sliver. Native sizes itself around the home indicator.
+const WEB_BAR = Platform.OS === 'web' ? { height: 64, paddingTop: 6, paddingBottom: 8 } : null;
 
 export default function TabLayout() {
   const t = useAppTheme();
@@ -16,10 +21,16 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: t.bg,
           borderTopColor: t.card,
+          ...WEB_BAR,
         },
         tabBarLabelStyle: {
           fontFamily: fonts.sansMedium,
           fontSize: 11,
+          lineHeight: 15,
+          // The icon slot flexes to fill the bar and squeezes the label;
+          // pin the label's height and keep it from shrinking.
+          height: 16,
+          flexShrink: 0,
         },
       }}>
       <Tabs.Screen
@@ -44,6 +55,7 @@ export default function TabLayout() {
           tabBarStyle: {
             backgroundColor: colors.night,
             borderTopColor: colors.nightSoft,
+            ...WEB_BAR,
           },
         }}
       />

@@ -50,6 +50,7 @@ function Review() {
   const [stage, setStage] = useState<'ref' | 'hint' | 'full'>('ref');
   const [held, setHeld] = useState(0);
 
+  const hasVerses = data.memory.folders.some((f) => f.verses.length > 0);
   const verse = queue[index];
   const finished = index >= queue.length;
 
@@ -78,23 +79,29 @@ function Review() {
 
         {finished ? (
           <View style={styles.doneBody}>
-            <Ionicons name="checkmark-circle" size={36} color={t.sageText} />
+            <Ionicons
+              name={queue.length === 0 && !hasVerses ? 'book-outline' : 'checkmark-circle'}
+              size={36}
+              color={t.sageText}
+            />
             <Text style={styles.doneTitle}>
-              {queue.length === 0 ? 'Nothing due today.' : 'Stored up.'}
+              {queue.length > 0 ? 'Stored up.' : hasVerses ? 'Nothing due today.' : 'No verses yet.'}
             </Text>
             <Text style={styles.doneNote}>
               {queue.length === 0
-                ? 'Every verse is resting on schedule. Come back tomorrow.'
+                ? hasVerses
+                  ? 'Every verse is resting on schedule. Come back tomorrow.'
+                  : 'Add a suggested set or a folder of your own in the Armory, and your first review starts right away.'
                 : practiceOnly
-                  ? `${held} of ${queue.length} came back to you. A free lap — your review schedule is unchanged.`
-                  : `${held} of ${queue.length} came back to you. The rest return tomorrow — that’s how it takes root.`}
+                  ? `${held} of ${queue.length} came back to you. A free lap, so your review schedule hasn’t changed.`
+                  : `${held} of ${queue.length} came back to you. The rest come back tomorrow. That’s how it takes root.`}
             </Text>
             <Text style={styles.doneVerse}>
               “I have stored up your word in my heart, that I might not sin against you.”
             </Text>
-            <Text style={styles.doneRef}>— Psalm 119:11</Text>
+            <Text style={styles.doneRef}>Psalm 119:11</Text>
             <SpringPress style={styles.primary} onPress={() => router.back()}>
-              <Text style={styles.primaryText}>done</Text>
+              <Text style={styles.primaryText}>{hasVerses ? 'done' : 'back to the Armory'}</Text>
             </SpringPress>
           </View>
         ) : (
@@ -103,7 +110,7 @@ function Review() {
               <View style={styles.card}>
                 <Text style={styles.ref}>{verse.ref}</Text>
                 {stage === 'ref' && (
-                  <Text style={styles.prompt}>say it to yourself — then check</Text>
+                  <Text style={styles.prompt}>say it to yourself, then check</Text>
                 )}
                 {stage === 'hint' && (
                   <Text style={styles.hint}>{firstLetters(verse.text)}</Text>
@@ -188,7 +195,7 @@ const createStyles = (t: Theme) =>
       fontFamily: fonts.serif,
       fontSize: 19,
       lineHeight: 30,
-      letterSpacing: 2,
+      letterSpacing: 1,
       color: t.textSoft,
       textAlign: 'center',
       marginTop: 18,

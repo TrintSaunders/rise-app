@@ -8,7 +8,7 @@ import type { Ally } from './store';
 
 /** What his allies read when he sends it himself (the local path). */
 export const LOCAL_MESSAGE =
-  'I’m being tempted right now. No need to ask what’s going on — a quick prayer or a text back would mean a lot.';
+  'I’m being tempted right now. No need to ask what’s going on. A quick prayer or a text back would mean a lot.';
 
 export type AlertOutcome =
   /** Delivered by the server, or he tapped Send (iOS tells us). */
@@ -27,6 +27,13 @@ export function cleanPhone(input: string): string | null {
   const digits = trimmed.replace(/\D/g, '');
   if (digits.length < 7 || digits.length > 15) return null;
   return trimmed.startsWith('+') ? `+${digits}` : digits;
+}
+
+/** For display: (555) 123-4567 for US numbers, otherwise as entered. */
+export function formatPhone(phone: string): string {
+  const us = phone.length === 11 && phone.startsWith('1') ? phone.slice(1) : phone;
+  if (/^\d{10}$/.test(us)) return `(${us.slice(0, 3)}) ${us.slice(3, 6)}-${us.slice(6)}`;
+  return phone;
 }
 
 /**

@@ -34,9 +34,9 @@ const RATINGS = [
 ] as const;
 
 const TEMPTED_OPTIONS = [
-  { value: 'no', label: 'No — it never came knocking' },
-  { value: 'fled', label: 'Yes — and I fled' },
-  { value: 'fell', label: 'Yes — and I fell' },
+  { value: 'no', label: 'No, it never came knocking' },
+  { value: 'fled', label: 'Yes, and I fled' },
+  { value: 'fell', label: 'Yes, and I fell' },
 ] as const;
 
 type Step = 0 | 1 | 2 | 3;
@@ -106,164 +106,174 @@ export default function CheckInScreen() {
           </View>
 
           {step < 3 && (
-            <Animated.View style={{ opacity: fade, alignSelf: 'stretch' }}>
-              {step === 0 && (
-                <View>
-                  <Text style={styles.question}>How was today, honestly?</Text>
-                  <View style={styles.scale}>
-                    {RATINGS.map((r) => {
-                      const on = rating === r.value;
+            <View style={styles.dots} accessibilityLabel={`question ${step + 1} of 3`}>
+              {[0, 1, 2].map((i) => (
+                <View key={i} style={[styles.dot, i <= step && styles.dotOn]} />
+              ))}
+            </View>
+          )}
+
+          <View style={styles.body}>
+            {step < 3 && (
+              <Animated.View style={{ opacity: fade, alignSelf: 'stretch' }}>
+                {step === 0 && (
+                  <View>
+                    <Text style={styles.question}>How was today, honestly?</Text>
+                    <View style={styles.scale}>
+                      {RATINGS.map((r) => {
+                        const on = rating === r.value;
+                        return (
+                          <SpringPress
+                            key={r.value}
+                            style={[styles.scaleDot, on && styles.scaleDotOn]}
+                            onPress={() => {
+                              setRating(r.value);
+                              setStep(1);
+                            }}>
+                            <Text style={[styles.scaleNum, on && styles.scaleNumOn]}>
+                              {r.value}
+                            </Text>
+                            <Text style={[styles.scaleLabel, on && styles.scaleLabelOn]}>
+                              {r.label}
+                            </Text>
+                          </SpringPress>
+                        );
+                      })}
+                    </View>
+                    <Text style={styles.hint}>no wrong answer, just the truth</Text>
+                  </View>
+                )}
+
+                {step === 1 && (
+                  <View>
+                    <Text style={styles.question}>Were you tempted today?</Text>
+                    {TEMPTED_OPTIONS.map((option) => {
+                      const on = tempted === option.value;
                       return (
                         <SpringPress
-                          key={r.value}
-                          style={[styles.scaleDot, on && styles.scaleDotOn]}
+                          key={option.value}
+                          style={[styles.option, on && styles.optionOn]}
                           onPress={() => {
-                            setRating(r.value);
-                            setStep(1);
+                            setTempted(option.value);
+                            setStep(2);
                           }}>
-                          <Text style={[styles.scaleNum, on && styles.scaleNumOn]}>
-                            {r.value}
-                          </Text>
-                          <Text style={[styles.scaleLabel, on && styles.scaleLabelOn]}>
-                            {r.label}
+                          <Text style={[styles.optionText, on && styles.optionTextOn]}>
+                            {option.label}
                           </Text>
                         </SpringPress>
                       );
                     })}
+                    <Text style={styles.hint}>
+                      “yes, and I fled” counts as a win in this house
+                    </Text>
                   </View>
-                  <Text style={styles.hint}>no wrong answer — this is just the truth</Text>
-                </View>
-              )}
+                )}
 
-              {step === 1 && (
-                <View>
-                  <Text style={styles.question}>Were you tempted today?</Text>
-                  {TEMPTED_OPTIONS.map((option) => {
-                    const on = tempted === option.value;
-                    return (
+                {step === 2 && (
+                  <View>
+                    <Text style={styles.question}>One line of gratitude</Text>
+                    <TextInput
+                      style={styles.gratitudeInput}
+                      value={gratitude}
+                      onChangeText={setGratitude}
+                      placeholder="one good thing, however small"
+                      placeholderTextColor={colors.starlightSoft}
+                      multiline
+                    />
+                    <SpringPress style={styles.done} onPress={completeDay}>
+                      <Text style={styles.doneText}>complete the day</Text>
+                    </SpringPress>
+                    <Text style={styles.hint}>optional, but it changes how you sleep</Text>
+                  </View>
+                )}
+              </Animated.View>
+            )}
+
+            {step === 3 && tempted !== null && (
+              <Animated.View style={{ opacity: fade, alignSelf: 'stretch', alignItems: 'center' }}>
+                <Ionicons
+                  name={tempted === 'fell' ? 'sunny-outline' : 'checkmark-circle'}
+                  size={34}
+                  color={tempted === 'fell' ? colors.dawn : colors.sage}
+                  style={styles.doneIcon}
+                />
+                {tempted === 'fell' ? (
+                  <View style={styles.doneBody}>
+                    <Text style={styles.doneHeadline}>You told the truth.</Text>
+                    <Text style={styles.doneNote}>
+                      That’s the hardest part, and it’s done. The day counts. Now
+                      let the sun come up.
+                    </Text>
+                    <View style={styles.fallsCard}>
+                      <Text style={styles.fallsLabel}>
+                        {falls.length === 0
+                          ? 'each fall, on its own'
+                          : `${falls.length} logged today`}
+                      </Text>
+                      {falls.map((fall) => (
+                        <View key={fall.id} style={styles.fallRow}>
+                          <Ionicons name="ellipse" size={7} color={colors.starlightSoft} />
+                          <Text style={styles.fallText}>
+                            {fall.hourUnknown ? 'time not given' : aroundHour(fall.at)}
+                            {fall.feelings.length > 0 ? ` · ${fall.feelings.join(', ')}` : ''}
+                          </Text>
+                        </View>
+                      ))}
+                      <Text style={styles.fallsNote}>
+                        {falls.length === 0
+                          ? 'Log each one with its hour so Patterns learns when the dark hours really are. Not sure when? Rise Again still counts it.'
+                          : 'Another one today? Log it too. The count and the hours are the honest story.'}
+                      </Text>
                       <SpringPress
-                        key={option.value}
-                        style={[styles.option, on && styles.optionOn]}
-                        onPress={() => {
-                          setTempted(option.value);
-                          setStep(2);
-                        }}>
-                        <Text style={[styles.optionText, on && styles.optionTextOn]}>
-                          {option.label}
+                        style={styles.logFallButton}
+                        onPress={() =>
+                          router.push({
+                            pathname: '/log-struggle',
+                            params: { outcome: 'fell', then: 'back' },
+                          })
+                        }>
+                        <Ionicons name="add" size={17} color={colors.starlight} />
+                        <Text style={styles.logFallText}>
+                          {falls.length === 0 ? 'log it with its time' : 'log another'}
                         </Text>
                       </SpringPress>
-                    );
-                  })}
-                  <Text style={styles.hint}>
-                    “yes, and I fled” counts as a win in this house
-                  </Text>
-                </View>
-              )}
-
-              {step === 2 && (
-                <View>
-                  <Text style={styles.question}>One line of gratitude</Text>
-                  <TextInput
-                    style={styles.gratitudeInput}
-                    value={gratitude}
-                    onChangeText={setGratitude}
-                    placeholder="one good thing, however small"
-                    placeholderTextColor={colors.starlightSoft}
-                    multiline
-                  />
-                  <SpringPress style={styles.done} onPress={completeDay}>
-                    <Text style={styles.doneText}>complete the day</Text>
-                  </SpringPress>
-                  <Text style={styles.hint}>optional — but it changes how you sleep</Text>
-                </View>
-              )}
-            </Animated.View>
-          )}
-
-          {step === 3 && tempted !== null && (
-            <Animated.View style={{ opacity: fade, alignSelf: 'stretch', alignItems: 'center' }}>
-              <Ionicons
-                name={tempted === 'fell' ? 'sunny-outline' : 'checkmark-circle'}
-                size={34}
-                color={tempted === 'fell' ? colors.dawn : colors.sage}
-                style={styles.doneIcon}
-              />
-              {tempted === 'fell' ? (
-                <View style={styles.doneBody}>
-                  <Text style={styles.doneHeadline}>You told the truth.</Text>
-                  <Text style={styles.doneNote}>
-                    That’s the hardest part, and it’s done. The day counts — now
-                    let the sun come up.
-                  </Text>
-                  <View style={styles.fallsCard}>
-                    <Text style={styles.fallsLabel}>
-                      {falls.length === 0
-                        ? 'each fall, on its own'
-                        : `${falls.length} logged today`}
-                    </Text>
-                    {falls.map((fall) => (
-                      <View key={fall.id} style={styles.fallRow}>
-                        <Ionicons name="ellipse" size={7} color={colors.starlightSoft} />
-                        <Text style={styles.fallText}>
-                          {fall.hourUnknown ? 'time not given' : aroundHour(fall.at)}
-                          {fall.feelings.length > 0 ? ` · ${fall.feelings.join(', ')}` : ''}
-                        </Text>
-                      </View>
-                    ))}
-                    <Text style={styles.fallsNote}>
-                      {falls.length === 0
-                        ? 'Log each one with its hour — Patterns learns when the dark hours really are. Not sure when? Rise Again still counts it.'
-                        : 'Another one today? Log it too — the count and the hours are the honest story.'}
-                    </Text>
+                    </View>
                     <SpringPress
-                      style={styles.logFallButton}
-                      onPress={() =>
-                        router.push({
-                          pathname: '/log-struggle',
-                          params: { outcome: 'fell', then: 'back' },
-                        })
-                      }>
-                      <Ionicons name="add" size={17} color={colors.starlight} />
-                      <Text style={styles.logFallText}>
-                        {falls.length === 0 ? 'log it with its time' : 'log another'}
-                      </Text>
+                      style={styles.riseButton}
+                      onPress={riseAgain}>
+                      <Text style={styles.riseButtonText}>Rise Again</Text>
                     </SpringPress>
                   </View>
-                  <SpringPress
-                    style={styles.riseButton}
-                    onPress={riseAgain}>
-                    <Text style={styles.riseButtonText}>Rise Again</Text>
-                  </SpringPress>
-                </View>
-              ) : tempted === 'fled' ? (
-                <View style={styles.doneBody}>
-                  <Text style={styles.doneHeadline}>You fled. That’s a real win.</Text>
-                  <Text style={styles.doneNote}>
-                    Temptation came and you got out. The day is complete and the arc is
-                    gold — rest well.
-                  </Text>
-                  <SpringPress
-                    style={styles.nightButton}
-                    onPress={() => router.back()}>
-                    <Text style={styles.nightButtonText}>back to today</Text>
-                  </SpringPress>
-                </View>
-              ) : (
-                <View style={styles.doneBody}>
-                  <Text style={styles.doneHeadline}>A whole day, honestly given.</Text>
-                  <Text style={styles.doneNote}>
-                    No temptation to report tonight. The day is complete and the arc is
-                    gold — rest well.
-                  </Text>
-                  <SpringPress
-                    style={styles.nightButton}
-                    onPress={() => router.back()}>
-                    <Text style={styles.nightButtonText}>back to today</Text>
-                  </SpringPress>
-                </View>
-              )}
-            </Animated.View>
-          )}
+                ) : tempted === 'fled' ? (
+                  <View style={styles.doneBody}>
+                    <Text style={styles.doneHeadline}>You fled. That’s a real win.</Text>
+                    <Text style={styles.doneNote}>
+                      Temptation came and you got out. The day is complete and the arc is
+                      gold. Rest well.
+                    </Text>
+                    <SpringPress
+                      style={styles.nightButton}
+                      onPress={() => router.back()}>
+                      <Text style={styles.nightButtonText}>back to today</Text>
+                    </SpringPress>
+                  </View>
+                ) : (
+                  <View style={styles.doneBody}>
+                    <Text style={styles.doneHeadline}>A whole day, honestly given.</Text>
+                    <Text style={styles.doneNote}>
+                      No temptation to report tonight. The day is complete and the arc is
+                      gold. Rest well.
+                    </Text>
+                    <SpringPress
+                      style={styles.nightButton}
+                      onPress={() => router.back()}>
+                      <Text style={styles.nightButtonText}>back to today</Text>
+                    </SpringPress>
+                  </View>
+                )}
+              </Animated.View>
+            )}
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -274,18 +284,34 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.night },
   flex: { flex: 1 },
   content: {
+    flexGrow: 1,
     alignItems: 'center',
     paddingHorizontal: 24,
     paddingTop: 10,
     paddingBottom: 32,
   },
+  // Questions sit a little above center: the eye's resting line, not the top edge.
+  body: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    paddingBottom: 72,
+  },
+  dots: { flexDirection: 'row', gap: 6, marginTop: -10 },
+  dot: {
+    width: 22,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: colors.nightSoft,
+  },
+  dotOn: { backgroundColor: colors.dawn },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     alignSelf: 'stretch',
     minHeight: 32,
-    marginBottom: 26,
+    marginBottom: 16,
   },
   title: {
     fontFamily: fonts.sansMedium,

@@ -91,7 +91,7 @@ function Import() {
 
           {unreadable && (
             <Text style={styles.body}>
-              That doesn’t look like a Rise folder. Ask them to share it again — the
+              That doesn’t look like a Rise folder. Ask them to share it again: the
               whole message, link included.
             </Text>
           )}
