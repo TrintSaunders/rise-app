@@ -61,6 +61,14 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-28 — Hayden (with Claude) — "SOS tab opens on a single button"
+- The SOS tab now opens on one large breathing button, "I'm struggling
+  right now". Pressing it shows the help page (breathing, verse, allies,
+  the way out), which has a close button back to the single button.
+- Today's SOS button skips straight to the help (`/sos?now=1`).
+- Nothing is logged by visiting SOS or pressing the button; only
+  "I made it through" saves a victory. Hayden asked; this was already true.
+
 ### 2026-09-28 — Hayden (with Claude) — "Design pass: dawn arc, scrolling, copy, web layout"
 - Dawn arc rebuilt in SVG (`components/DawnArc.tsx`, adds `react-native-svg`):
   a filled gold dome, the sun on the arc at the real time of day with a gold

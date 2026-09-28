@@ -129,7 +129,7 @@ Purpose: a 10-second orientation — who I am, whose I am, what today holds.
 
 Purpose: the 90 seconds between temptation and decision. Calm the body, point the eyes, open the exit.
 
-Lives in its own tab (and the Today button jumps there). Every visit starts fresh — the victory card from last time never lingers.
+Lives in its own tab. The tab opens on **one button**: a large, slowly breathing ember circle, "I'm struggling right now", with 1 Cor 10:13 beneath it and nothing else. Pressing it opens the help below (breathing, verse, allies, the way out). Today's SOS button skips straight to the help, since he's already pressed a button. Nothing is logged by visiting or pressing; only "I made it through" records a victory. Every visit starts fresh.
 
 ```
 ┌──────────────────────────────────┐

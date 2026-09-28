@@ -156,7 +156,7 @@ export default function TodayScreen() {
 
       {/* Pinned, never scrolled away: help is always one tap from Today. */}
       <Reveal delay={280} style={styles.sosDock}>
-        <SpringPress style={styles.sosButton} onPress={() => router.navigate('/sos')}>
+        <SpringPress style={styles.sosButton} onPress={() => router.navigate({ pathname: '/sos', params: { now: '1' } })}>
           <Ionicons name="bonfire-outline" size={19} color={colors.ember} />
           <Text style={styles.sosText}>I’m struggling right now</Text>
         </SpringPress>

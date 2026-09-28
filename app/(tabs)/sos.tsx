@@ -1,8 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router, useFocusEffect } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useCallback, useState } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Breathing } from '@/components/Breathing';
@@ -24,14 +24,23 @@ const MOVES = [
   { icon: 'walk-outline', label: 'A short walk. The phone stays here' },
 ] as const;
 
+const ESCAPE_PROMISE = {
+  text: 'God is faithful… he will also provide the way of escape.',
+  ref: '1 Corinthians 10:13',
+};
+
 /**
  * The Way of Escape (1 Cor 10:13). Its own tab, so it's one tap from
- * anywhere. This screen is always in Night Watch colors, even in light
- * mode — calm the body, point the eyes, open the exit. Nothing here
- * condemns; it exists to get him out.
+ * anywhere. The tab opens on a single button; pressing it opens the help
+ * itself. Today's "I'm struggling right now" (`?now=1`) skips straight to
+ * the help, since he already pressed a button to get here. Nothing is
+ * logged by visiting or pressing; only "I made it through" saves a victory.
+ * Always in Night Watch colors: calm the body, point the eyes, open the exit.
  */
 export default function SosScreen() {
   const { logVictory } = useStore();
+  const { now } = useLocalSearchParams<{ now?: string }>();
+  const [engaged, setEngaged] = useState(false);
   const [saved, setSaved] = useState(false);
   const [focused, setFocused] = useState(false);
   // Bumped on every visit so the allies card remounts fresh too.
@@ -47,9 +56,44 @@ export default function SosScreen() {
       return () => {
         setFocused(false);
         setSaved(false);
+        setEngaged(false);
       };
     }, [])
   );
+
+  useEffect(() => {
+    if (now !== '1') return;
+    setEngaged(true);
+    router.setParams({ now: '' });
+  }, [now]);
+
+  if (!engaged) {
+    return (
+      <SafeAreaView style={styles.safe} edges={['top']}>
+        {focused && <StatusBar style="light" />}
+        <View style={styles.gate}>
+          <Text style={styles.gateLabel}>SOS</Text>
+          <View style={styles.gateCenter}>
+            <Breathing period={4} depth={0.06}>
+              <SpringPress
+                style={styles.gateButton}
+                accessibilityLabel="I’m struggling right now"
+                onPress={() => setEngaged(true)}>
+                <Ionicons name="bonfire-outline" size={44} color={colors.night} />
+                <Text style={styles.gateButtonText}>I’m struggling{'\n'}right now</Text>
+              </SpringPress>
+            </Breathing>
+            <Text style={styles.gateNote}>
+              Press it and we’ll walk through the next few minutes together.
+              Nothing gets logged.
+            </Text>
+          </View>
+          <Text style={styles.gateVerse}>“{ESCAPE_PROMISE.text}”</Text>
+          <Text style={styles.verseRef}>{ESCAPE_PROMISE.ref}</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
@@ -58,6 +102,14 @@ export default function SosScreen() {
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+          <View style={styles.helpHeader}>
+            <Pressable
+              hitSlop={12}
+              accessibilityLabel="close"
+              onPress={() => setEngaged(false)}>
+              <Ionicons name="close" size={22} color={colors.starlightSoft} />
+            </Pressable>
+          </View>
           <Breathing period={4} depth={0.35}>
             <View style={styles.breathCircle} />
           </Breathing>
@@ -116,10 +168,62 @@ export default function SosScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.night },
   flex: { flex: 1 },
+  gate: {
+    flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 32,
+    paddingTop: 18,
+    paddingBottom: 28,
+  },
+  gateLabel: {
+    fontFamily: fonts.sansMedium,
+    fontSize: 12,
+    letterSpacing: 2,
+    color: colors.starlightSoft,
+  },
+  gateCenter: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  gateButton: {
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    backgroundColor: colors.ember,
+    shadowColor: colors.ember,
+    shadowOpacity: 0.55,
+    shadowRadius: 36,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 12,
+  },
+  gateButtonText: {
+    fontFamily: fonts.serif,
+    fontSize: 21,
+    lineHeight: 26,
+    color: colors.night,
+    textAlign: 'center',
+  },
+  gateNote: {
+    fontFamily: fonts.sans,
+    fontSize: 14,
+    lineHeight: 21,
+    color: colors.starlightSoft,
+    textAlign: 'center',
+    marginTop: 36,
+    maxWidth: 280,
+  },
+  gateVerse: {
+    fontFamily: fonts.serifItalic,
+    fontSize: 16,
+    lineHeight: 23,
+    color: colors.starlight,
+    textAlign: 'center',
+  },
+  helpHeader: { alignSelf: 'stretch', alignItems: 'flex-end', marginBottom: 4 },
   content: {
     alignItems: 'center',
     paddingHorizontal: 24,
-    paddingTop: 24,
+    paddingTop: 12,
     paddingBottom: 32,
   },
   breathCircle: {
