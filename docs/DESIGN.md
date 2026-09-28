@@ -155,7 +155,7 @@ Lives in its own tab (and the Today button jumps there). Every visit starts fres
 - The breathing circle: 4s in, 4s out, with the word "breathe" fading with it
 - His memorized verse beneath
 - Exits in HIS order (the battle plan he set in the Armory): text an ally, call an ally, physical move
-- **Your allies** card: up to five people, added right on this screen and kept only on the phone. One button — "tell them I'm tempted" — and a single fixed sentence goes out; nothing about when, where, or why
+- **Your allies** card, right under the verse (reaching out comes before the list): the "tell my allies I'm tempted" button always shows — with no allies yet it opens the add form. Up to five people, added right on this screen and kept only on the phone. One button — "tell them I'm tempted" — and a single fixed sentence goes out; nothing about when, where, or why
 - "I made it through" logs a **victory**, not a mere non-event
 - Nothing on this screen condemns. It exists to get him out.
 

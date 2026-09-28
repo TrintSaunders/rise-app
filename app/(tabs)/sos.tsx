@@ -66,6 +66,9 @@ export default function SosScreen() {
           <Text style={styles.verse}>“{VERSE.text}”</Text>
           <Text style={styles.verseRef}>— {VERSE.ref}</Text>
 
+          {/* Reaching out comes first — above the fold, before the list. */}
+          <SosAllies key={visit} />
+
           <View style={styles.movesCard}>
             <Text style={styles.movesTitle}>the way out, in order</Text>
             {MOVES.map((move) => (
@@ -78,8 +81,6 @@ export default function SosScreen() {
               do one of these before you decide anything
             </Text>
           </View>
-
-          <SosAllies key={visit} />
 
           {saved ? (
             <View style={styles.savedCard}>

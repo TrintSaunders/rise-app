@@ -29,11 +29,17 @@ export function SosAllies() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState(false);
+  // With no allies yet, the button still shows; tapping it opens the form.
+  const [settingUp, setSettingUp] = useState(false);
 
   const firstName = data.profile?.name?.trim().split(/\s+/)[0] ?? '';
-  const showForm = allies.length === 0 || editing;
+  const showForm = editing || (allies.length === 0 && settingUp);
 
   const tell = async () => {
+    if (allies.length === 0) {
+      setSettingUp(true);
+      return;
+    }
     setSending(true);
     try {
       setOutcome(await alertAllies(allies, firstName));
@@ -65,16 +71,20 @@ export function SosAllies() {
         )}
       </View>
 
-      {allies.length > 0 && !editing && (
+      {!editing && (
         <>
           <SpringPress style={styles.tellButton} disabled={sending} onPress={tell}>
             <Ionicons name="people" size={18} color={colors.night} />
-            <Text style={styles.tellText}>tell them I’m tempted</Text>
+            <Text style={styles.tellText}>tell my allies I’m tempted</Text>
           </SpringPress>
           <Text style={styles.note}>
-            {outcome && outcome !== 'unavailable'
-              ? OUTCOME_NOTE[outcome]
-              : `${allies.map((a) => a.name).join(', ')} — they’ll hear only that you’re being tempted, never why.`}
+            {allies.length === 0
+              ? settingUp
+                ? 'Add someone who’ll pray when you text — then this button reaches them in one tap.'
+                : 'No allies yet — tap to add someone who’ll pray when you text.'
+              : outcome && outcome !== 'unavailable'
+                ? OUTCOME_NOTE[outcome]
+                : `${allies.map((a) => a.name).join(', ')} — they’ll hear only that you’re being tempted, never why.`}
           </Text>
           {outcome === 'unavailable' && (
             <View style={styles.manual}>
@@ -107,12 +117,6 @@ export function SosAllies() {
 
       {showForm && allies.length < MAX_ALLIES && (
         <View style={styles.form}>
-          {allies.length === 0 && (
-            <Text style={styles.note}>
-              Add someone who’ll pray when you text. When it’s hard, one tap tells them
-              you’re being tempted — nothing more, never why.
-            </Text>
-          )}
           <TextInput
             style={styles.input}
             value={name}
@@ -154,7 +158,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.nightSoft,
     borderRadius: radius.card,
     padding: 20,
-    marginTop: 16,
+    marginTop: 28,
     alignSelf: 'stretch',
   },
   titleRow: {

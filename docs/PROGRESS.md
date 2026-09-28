@@ -61,6 +61,14 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-28 — Hayden (with Claude) — "Put the SOS ally button where he can see it"
+- Hayden couldn't find "tell my allies": it only appeared after adding an
+  ally, and the card sat below the fold. The button now always shows, right
+  under the verse; with no allies, tapping it opens the add form.
+- Checked in headless Chrome at phone size (screenshots), not on a device.
+- Spotted on web while checking: Today's dawn arc renders as a pale box, not
+  an arc, and tab labels are clipped at the bottom. Not fixed yet.
+
 ### 2026-09-28 — Hayden (with Claude) — "Fix preview server serving nothing"
 - `npm run preview` answered 403 to every page: it looked for files in the
   repo root instead of `dist/`. It now serves `dist/`; paths that try to
