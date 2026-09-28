@@ -50,8 +50,8 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
   `log-struggle` are card modals).
 - `app/(tabs)/` — `today` (dawn arc, streak counters, SOS entry),
   `patterns` (honest-data readback), `armory` (placeholder until v1.0).
-  A fourth tab, Brothers, was deliberately removed — do not re-add it
-  without asking the owner.
+  A fourth tab, Allies (formerly Brothers), is planned for v0.3 — see
+  DESIGN.md. Do not build it without asking the owner.
 - `lib/store.tsx` — the store. Append-only history: check-ins, struggles,
   victories, rises. Mutate only through its actions; read through its
   selectors (`honestStreakDays`, `cleanStreakDays`, `isCheckedInToday`).
@@ -74,7 +74,7 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
    raw hex. Alpha variants of existing tokens are acceptable for layering.
 2. Scripture is always serif italic (`fonts.serifItalic`) with its
    reference, in the centered reading style.
-3. Copy sounds like a warm older brother: honest, hopeful, never a scold.
+3. Copy sounds like a warm older friend: honest, hopeful, never a scold.
    No alarms, countdowns, or shame framing. Examples live in DESIGN.md's
    copy-tone section.
 4. One glowing element per screen, maximum. Gold and ember are spices.

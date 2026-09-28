@@ -221,7 +221,7 @@ Purpose: make getting back up easier and faster than falling.
 
 ## Copy tone
 
-Write like a faithful older brother: warm, direct, hopeful. Never cringe, never preachy, never a scold.
+Write like a faithful older friend: warm, direct, hopeful. Never cringe, never preachy, never a scold.
 
 - ✅ "You made it through. That's a real win."
 - ✅ "It's been 40 days since you last told the truth about a hard day. That's the muscle."
