@@ -37,7 +37,7 @@ export type Profile = {
 };
 
 export type DayRecord = {
-  /** Local calendar day, 'YYYY-MM-DD'. */
+  /** The check-in day, 'YYYY-MM-DD' — local, and a late check-in before 4am closes yesterday. */
   date: string;
   /** 1–5 — his honest read on the day, whatever it was. */
   rating: number;
@@ -111,9 +111,18 @@ export function daysBetween(from: string, to: string): number {
   return Math.round((parseDay(to).getTime() - parseDay(from).getTime()) / 86_400_000);
 }
 
+/** Evening check-ins often run past midnight; until 4am they still close yesterday. */
+const CHECK_IN_DAY_ROLLOVER_HOUR = 4;
+
+/** The day an evening check-in made right now belongs to. */
+export function checkInDayStr(now: Date = new Date()): string {
+  const day = todayStr(now);
+  return now.getHours() < CHECK_IN_DAY_ROLLOVER_HOUR ? shiftDay(day, -1) : day;
+}
+
 // ─── Selectors ───────────────────────────────────────────────────────────────
 
-export function isCheckedInToday(data: StoreData, today: string = todayStr()): boolean {
+export function isCheckedInToday(data: StoreData, today: string = checkInDayStr()): boolean {
   return data.days.some((d) => d.date === today);
 }
 
@@ -121,7 +130,7 @@ export function isCheckedInToday(data: StoreData, today: string = todayStr()): b
  * A day counts as honest when he checked in — whatever the answers were.
  * Today still pending doesn't break the streak; a missed day does.
  */
-export function honestStreakDays(data: StoreData, today: string = todayStr()): number {
+export function honestStreakDays(data: StoreData, today: string = checkInDayStr()): number {
   const checked = new Set(data.days.map((d) => d.date));
   let cursor = checked.has(today) ? today : shiftDay(today, -1);
   let streak = 0;
@@ -191,18 +200,38 @@ const StoreContext = createContext<StoreApi | null>(null);
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<StoreData>(EMPTY);
   const [ready, setReady] = useState(false);
+  // Off only when storage itself failed to read: his history may still be on
+  // disk, and writing now would bury it under an empty store.
+  const [canPersist, setCanPersist] = useState(true);
 
   useEffect(() => {
     let alive = true;
     (async () => {
+      let raw: string | null = null;
       try {
-        const raw = await AsyncStorage.getItem(KEY);
-        if (raw && alive) {
-          // Merge over defaults so an older save survives new fields.
-          setData({ ...EMPTY, ...(JSON.parse(raw) as Partial<StoreData>) });
-        }
+        raw = await AsyncStorage.getItem(KEY);
       } catch {
-        // Unreadable store — start fresh rather than crash his morning.
+        // Storage wouldn't answer — run this session in memory, touch nothing.
+        if (alive) {
+          setCanPersist(false);
+          setReady(true);
+        }
+        return;
+      }
+      if (raw) {
+        try {
+          const saved = JSON.parse(raw) as Partial<StoreData> | null;
+          // Merge over defaults so an older save survives new fields.
+          if (alive) setData({ ...EMPTY, ...saved });
+        } catch {
+          // Unreadable store — set the damaged copy aside, never erase it,
+          // then start fresh rather than crash his morning.
+          try {
+            await AsyncStorage.setItem(`${KEY}.unreadable.${Date.now()}`, raw);
+          } catch {
+            if (alive) setCanPersist(false);
+          }
+        }
       }
       if (alive) setReady(true);
     })();
@@ -212,11 +241,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || !canPersist) return;
     AsyncStorage.setItem(KEY, JSON.stringify(data)).catch(() => {
       // A missed write hurts, but the next change writes again.
     });
-  }, [data, ready]);
+  }, [data, ready, canPersist]);
 
   const api = useMemo<StoreApi>(() => {
     const update = (change: (prev: StoreData) => StoreData) => {
@@ -234,7 +263,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         })),
       saveCheckIn: ({ rating, tempted, gratitude }) =>
         update((prev) => {
-          const date = todayStr();
+          const date = checkInDayStr();
           const record: DayRecord = {
             date,
             rating,

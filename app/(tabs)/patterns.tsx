@@ -56,25 +56,30 @@ function fortnight(data: StoreData) {
   const buckets = new Array<number>(12).fill(0);
   const totals = { struggles: 0, falls: 0, rises: 0, victories: 0 };
 
+  // Everything on this screen reads "the last two weeks" — older history is
+  // kept, just not counted here.
   for (const t of data.temptations) {
+    const agg = byDate.get(dayKey(t.at));
+    if (!agg) continue;
     buckets[Math.floor(new Date(t.at).getHours() / 2)] += 1;
     for (const f of t.feelings) feelings.set(f, (feelings.get(f) ?? 0) + 1);
-    const agg = byDate.get(dayKey(t.at));
-    if (agg) {
-      agg.struggles += 1;
-      if (t.outcome === 'fell') agg.falls += 1;
-    }
+    agg.struggles += 1;
     totals.struggles += 1;
-    if (t.outcome === 'fell') totals.falls += 1;
+    if (t.outcome === 'fell') {
+      agg.falls += 1;
+      totals.falls += 1;
+    }
   }
   for (const r of data.rises) {
     const agg = byDate.get(dayKey(r.at));
-    if (agg) agg.rises += 1;
+    if (!agg) continue;
+    agg.rises += 1;
     totals.rises += 1;
   }
   for (const v of data.victories) {
     const agg = byDate.get(dayKey(v.at));
-    if (agg) agg.victories += 1;
+    if (!agg) continue;
+    agg.victories += 1;
     totals.victories += 1;
   }
 
