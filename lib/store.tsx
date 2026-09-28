@@ -227,6 +227,8 @@ type StoreApi = {
   addVersesToFolder: (folderId: string, verses: readonly MemoryVerse[]) => void;
   removeVerseFromFolder: (folderId: string, ref: string) => void;
   deleteFolder: (folderId: string) => void;
+  /** Fix a misspelling from inside the folder; progress is keyed by verse, so it's safe. */
+  renameFolder: (folderId: string, name: string) => void;
   /** Progress is kept per verse, so it survives a folder being deleted. */
   reviewVerse: (ref: string, remembered: boolean) => void;
   /** `phone` should already be cleaned (see cleanPhone in lib/allyAlert). */
@@ -427,6 +429,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           memory: {
             ...prev.memory,
             folders: prev.memory.folders.filter((f) => f.id !== folderId),
+          },
+        })),
+      renameFolder: (folderId, name) =>
+        update((prev) => ({
+          ...prev,
+          memory: {
+            ...prev.memory,
+            folders: prev.memory.folders.map((f) =>
+              f.id === folderId ? { ...f, name: name.trim() || f.name } : f
+            ),
           },
         })),
       reviewVerse: (ref, remembered) =>

@@ -45,12 +45,15 @@ export default function FolderScreen() {
  */
 function Folder() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { data, addVersesToFolder, removeVerseFromFolder, deleteFolder } = useStore();
+  const { data, addVersesToFolder, removeVerseFromFolder, deleteFolder, renameFolder } = useStore();
   const t = useAppTheme();
   const styles = useMemo(() => createStyles(t), [t]);
   const [ref, setRef] = useState('');
   const [text, setText] = useState('');
   const [confirmDelete, setConfirmDelete] = useState(false);
+  // Tap the folder's name to fix a misspelling; empty reverts to the old name.
+  const [editingName, setEditingName] = useState(false);
+  const [nameDraft, setNameDraft] = useState('');
   // Where the system share sheet isn't available (some browsers), show the
   // message so it can be copied by hand.
   const [manualShare, setManualShare] = useState<string | null>(null);
@@ -69,6 +72,16 @@ function Folder() {
 
   const name = data.profile?.name?.trim() || null;
   const due = dueVerses(data.memory, todayStr(), folder.id);
+
+  const startRename = () => {
+    setNameDraft(folder!.name);
+    setEditingName(true);
+  };
+  const saveName = () => {
+    const trimmed = nameDraft.trim();
+    if (trimmed && trimmed !== folder!.name) renameFolder(folder!.id, trimmed);
+    setEditingName(false);
+  };
 
   const share = async (message: string) => {
     try {
@@ -109,7 +122,34 @@ function Folder() {
             <View style={styles.headerSpacer} />
           </View>
 
-          <Text style={styles.title}>{folder.name}</Text>
+          {editingName ? (
+            <View style={styles.renameRow}>
+              <TextInput
+                style={styles.titleInput}
+                value={nameDraft}
+                onChangeText={setNameDraft}
+                autoFocus
+                maxLength={60}
+                returnKeyType="done"
+                onSubmitEditing={saveName}
+                onBlur={saveName}
+                placeholder="folder name"
+                placeholderTextColor={t.textSoft}
+              />
+              <SpringPress style={styles.renameSave} onPress={saveName} hitSlop={8}>
+                <Ionicons name="checkmark" size={22} color={t.sageText} />
+              </SpringPress>
+            </View>
+          ) : (
+            <Pressable
+              style={styles.titleRow}
+              onPress={startRename}
+              hitSlop={6}
+              accessibilityLabel="rename folder">
+              <Text style={styles.title}>{folder.name}</Text>
+              <Ionicons name="create-outline" size={17} color={t.textSoft} />
+            </Pressable>
+          )}
           {folder.sharedBy && (
             <Text style={styles.sharedBy}>memorizing together with {folder.sharedBy}</Text>
           )}
@@ -274,6 +314,32 @@ const createStyles = (t: Theme) =>
       fontSize: 28,
       color: t.text,
     },
+    titleRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 8,
+      alignSelf: 'flex-start',
+      paddingVertical: 2,
+    },
+    renameRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 8,
+      alignSelf: 'stretch',
+      marginTop: 2,
+      marginBottom: 2,
+    },
+    titleInput: {
+      flex: 1,
+      backgroundColor: t.track,
+      borderRadius: 14,
+      paddingHorizontal: 14,
+      paddingVertical: 8,
+      fontFamily: fonts.serif,
+      fontSize: 22,
+      color: t.text,
+    },
+    renameSave: { padding: 6 },
     sharedBy: {
       fontFamily: fonts.sans,
       fontSize: 13.5,

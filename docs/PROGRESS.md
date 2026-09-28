@@ -54,6 +54,12 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-28 — Trint (with ZCode) — Rename a folder from inside it
+- Tap the folder's name (small pencil beside it) on the folder screen to
+  fix a misspelling: inline edit, saved on done. Empty reverts to the old
+  name. Verse progress is keyed by reference, so renames lose nothing.
+- Making your own folder was already there: Armory, "new folder".
+
 ### 2026-09-28 — Trint (with ZCode) — A small "you" screen
 - New modal from Today's header (person icon, beside the theme toggle):
   edit name and life verse, saved as he types (an empty name mid-edit
