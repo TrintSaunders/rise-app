@@ -30,7 +30,7 @@ http
       res.writeHead(302, { location: '/today' });
       return res.end();
     }
-    let file = join(process.cwd(), normalize(pathname));
+    let file = join(process.cwd(), root, normalize(pathname));
     if (!file.startsWith(join(process.cwd(), root))) {
       res.writeHead(403);
       return res.end('forbidden');

@@ -61,6 +61,11 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-28 — Hayden (with Claude) — "Fix preview server serving nothing"
+- `npm run preview` answered 403 to every page: it looked for files in the
+  repo root instead of `dist/`. It now serves `dist/`; paths that try to
+  climb out of it still get nothing.
+
 ### 2026-09-28 — Hayden (with Claude) — "SOS tells allies; verse memory on; privacy decided"
 - SOS tab gains a "your allies" card: add up to five names and numbers
   (kept on the phone only), then one button — "tell them I'm tempted".
