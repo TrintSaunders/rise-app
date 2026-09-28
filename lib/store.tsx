@@ -220,6 +220,8 @@ type StoreApi = {
   seedSampleData: () => void;
   clearSampleData: () => void;
   setThemeMode: (mode: ThemeMode) => void;
+  /** Edit the profile from the "you" screen. `startedOn` never changes. */
+  updateProfile: (name: string, lifeVerse: Verse | null) => void;
   /** Returns the new folder's id. */
   createFolder: (name: string, verses?: readonly MemoryVerse[], sharedBy?: string | null) => string;
   addVersesToFolder: (folderId: string, verses: readonly MemoryVerse[]) => void;
@@ -375,6 +377,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           rises: prev.rises.filter((r) => !r.demo),
         })),
       setThemeMode: (mode) => update((prev) => ({ ...prev, themeMode: mode })),
+      updateProfile: (name, lifeVerse) =>
+        update((prev) =>
+          prev.profile ? { ...prev, profile: { ...prev.profile, name, lifeVerse } } : prev
+        ),
       createFolder: (name, verses = [], sharedBy = null) => {
         const id = newId();
         update((prev) => ({

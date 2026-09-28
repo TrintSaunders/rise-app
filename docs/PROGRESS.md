@@ -61,6 +61,15 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-28 — Trint (with ZCode) — A small "you" screen
+- New modal from Today's header (person icon, beside the theme toggle):
+  edit name and life verse, saved as he types (an empty name mid-edit
+  keeps the last good one; empty verse returns to the verse of the day).
+- Night Watch choice lives here too: follow the sun, night, or day.
+- Footer shows the start date and the lifetime story (check-ins,
+  struggles, falls, rises, victories; sample entries don't count).
+  Still no account; nothing leaves the phone.
+
 ### 2026-09-28 — Trint (with ZCode) — Allies manage on Today; SOS button off Today
 - The "I'm struggling right now" button is gone from Today. The SOS tab
   is one tap away in the bar, so the dock was redundant.

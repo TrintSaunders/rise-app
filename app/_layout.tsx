@@ -94,6 +94,7 @@ function RootNavigator() {
           name="log-struggle"
           options={{ headerShown: false, presentation: 'modal' }}
         />
+        <Stack.Screen name="you" options={{ headerShown: false, presentation: 'modal' }} />
         <Stack.Screen
           name="rise-again"
           options={{ headerShown: false, presentation: 'fullScreenModal' }}

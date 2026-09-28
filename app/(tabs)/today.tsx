@@ -71,17 +71,26 @@ export default function TodayScreen() {
               <Text style={styles.greeting}>{greeting(name)}</Text>
               <Text style={styles.date}>{dateLabel}</Text>
             </View>
-            <SpringPress
-              style={styles.themeButton}
-              hitSlop={10}
-              accessibilityLabel="theme mode"
-              onPress={() => setThemeMode(nextThemeMode(data.themeMode))}>
-              <Ionicons
-                name={themeIconName(data.themeMode, t.isNight)}
-                size={20}
-                color={t.textSoft}
-              />
-            </SpringPress>
+            <View style={styles.headerActions}>
+              <SpringPress
+                style={styles.headerButton}
+                hitSlop={10}
+                accessibilityLabel="you"
+                onPress={() => router.push('/you')}>
+                <Ionicons name="person-circle-outline" size={21} color={t.textSoft} />
+              </SpringPress>
+              <SpringPress
+                style={styles.headerButton}
+                hitSlop={10}
+                accessibilityLabel="theme mode"
+                onPress={() => setThemeMode(nextThemeMode(data.themeMode))}>
+                <Ionicons
+                  name={themeIconName(data.themeMode, t.isNight)}
+                  size={20}
+                  color={t.textSoft}
+                />
+              </SpringPress>
+            </View>
           </View>
         </Reveal>
 
@@ -172,7 +181,13 @@ const createStyles = (t: Theme) =>
       marginTop: 18,
     },
     headerText: { flex: 1 },
-    themeButton: { padding: 6, marginRight: -6 },
+    headerActions: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 18,
+      paddingTop: 6,
+    },
+    headerButton: { padding: 2 },
     greeting: {
       fontFamily: fonts.serif,
       fontSize: 30,
