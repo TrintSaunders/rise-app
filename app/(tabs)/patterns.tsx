@@ -61,7 +61,7 @@ function fortnight(data: StoreData) {
   for (const t of data.temptations) {
     const agg = byDate.get(dayKey(t.at));
     if (!agg) continue;
-    buckets[Math.floor(new Date(t.at).getHours() / 2)] += 1;
+    if (!t.hourUnknown) buckets[Math.floor(new Date(t.at).getHours() / 2)] += 1;
     for (const f of t.feelings) feelings.set(f, (feelings.get(f) ?? 0) + 1);
     agg.struggles += 1;
     totals.struggles += 1;

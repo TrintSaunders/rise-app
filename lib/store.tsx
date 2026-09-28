@@ -8,6 +8,8 @@ import {
 } from 'react';
 import type { ReactNode } from 'react';
 
+import type { MemoryData, MemoryVerse } from './memory';
+import { newProgress, nextProgress } from './memory';
 import type { Verse } from './verses';
 import { sampleHistory } from './sample';
 
@@ -51,6 +53,8 @@ export type TemptationEntry = {
   at: string;
   feelings: Feeling[];
   outcome: TemptationOutcome;
+  /** He fell but didn't say when: it counts as a fall, and stays off the dark-hours chart. */
+  hourUnknown?: true;
   /** Present only on entries from the Patterns "sample history" demo tool. */
   demo?: true;
 };
@@ -84,6 +88,8 @@ export type StoreData = {
   lastRisenAt: string | null;
   /** Night Watch: follow the sun automatically, or hold a mode he chose. */
   themeMode: ThemeMode;
+  /** Armory verse memory: his folders and how each verse is holding. */
+  memory: MemoryData;
 };
 
 // ─── Local-day helpers ───────────────────────────────────────────────────────
@@ -151,6 +157,16 @@ export function waitingToRise(data: StoreData): boolean {
   return data.needsRise;
 }
 
+/** Each fall logged against a check-in day, oldest first — one entry per fall, never merged. */
+export function fallsOnCheckInDay(
+  data: StoreData,
+  day: string = checkInDayStr()
+): TemptationEntry[] {
+  return data.temptations
+    .filter((t) => t.outcome === 'fell' && !t.demo && checkInDayStr(new Date(t.at)) === day)
+    .sort((a, b) => a.at.localeCompare(b.at));
+}
+
 // ─── The store ───────────────────────────────────────────────────────────────
 
 const KEY = 'rise.store.v1';
@@ -166,6 +182,7 @@ const EMPTY: StoreData = {
   needsRise: false,
   lastRisenAt: null,
   themeMode: 'auto',
+  memory: { folders: [], progress: {} },
 };
 
 function newId(): string {
@@ -185,7 +202,8 @@ type StoreApi = {
     feelings: readonly Feeling[],
     outcome: TemptationOutcome,
     /** When it actually happened — defaults to right now. */
-    at?: string
+    at?: string,
+    options?: { hourUnknown?: boolean }
   ) => void;
   logVictory: () => void;
   completeRise: () => void;
@@ -193,7 +211,26 @@ type StoreApi = {
   seedSampleData: () => void;
   clearSampleData: () => void;
   setThemeMode: (mode: ThemeMode) => void;
+  /** Returns the new folder's id. */
+  createFolder: (name: string, verses?: readonly MemoryVerse[], sharedBy?: string | null) => string;
+  addVersesToFolder: (folderId: string, verses: readonly MemoryVerse[]) => void;
+  removeVerseFromFolder: (folderId: string, ref: string) => void;
+  deleteFolder: (folderId: string) => void;
+  /** Progress is kept per verse, so it survives a folder being deleted. */
+  reviewVerse: (ref: string, remembered: boolean) => void;
 };
+
+/** Adds verses a folder doesn't already hold, keeping order. */
+function withVerses(existing: readonly MemoryVerse[], added: readonly MemoryVerse[]): MemoryVerse[] {
+  const refs = new Set(existing.map((v) => v.ref));
+  const next = [...existing];
+  for (const verse of added) {
+    if (refs.has(verse.ref)) continue;
+    refs.add(verse.ref);
+    next.push(verse);
+  }
+  return next;
+}
 
 const StoreContext = createContext<StoreApi | null>(null);
 
@@ -279,12 +316,18 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             needsRise: prev.needsRise || tempted === 'fell',
           };
         }),
-      logTemptation: (feelings, outcome, at = new Date().toISOString()) =>
+      logTemptation: (feelings, outcome, at = new Date().toISOString(), options) =>
         update((prev) => ({
           ...prev,
           temptations: [
             ...prev.temptations,
-            { id: newId(), at, feelings: [...feelings], outcome },
+            {
+              id: newId(),
+              at,
+              feelings: [...feelings],
+              outcome,
+              ...(options?.hourUnknown ? { hourUnknown: true as const } : {}),
+            },
           ],
           needsRise: prev.needsRise || outcome === 'fell',
         })),
@@ -320,6 +363,69 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           rises: prev.rises.filter((r) => !r.demo),
         })),
       setThemeMode: (mode) => update((prev) => ({ ...prev, themeMode: mode })),
+      createFolder: (name, verses = [], sharedBy = null) => {
+        const id = newId();
+        update((prev) => ({
+          ...prev,
+          memory: {
+            ...prev.memory,
+            folders: [
+              ...prev.memory.folders,
+              {
+                id,
+                name: name.trim() || 'Untitled folder',
+                verses: withVerses([], verses),
+                createdAt: new Date().toISOString(),
+                ...(sharedBy ? { sharedBy } : {}),
+              },
+            ],
+          },
+        }));
+        return id;
+      },
+      addVersesToFolder: (folderId, verses) =>
+        update((prev) => ({
+          ...prev,
+          memory: {
+            ...prev.memory,
+            folders: prev.memory.folders.map((f) =>
+              f.id === folderId ? { ...f, verses: withVerses(f.verses, verses) } : f
+            ),
+          },
+        })),
+      removeVerseFromFolder: (folderId, ref) =>
+        update((prev) => ({
+          ...prev,
+          memory: {
+            ...prev.memory,
+            folders: prev.memory.folders.map((f) =>
+              f.id === folderId ? { ...f, verses: f.verses.filter((v) => v.ref !== ref) } : f
+            ),
+          },
+        })),
+      deleteFolder: (folderId) =>
+        update((prev) => ({
+          ...prev,
+          memory: {
+            ...prev.memory,
+            folders: prev.memory.folders.filter((f) => f.id !== folderId),
+          },
+        })),
+      reviewVerse: (ref, remembered) =>
+        update((prev) => {
+          const today = todayStr();
+          const current = prev.memory.progress[ref] ?? newProgress(today);
+          return {
+            ...prev,
+            memory: {
+              ...prev.memory,
+              progress: {
+                ...prev.memory.progress,
+                [ref]: nextProgress(current, remembered, today, new Date().toISOString()),
+              },
+            },
+          };
+        }),
     };
   }, [ready, data]);
 

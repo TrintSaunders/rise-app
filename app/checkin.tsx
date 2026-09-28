@@ -18,7 +18,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius, shadow } from '@/constants/theme';
 import { hapticTap } from '@/lib/haptics';
-import { useStore } from '@/lib/store';
+import { fallsOnCheckInDay, useStore } from '@/lib/store';
 
 /**
  * The evening check-in — 30 seconds of honesty, that's all (DESIGN.md).
@@ -41,8 +41,16 @@ const TEMPTED_OPTIONS = [
 
 type Step = 0 | 1 | 2 | 3;
 
+/** Log-a-struggle times are window estimates, so name the hour, not the minute. */
+function aroundHour(iso: string): string {
+  const hour = new Date(iso).getHours();
+  const twelve = hour % 12 === 0 ? 12 : hour % 12;
+  return `around ${twelve}${hour < 12 ? 'am' : 'pm'}`;
+}
+
 export default function CheckInScreen() {
-  const { saveCheckIn } = useStore();
+  const { data, saveCheckIn, logTemptation } = useStore();
+  const falls = fallsOnCheckInDay(data);
   const [step, setStep] = useState<Step>(0);
   const [rating, setRating] = useState<number | null>(null);
   const [tempted, setTempted] = useState<(typeof TEMPTED_OPTIONS)[number]['value'] | null>(null);
@@ -54,6 +62,15 @@ export default function CheckInScreen() {
     fade.setValue(0);
     Animated.timing(fade, { toValue: 1, duration: 350, useNativeDriver: true }).start();
   }, [step, fade]);
+
+  // Every fall stays its own entry — how many and when is what Patterns reads.
+  // If he rises without logging one, it still counts, just without an hour.
+  const riseAgain = () => {
+    if (falls.length === 0) {
+      logTemptation([], 'fell', new Date().toISOString(), { hourUnknown: true });
+    }
+    router.replace('/rise-again');
+  };
 
   const completeDay = () => {
     if (rating === null || tempted === null) return;
@@ -178,9 +195,43 @@ export default function CheckInScreen() {
                     That’s the hardest part, and it’s done. The day counts — now
                     let the sun come up.
                   </Text>
+                  <View style={styles.fallsCard}>
+                    <Text style={styles.fallsLabel}>
+                      {falls.length === 0
+                        ? 'each fall, on its own'
+                        : `${falls.length} logged today`}
+                    </Text>
+                    {falls.map((fall) => (
+                      <View key={fall.id} style={styles.fallRow}>
+                        <Ionicons name="ellipse" size={7} color={colors.starlightSoft} />
+                        <Text style={styles.fallText}>
+                          {fall.hourUnknown ? 'time not given' : aroundHour(fall.at)}
+                          {fall.feelings.length > 0 ? ` · ${fall.feelings.join(', ')}` : ''}
+                        </Text>
+                      </View>
+                    ))}
+                    <Text style={styles.fallsNote}>
+                      {falls.length === 0
+                        ? 'Log each one with its hour — Patterns learns when the dark hours really are. Not sure when? Rise Again still counts it.'
+                        : 'Another one today? Log it too — the count and the hours are the honest story.'}
+                    </Text>
+                    <SpringPress
+                      style={styles.logFallButton}
+                      onPress={() =>
+                        router.push({
+                          pathname: '/log-struggle',
+                          params: { outcome: 'fell', then: 'back' },
+                        })
+                      }>
+                      <Ionicons name="add" size={17} color={colors.starlight} />
+                      <Text style={styles.logFallText}>
+                        {falls.length === 0 ? 'log it with its time' : 'log another'}
+                      </Text>
+                    </SpringPress>
+                  </View>
                   <SpringPress
                     style={styles.riseButton}
-                    onPress={() => router.replace('/rise-again')}>
+                    onPress={riseAgain}>
                     <Text style={styles.riseButtonText}>Rise Again</Text>
                   </SpringPress>
                 </View>
@@ -345,6 +396,55 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
     paddingHorizontal: 8,
+  },
+  fallsCard: {
+    alignSelf: 'stretch',
+    backgroundColor: colors.nightSoft,
+    borderRadius: 18,
+    padding: 18,
+    marginTop: 22,
+  },
+  fallsLabel: {
+    fontFamily: fonts.sansMedium,
+    fontSize: 11.5,
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+    color: colors.starlightSoft,
+    marginBottom: 6,
+  },
+  fallRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 5,
+  },
+  fallText: {
+    fontFamily: fonts.sans,
+    fontSize: 14.5,
+    color: colors.starlight,
+  },
+  fallsNote: {
+    fontFamily: fonts.sans,
+    fontSize: 12.5,
+    lineHeight: 18,
+    color: colors.starlightSoft,
+    marginTop: 8,
+  },
+  logFallButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    borderRadius: radius.button,
+    borderWidth: 1,
+    borderColor: colors.starlightSoft,
+    paddingVertical: 11,
+    marginTop: 14,
+  },
+  logFallText: {
+    fontFamily: fonts.sansMedium,
+    fontSize: 14,
+    color: colors.starlight,
   },
   riseButton: {
     backgroundColor: colors.dawn,

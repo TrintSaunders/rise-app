@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -59,13 +59,21 @@ function timestampFor(key: WhenKey, now: Date = new Date()): string {
  * Log a struggle — the quiet card on Today. Feeling chips + how it ended.
  * “I fled” gets a quiet high-five; “I fell” goes straight to grace (Rise Again).
  * Nothing here condemns; honesty is the whole point.
+ *
+ * The evening check-in opens this once per fall (`outcome=fell&then=back`):
+ * each fall is saved on its own, and he returns to the check-in to log the
+ * next one or rise.
  */
 export default function LogStruggleScreen() {
   const { logTemptation } = useStore();
+  const params = useLocalSearchParams<{ outcome?: string; then?: string }>();
+  const fromCheckIn = params.then === 'back';
   const t = useAppTheme();
   const styles = useMemo(() => createStyles(t), [t]);
   const [feelings, setFeelings] = useState<Feeling[]>([]);
-  const [outcome, setOutcome] = useState<TemptationOutcome | null>(null);
+  const [outcome, setOutcome] = useState<TemptationOutcome | null>(
+    params.outcome === 'fell' || params.outcome === 'fled' ? params.outcome : null
+  );
   const [when, setWhen] = useState<WhenKey>('now');
   const [fledSaved, setFledSaved] = useState(false);
 
@@ -81,6 +89,8 @@ export default function LogStruggleScreen() {
     if (outcome === 'fled') {
       hapticTap();
       setFledSaved(true);
+    } else if (fromCheckIn) {
+      router.back();
     } else {
       router.replace('/rise-again');
     }
@@ -113,7 +123,7 @@ export default function LogStruggleScreen() {
       <StatusBar style={t.isNight ? 'light' : 'dark'} />
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <View style={styles.header}>
-          <Text style={styles.title}>log a struggle</Text>
+          <Text style={styles.title}>{fromCheckIn ? 'log a fall' : 'log a struggle'}</Text>
           <Pressable onPress={() => router.back()} hitSlop={12}>
             <Ionicons name="close" size={22} color={colors.inkSoft} />
           </Pressable>

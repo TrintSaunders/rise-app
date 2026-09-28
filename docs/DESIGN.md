@@ -213,7 +213,11 @@ Purpose: make getting back up easier and faster than falling.
 
 ### Armory
 
-- Memory verse trainer (spaced repetition — Phil 4:8 filling, not just fencing)
+- **Verse memory** (Phil 4:8 filling, not just fencing; Ps 119:11) — built, behind `flags.armoryMemory`:
+  - **Folders** he makes and names; a verse can live in several, and its progress is kept once, per verse
+  - **Suggested sets**: *Verses for the fight* first, in learning order — 1 Tim 4:7, Heb 2:18, Job 31:1, Ps 119:11, then 1 Cor 10:13, 2 Tim 2:22 and on — then the Navigators' Topical Memory System, series A–E (60 verses)
+  - **Review**: reference first, first-letter hint if needed, then the full verse; "got it" stretches the gap (1 → 2 → 4 → 7 → 14 → 30 days), "not yet" steps back one and returns tomorrow — never a reset to zero. A verse at five steps counts as memorized
+  - **Memorize together**: share a folder with a friend as a link in a message he sends himself; the friend previews it and adds a copy. No server and no account — progress stays on each phone, and "send how it's going" texts a plain progress line. Live shared progress would need a server and is a separate decision (see the privacy house rule)
 - Reading plans and short teaching: theology of the body, the brain science of porn
 - **Battle plan editor**: his personal escape sequence, in his order, shown on the SOS screen
 

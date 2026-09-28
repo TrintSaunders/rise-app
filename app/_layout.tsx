@@ -102,6 +102,14 @@ function RootNavigator() {
           name="rise-again"
           options={{ headerShown: false, presentation: 'fullScreenModal' }}
         />
+        {/* Armory verse memory — every route is gated by flags.armoryMemory. */}
+        <Stack.Screen name="memory/folder/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="memory/set/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="memory/import" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="memory/review"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
       </Stack>
     </ThemeProvider>
   );

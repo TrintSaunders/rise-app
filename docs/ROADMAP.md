@@ -24,7 +24,8 @@
 ## v1.0 — Life
 
 - Night Watch dark mode (auto after sunset)
-- Memory verse trainer + first reading plan
+- Verse memory: folders, suggested sets (fight verses + Topical Memory System), spaced-repetition review, share folders with friends — *built behind `flags.armoryMemory`, not yet switched on*
+- First reading plan
 - Encrypted local export/backup
 - Typography, motion, and haptics polish pass
 

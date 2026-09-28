@@ -1,6 +1,10 @@
+import { ArmoryMemory } from '@/components/ArmoryMemory';
 import { ComingSoon } from '@/components/ComingSoon';
+import { flags } from '@/lib/flags';
 
 export default function ArmoryScreen() {
+  if (flags.armoryMemory) return <ArmoryMemory />;
+
   return (
     <ComingSoon
       title="Armory"

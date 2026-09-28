@@ -49,7 +49,8 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
   modal stack (`sos` + `rise-again` are fullScreenModal; `checkin` +
   `log-struggle` are card modals).
 - `app/(tabs)/` — `today` (dawn arc, streak counters, SOS entry),
-  `patterns` (honest-data readback), `armory` (placeholder until v1.0).
+  `patterns` (honest-data readback), `armory` (placeholder until v1.0;
+  with `flags.armoryMemory` on it becomes verse memory).
   A fourth tab, Allies (formerly Brothers), is planned for v0.3 — see
   DESIGN.md. Do not build it without asking the owner.
 - `lib/store.tsx` — the store. Append-only history: check-ins, struggles,
@@ -61,6 +62,10 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 - `lib/theme.ts` — Night Watch: a semantic Day/Night palette via
   `useAppTheme()`. Night follows the clock (19:00–06:00) unless the user
   pins a mode (toggle on Today, persisted in the store).
+- `lib/flags.ts` — features built but shipped dark. `armoryMemory`
+  gates the Armory verse memory: `lib/memory.ts` (verse library, review
+  schedule, share codes), `components/ArmoryMemory.tsx`, and the
+  `app/memory/` routes, each wrapped in `MemoryGate`.
 - `lib/verses.ts` — verse of the day; `lib/sample.ts` — flagged demo data
   behind the Patterns "sample history" button (removable before release);
   `lib/haptics.ts` — `hapticTap()` for completions only, never for falls.
