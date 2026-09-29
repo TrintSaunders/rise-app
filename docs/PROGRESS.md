@@ -57,7 +57,7 @@ line — `git log` has the rest.
 
 ## Log
 
-### 2026-09-29 — Trint — "The post-Opel reality check: bigger reasons"
+### 2026-09-29 — Trint — "The post-Opal reality check: bigger reasons"
 - Opal blocks an app for free, so PREMIUM.md grew Pillar 5 — the
   features a secular utility structurally can't copy: **Watch SOS**
   (rescue that lives outside the phone), **Sit with me** (live ally
