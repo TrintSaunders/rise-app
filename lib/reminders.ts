@@ -74,8 +74,10 @@ export async function syncReminders(reminders: Reminders, checkedInDays: Readonl
   const scheduled = await Notifications.getAllScheduledNotificationsAsync();
   await Promise.all(
     scheduled
-      .filter((n) => n.content.data?.tag === TAG)
-      .map((n) => Notifications.cancelScheduledNotificationAsync(n.identifier))
+      .filter((n: Notifications.NotificationRequest) => n.content.data?.tag === TAG)
+      .map((n: Notifications.NotificationRequest) =>
+        Notifications.cancelScheduledNotificationAsync(n.identifier)
+      )
   );
 
   if (!reminders.morning.enabled && !reminders.evening.enabled) return;
