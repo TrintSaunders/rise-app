@@ -57,6 +57,15 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Trint — "The post-Opel reality check: bigger reasons"
+- Opal blocks an app for free, so PREMIUM.md grew Pillar 5 — the
+  features a secular utility structurally can't copy: **Watch SOS**
+  (rescue that lives outside the phone), **Sit with me** (live ally
+  co-presence, breathing in sync), ally **voice notes**, the **Mentor
+  Portal** (church blocks of subscriptions), pattern-aware shepherding,
+  and spouse mode (last, carefully). Sequencing re-cut so the headline
+  pair lands as 1.3.
+
 ### 2026-09-29 — Trint — "Premium tier thought through"
 - `docs/PREMIUM.md`: Trint's guardrail ideas (ally-held app shields,
   time budgets) grounded in what iOS's Screen Time API really allows,

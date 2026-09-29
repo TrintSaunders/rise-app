@@ -81,6 +81,50 @@ from. Two things are decided in spirit already:
   does.
 - Keepsake export: the story-so-far as a printable testimony.
 
+## Pillar 5 — The other big reasons (the post-Opal reality check)
+
+Opal blocks one app for free; guardrails alone make us a paid copy of
+a free tool. The moat has to be what a secular screen-time utility
+*structurally cannot have*: allies, Scripture, the shepherd shape.
+These are the features that make someone pay for Rise knowing Opal
+exists.
+
+- **Watch SOS — help that lives outside the trap.** The real insight
+  of the whole category: opening the iPhone to get help means entering
+  the room where the temptation lives. An Apple Watch app flips that —
+  breathing on the wrist, one tap to signal allies, the day's verse as
+  a complication, never a phone unlock. No secular blocker will build
+  this because no secular blocker has anyone to signal. Probably the
+  single strongest reason to own Rise+.
+- **Sit with me — live co-presence.** When he taps SOS at 1am, the
+  ally's phone lights up *now*: "he's in it — two taps to let him know
+  you're praying." And an opt-in shared breathing session: both
+  screens breathe in the same rhythm, an ocean apart. Technically a
+  websocket and a shared timer; emotionally the loneliness-killer the
+  category has never built. Covenant Eyes ships cold weekly reports;
+  nobody ships warmth in real time.
+- **Ally voice notes.** An ally records 30 seconds — "you're going to
+  make it, I've been there" — and it plays the next time SOS opens.
+  Cheapest feature in this document; the one nobody would ever leave.
+- **The Mentor Portal.** The ally experience as its own surface: a
+  pastor walking with twelve men sees exactly what each chose to share
+  (streaks kept, "he asked for prayer last night"), nothing else, ever.
+  Churches buy blocks of subscriptions — the ministry sales channel
+  Covenant Eyes proved, without the surveillance aftertaste.
+- **Pattern-aware shepherding.** Patterns already knows his dark hours
+  and triggers; premium reads them pastorally — "your late nights
+  moved an hour earlier this month; tonight's word is picked for
+  exactly that." On-device, no cloud AI, just the app knowing his
+  story well enough to hand him Psalm 4:8 at 11pm instead of a random
+  verse.
+- **Spouse mode.** The category's most-requested pairing — walking
+  together, opt-in from both sides, visibility he *chooses* moment to
+  moment. Needs the most pastoral care in the copy; do it last and do
+  it right.
+
+Of these, Watch SOS and Sit-with-me are the headline pair: one moves
+rescue outside the phone, the other makes it human in real time.
+
 ## The line between free and paid
 
 | | Free forever | Rise+ |
@@ -90,6 +134,8 @@ from. Two things are decided in spirit already:
 | Guardrails (shields, budgets, dark hours) | | ✓ |
 | Ally-held locks + release requests | | ✓ |
 | Live alerts, check-on-me, weekly digest | | ✓ |
+| **Watch SOS + Sit with me + voice notes** | | ✓ |
+| Mentor Portal, spouse mode | | ✓ |
 | Audio, guided walks, sync | | ✓ |
 
 ## Money (comps, not decisions)
@@ -113,10 +159,13 @@ the server, story still on the phone.
    subscriptions yet. This alone is worth the price.
 2. **1.2 — The server era.** Accounts + subscriptions + push; weekly
    digest (maybe free), live alerts.
-3. **1.3 — Ally-held locks** with release requests.
-4. **Then** — audio, walks, sync, small groups. VPN/DNS filtering
-   stays parked: heavy, scrutinized, and the roadmap already called
-   it scaffolding.
+3. **1.3 — The headline pair.** Watch SOS and Sit with me (plus ally
+   voice notes — small once push exists). This is the marketing beat:
+   after this, Rise+ has reasons Opal can't copy at any price.
+4. **1.4 — Ally-held locks** with release requests.
+5. **Then** — Mentor Portal, audio, walks, sync, small groups, spouse
+   mode (last, and carefully). VPN/DNS filtering stays parked: heavy,
+   scrutinized, and the roadmap already called it scaffolding.
 
 ## Open questions for Trint and Hayden
 
