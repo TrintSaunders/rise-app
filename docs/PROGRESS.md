@@ -57,6 +57,18 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Hayden (with Claude) — "Icon concepts: the rise as a sunrise"
+- Two concepts in `design/icon-review/` (SVG source + 1024 PNG):
+  `f-sunrise-rise-on-night` (Night Watch indigo, faint stars) and
+  `g-sunrise-rise-on-cream`. Trint's gold-to-ember chevron stays as the
+  mark; a half sun now rises inside it from a horizon line, so it reads
+  as an arrow and a sunrise. Blueprint guides dropped: they vanish at
+  home-screen size. `sunrise-rise-comparison.png` shows both beside the
+  current icon at 180/96/58 px.
+- Not shipped: `assets/` still has the current icon until Hayden and
+  Trint pick one; then derive every slot the way `design/asset-derivatives`
+  does.
+
 ### 2026-09-29 — Trint — "Release prep: sample history retired, release map, privacy policy"
 - The Patterns sample tool is gone — store actions, `lib/sample.ts`,
   the card. On load, demo entries already on a tester's phone retire
