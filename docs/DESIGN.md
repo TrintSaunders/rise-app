@@ -226,7 +226,13 @@ Purpose: make getting back up easier and faster than falling.
   - **Review**: reference first, first-letter hint if needed, then the full verse; "got it" stretches the gap (1 → 2 → 4 → 7 → 14 → 30 days), "not yet" steps back one and returns tomorrow — never a reset to zero. A verse at five steps counts as memorized
   - **Memorize together**: share a folder with a friend as a link in a message he sends himself; the friend previews it and adds a copy. No server and no account — progress stays on each phone, and "send how it's going" texts a plain progress line. Live shared progress would need a server and is a separate decision (see the privacy house rule)
 - Reading plans and short teaching: theology of the body, the brain science of porn
-- **Battle plan editor**: his personal escape sequence, in his order, shown on the SOS screen
+- **Battle plan editor** (`app/battle-plan.tsx`, built): his personal escape sequence, in his order, shown on the SOS screen. Up to eight steps; reorder with arrows, remove, add from suggestions or write his own. Three live steps become buttons on SOS: *Text my allies* (the ally alert), *Call an ally* (one button per ally), *Say my memory verse out loud* (shows the verse he knows best). Reached from the Armory, the "you & settings" screen, and "edit your plan" on SOS
+
+### You & settings (`app/you.tsx`)
+
+- Name, life verse, Night Watch, and the story so far
+- **Reminders** (built): a morning verse and an evening check-in, each off by default with its own time in 15-minute steps. Scheduled on the phone a week ahead; the evening one is skipped for any day already checked in. Lock-screen text stays discreet ("Before you sleep: thirty seconds of truth"). Tapping one opens Today or the check-in. Phones only; web shows a note
+- A preview of the battle plan, linking to the editor
 
 ---
 

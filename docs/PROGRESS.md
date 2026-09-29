@@ -25,8 +25,11 @@ line — `git log` has the rest.
   suggested sets, spaced-repetition review, sharing folders with friends).
 - **Built but not switched on:** the server path for ally alerts
   (`server/ally-alert`, not deployed; `flags.allyAlerts` is `'local'`).
-- **Not started:** local notifications (last v0.1 item), the rest of Allies
-  (v0.3), battle-plan editor, reading plans, encrypted backup/export.
+- **Also shipped:** local reminders (morning verse, evening check-in) and
+  the battle-plan editor, both set from "you & settings"; SOS shows his
+  plan with live text/call/verse steps.
+- **Not started:** the rest of Allies (v0.3), reading plans, encrypted
+  backup/export, tests.
 - **Gates:** `npx tsc --noEmit` and
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
@@ -53,6 +56,28 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-09-28 — Hayden (with Claude) — "Reminders and the battle plan editor"
+- Built on top of Trint's "you" screen (now titled "you & settings")
+  rather than adding a second settings page.
+- Reminders: morning verse and evening check-in, off by default, each
+  with a time in 15-minute steps. Local notifications (`expo-notifications`)
+  scheduled a week ahead as one-off dates; the evening one is skipped for
+  any day already checked in (after-midnight check-ins count for the day
+  before). Discreet lock-screen text. Tapping opens Today or the check-in.
+  Permission is asked the first time one is switched on.
+- Battle plan: `data.battlePlan` (defaults to the old three SOS steps),
+  editor at `/battle-plan` (reorder, remove, suggestions, write your own,
+  up to 8). SOS renders it; "Text my allies", "Call an ally" (per ally),
+  and "Say my memory verse" are live. When the plan texts allies, SOS
+  hides its separate ally card so there's one button, not two.
+- Reached from the Armory (new "your battle plan" card), "you & settings",
+  and "edit your plan" on SOS.
+- Hayden had asked to drop Today's SOS button and to add allies on Today;
+  Trint's AI had already done both, so nothing changed there.
+- TEST_WEEK.md now covers reminders and the battle plan. Checked by
+  screenshot in headless Chrome (day and night); notifications themselves
+  need a phone.
 
 ### 2026-09-28 — Trint (with ZCode) — Rename a folder from inside it
 - Tap the folder's name (small pencil beside it) on the folder screen to

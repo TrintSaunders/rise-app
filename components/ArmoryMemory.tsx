@@ -86,6 +86,23 @@ export function ArmoryMemory() {
           )}
         </Reveal>
 
+        <Reveal delay={50} style={styles.section}>
+          <Text style={styles.sectionLabel}>your battle plan</Text>
+          <SpringPress style={styles.folderCard} onPress={() => router.push('/battle-plan')}>
+            <Ionicons name="shield-checkmark-outline" size={20} color={t.textSoft} />
+            <View style={styles.folderText}>
+              <Text style={styles.folderName}>
+                {data.battlePlan.length} {data.battlePlan.length === 1 ? 'step' : 'steps'}, in your
+                order
+              </Text>
+              <Text style={styles.folderMeta} numberOfLines={1}>
+                {data.battlePlan.map((s) => s.label).join(' · ')}
+              </Text>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color={t.textSoft} />
+          </SpringPress>
+        </Reveal>
+
         <Reveal delay={70} style={styles.section}>
           <Text style={styles.sectionLabel}>your folders</Text>
           {memory.folders.map((folder) => {

@@ -8,6 +8,8 @@ import {
 } from 'react';
 import type { ReactNode } from 'react';
 
+import { DEFAULT_PLAN } from './battlePlan';
+import type { BattleStep } from './battlePlan';
 import type { MemoryData, MemoryVerse } from './memory';
 import { newProgress, nextProgress } from './memory';
 import type { Verse } from './verses';
@@ -74,6 +76,10 @@ export type RiseEntry = {
 
 export type ThemeMode = 'auto' | 'night' | 'day';
 
+/** A daily reminder at his chosen local time. Off until he turns it on. */
+export type Reminder = { enabled: boolean; hour: number; minute: number };
+export type Reminders = { morning: Reminder; evening: Reminder };
+
 /** Someone SOS can text "I'm being tempted". Kept only on this phone. */
 export type Ally = {
   id: string;
@@ -98,6 +104,9 @@ export type StoreData = {
   /** Armory verse memory: his folders and how each verse is holding. */
   memory: MemoryData;
   allies: Ally[];
+  reminders: Reminders;
+  /** His way out, in his order, shown on SOS. */
+  battlePlan: BattleStep[];
 };
 
 // ─── Local-day helpers ───────────────────────────────────────────────────────
@@ -192,6 +201,11 @@ const EMPTY: StoreData = {
   themeMode: 'auto',
   memory: { folders: [], progress: {} },
   allies: [],
+  reminders: {
+    morning: { enabled: false, hour: 7, minute: 0 },
+    evening: { enabled: false, hour: 21, minute: 30 },
+  },
+  battlePlan: DEFAULT_PLAN,
 };
 
 function newId(): string {
@@ -234,6 +248,8 @@ type StoreApi = {
   /** `phone` should already be cleaned (see cleanPhone in lib/allyAlert). */
   addAlly: (name: string, phone: string) => void;
   removeAlly: (id: string) => void;
+  setReminder: (which: keyof Reminders, change: Partial<Reminder>) => void;
+  setBattlePlan: (steps: BattleStep[]) => void;
 };
 
 /** Adds verses a folder doesn't already hold, keeping order. */
@@ -463,6 +479,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         })),
       removeAlly: (id) =>
         update((prev) => ({ ...prev, allies: prev.allies.filter((a) => a.id !== id) })),
+      setReminder: (which, change) =>
+        update((prev) => ({
+          ...prev,
+          reminders: { ...prev.reminders, [which]: { ...prev.reminders[which], ...change } },
+        })),
+      setBattlePlan: (steps) => update((prev) => ({ ...prev, battlePlan: steps })),
     };
   }, [ready, data]);
 

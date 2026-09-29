@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Breathing } from '@/components/Breathing';
 import { SosAllies } from '@/components/SosAllies';
+import { SosPlan } from '@/components/SosPlan';
 import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius, shadow } from '@/constants/theme';
 import { hapticTap } from '@/lib/haptics';
@@ -16,13 +17,6 @@ const VERSE = {
   text: 'Flee youthful passions; pursue righteousness, faith, love, and peace.',
   ref: '2 Timothy 2:22',
 };
-
-// A later release replaces this list with the man's own battle plan.
-const MOVES = [
-  { icon: 'exit-outline', label: 'Leave the room' },
-  { icon: 'water-outline', label: 'Cold water on your face' },
-  { icon: 'walk-outline', label: 'A short walk. The phone stays here' },
-] as const;
 
 const ESCAPE_PROMISE = {
   text: 'God is faithful… he will also provide the way of escape.',
@@ -38,7 +32,9 @@ const ESCAPE_PROMISE = {
  * Always in Night Watch colors: calm the body, point the eyes, open the exit.
  */
 export default function SosScreen() {
-  const { logVictory } = useStore();
+  const { data, logVictory } = useStore();
+  // When his plan already has a "text my allies" button, one is enough.
+  const planTexts = data.allies.length > 0 && data.battlePlan.some((s) => s.kind === 'text-allies');
   const { now } = useLocalSearchParams<{ now?: string }>();
   const [engaged, setEngaged] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -118,21 +114,10 @@ export default function SosScreen() {
           <Text style={styles.verse}>“{VERSE.text}”</Text>
           <Text style={styles.verseRef}>{VERSE.ref}</Text>
 
-          {/* Reaching out comes first — above the fold, before the list. */}
-          <SosAllies key={visit} />
+          {/* Reaching out comes first, above the fold, before the list. */}
+          {!planTexts && <SosAllies key={visit} />}
 
-          <View style={styles.movesCard}>
-            <Text style={styles.movesTitle}>the way out, in order</Text>
-            {MOVES.map((move) => (
-              <View key={move.label} style={styles.moveRow}>
-                <Ionicons name={move.icon} size={18} color={colors.starlightSoft} />
-                <Text style={styles.moveLabel}>{move.label}</Text>
-              </View>
-            ))}
-            <Text style={styles.movesNote}>
-              do one of these before you decide anything
-            </Text>
-          </View>
+          <SosPlan key={visit} />
 
           {saved ? (
             <View style={styles.savedCard}>
@@ -257,38 +242,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.starlightSoft,
     marginTop: 8,
-  },
-  movesCard: {
-    backgroundColor: colors.nightSoft,
-    borderRadius: radius.card,
-    padding: 20,
-    marginTop: 30,
-    alignSelf: 'stretch',
-  },
-  movesTitle: {
-    fontFamily: fonts.sansMedium,
-    fontSize: 13,
-    letterSpacing: 1,
-    textTransform: 'uppercase',
-    color: colors.starlightSoft,
-    marginBottom: 6,
-  },
-  moveRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    paddingVertical: 8,
-  },
-  moveLabel: {
-    fontFamily: fonts.sans,
-    fontSize: 15.5,
-    color: colors.starlight,
-  },
-  movesNote: {
-    fontFamily: fonts.sans,
-    fontSize: 12,
-    color: colors.starlightSoft,
-    marginTop: 10,
   },
   madeItButton: {
     flexDirection: 'row',

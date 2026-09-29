@@ -8,6 +8,7 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   View,
@@ -16,10 +17,22 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius } from '@/constants/theme';
+import { iconFor } from '@/lib/battlePlan';
+import {
+  ensurePermission,
+  formatTime,
+  remindersSupported,
+  shiftTime,
+} from '@/lib/reminders';
 import { useStore } from '@/lib/store';
-import type { ThemeMode } from '@/lib/store';
+import type { Reminders, ThemeMode } from '@/lib/store';
 import { useAppTheme } from '@/lib/theme';
 import type { Theme } from '@/lib/theme';
+
+const REMINDER_OPTIONS: Array<{ which: keyof Reminders; label: string; note: string }> = [
+  { which: 'morning', label: 'Morning verse', note: 'start the day with Scripture' },
+  { which: 'evening', label: 'Evening check-in', note: 'skipped on nights you’ve already checked in' },
+];
 
 const THEME_OPTIONS: Array<{ mode: ThemeMode; label: string; note: string; icon: string }> = [
   { mode: 'auto', label: 'Follow the sun', note: 'night comes at 7pm', icon: 'partly-sunny-outline' },
@@ -33,7 +46,18 @@ const THEME_OPTIONS: Array<{ mode: ThemeMode; label: string; note: string; icon:
  * footer is the whole story so far, never erased.
  */
 export default function YouScreen() {
-  const { data, setThemeMode, updateProfile } = useStore();
+  const { data, setThemeMode, updateProfile, setReminder } = useStore();
+  const [permissionDenied, setPermissionDenied] = useState(false);
+
+  const toggleReminder = async (which: keyof Reminders, on: boolean) => {
+    if (!on) {
+      setReminder(which, { enabled: false });
+      return;
+    }
+    const allowed = await ensurePermission();
+    setPermissionDenied(!allowed);
+    if (allowed) setReminder(which, { enabled: true });
+  };
   const t = useAppTheme();
   const styles = useMemo(() => createStyles(t), [t]);
 
@@ -74,7 +98,7 @@ export default function YouScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <View style={styles.header}>
-            <Text style={styles.title}>you</Text>
+            <Text style={styles.title}>you & settings</Text>
             <Pressable onPress={() => router.back()} hitSlop={12} accessibilityLabel="close">
               <Ionicons name="close" size={22} color={t.textSoft} />
             </Pressable>
@@ -123,6 +147,85 @@ export default function YouScreen() {
               autoCorrect={false}
             />
           </View>
+
+          <View style={styles.card}>
+            <Text style={styles.cardLabel}>reminders</Text>
+            {remindersSupported ? (
+              <Text style={styles.cardNote}>
+                Quiet on the lock screen: they never say what the app is for.
+              </Text>
+            ) : (
+              <Text style={styles.cardNote}>
+                Reminders work in the phone app. Open Rise on your phone to turn them on.
+              </Text>
+            )}
+            {REMINDER_OPTIONS.map(({ which, label, note }) => {
+              const r = data.reminders[which];
+              return (
+                <View key={which} style={styles.reminderRow}>
+                  <View style={styles.reminderTop}>
+                    <View style={styles.themeText}>
+                      <Text style={styles.reminderLabel}>{label}</Text>
+                      <Text style={styles.themeNote}>{note}</Text>
+                    </View>
+                    <Switch
+                      value={r.enabled}
+                      disabled={!remindersSupported}
+                      onValueChange={(on) => toggleReminder(which, on)}
+                      trackColor={{ true: colors.sage, false: t.track }}
+                      thumbColor={colors.starlight}
+                      accessibilityLabel={`${label} reminder`}
+                    />
+                  </View>
+                  {r.enabled && (
+                    <View style={styles.timeRow}>
+                      <Pressable
+                        hitSlop={8}
+                        style={styles.timeStep}
+                        accessibilityLabel={`${label} 15 minutes earlier`}
+                        onPress={() => setReminder(which, shiftTime(r, -15))}>
+                        <Ionicons name="remove" size={18} color={t.text} />
+                      </Pressable>
+                      <Text style={styles.timeText}>{formatTime(r)}</Text>
+                      <Pressable
+                        hitSlop={8}
+                        style={styles.timeStep}
+                        accessibilityLabel={`${label} 15 minutes later`}
+                        onPress={() => setReminder(which, shiftTime(r, 15))}>
+                        <Ionicons name="add" size={18} color={t.text} />
+                      </Pressable>
+                    </View>
+                  )}
+                </View>
+              );
+            })}
+            {permissionDenied && (
+              <Text style={styles.warnNote}>
+                Notifications are off for Rise. Turn them on in your phone’s Settings, then
+                try again.
+              </Text>
+            )}
+          </View>
+
+          <SpringPress style={styles.card} onPress={() => router.push('/battle-plan')}>
+            <View style={styles.linkTop}>
+              <Text style={styles.cardLabel}>battle plan</Text>
+              <Ionicons name="chevron-forward" size={18} color={t.textSoft} />
+            </View>
+            <Text style={styles.cardNote}>Your way out, in your order. It’s what SOS shows you.</Text>
+            {data.battlePlan.slice(0, 3).map((step, i) => (
+              <View key={step.id} style={styles.planRow}>
+                <Text style={styles.planNumber}>{i + 1}</Text>
+                <Ionicons name={iconFor(step)} size={16} color={t.textSoft} />
+                <Text style={styles.planText} numberOfLines={1}>
+                  {step.label}
+                </Text>
+              </View>
+            ))}
+            {data.battlePlan.length > 3 && (
+              <Text style={styles.themeNote}>and {data.battlePlan.length - 3} more</Text>
+            )}
+          </SpringPress>
 
           <View style={styles.card}>
             <Text style={styles.cardLabel}>night watch</Text>
@@ -247,6 +350,74 @@ const createStyles = (t: Theme) =>
       fontSize: 12,
       color: t.textSoft,
       marginTop: 1,
+    },
+    reminderRow: {
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderTopColor: t.track,
+      paddingTop: 12,
+      marginTop: 10,
+    },
+    reminderTop: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+    reminderLabel: {
+      fontFamily: fonts.sansMedium,
+      fontSize: 15,
+      color: t.text,
+    },
+    timeRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      alignSelf: 'flex-start',
+      gap: 14,
+      backgroundColor: t.track,
+      borderRadius: radius.button,
+      paddingHorizontal: 8,
+      paddingVertical: 6,
+      marginTop: 10,
+    },
+    timeStep: {
+      width: 30,
+      height: 30,
+      borderRadius: 15,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: t.card,
+    },
+    timeText: {
+      fontFamily: fonts.sansMedium,
+      fontSize: 15,
+      color: t.text,
+      minWidth: 74,
+      textAlign: 'center',
+    },
+    warnNote: {
+      fontFamily: fonts.sans,
+      fontSize: 12.5,
+      lineHeight: 18,
+      color: colors.ember,
+      marginTop: 12,
+    },
+    linkTop: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    planRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 10,
+      paddingVertical: 5,
+    },
+    planNumber: {
+      fontFamily: fonts.serif,
+      fontSize: 14,
+      color: t.textSoft,
+      width: 12,
+    },
+    planText: {
+      flex: 1,
+      fontFamily: fonts.sans,
+      fontSize: 14.5,
+      color: t.text,
     },
     storyCard: {
       backgroundColor: t.card,

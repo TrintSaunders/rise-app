@@ -80,6 +80,15 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
   codes), `components/ArmoryMemory.tsx`, and the `app/memory/` routes,
   each wrapped in `MemoryGate`. `allyAlerts` picks how SOS tells allies:
   `'local'` or `'server'`.
+- `lib/reminders.ts` + `components/ReminderSync.tsx` — local reminders
+  (expo-notifications). Settings live in `data.reminders`; ReminderSync
+  (mounted in the root layout, phones only) re-plans the next week on
+  launch, on settings changes, and after each check-in, and routes taps.
+  Lock-screen text must stay discreet: never name what the app is for.
+- `lib/battlePlan.ts` + `app/battle-plan.tsx` + `components/SosPlan.tsx` —
+  the battle plan (`data.battlePlan`), its editor, and how SOS shows it.
+- `app/you.tsx` — "you & settings": profile, reminders, battle plan
+  preview, Night Watch, the story so far.
 - `lib/allyAlert.ts` + `components/SosAllies.tsx` — SOS "tell them I'm
   tempted". Allies live in the store (`data.allies`), on the phone only.
   The server path always falls back to the local group text.

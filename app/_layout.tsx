@@ -10,6 +10,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
 import { Onboarding } from '@/components/Onboarding';
+import { ReminderSync } from '@/components/ReminderSync';
 import { StoreProvider, useStore } from '@/lib/store';
 import { useAppTheme } from '@/lib/theme';
 
@@ -84,6 +85,7 @@ function RootNavigator() {
   return (
     <ThemeProvider value={theme}>
       <StatusBar style={t.isNight ? 'light' : 'dark'} />
+      <ReminderSync />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
@@ -95,6 +97,7 @@ function RootNavigator() {
           options={{ headerShown: false, presentation: 'modal' }}
         />
         <Stack.Screen name="you" options={{ headerShown: false, presentation: 'modal' }} />
+        <Stack.Screen name="battle-plan" options={{ headerShown: false }} />
         <Stack.Screen
           name="rise-again"
           options={{ headerShown: false, presentation: 'fullScreenModal' }}
