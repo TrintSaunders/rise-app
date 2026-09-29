@@ -13,25 +13,16 @@ PROGRESS.md stays the log, this stays the map.
 - [x] Keyboard-safe forms (Today, Armory, SOS).
 - [x] Local reminders + battle plan shipped.
 
-## Next — org (both of us, genuinely)
+## Org — done, and it was never a migration
 
-Trint does these in the Expo dashboard (they live behind his login):
+`rise-again` turned out to already be an organization (created that way
+at first login), and the project was born under it (`@rise-again/rise`).
+Adding Hayden as a member completed the picture: both owners can
+`eas-cli login` with their own accounts and publish updates or run
+builds. `app.json`, the project ID, the update URLs, and everyone's
+channel links are all unchanged. Publishing steps now live in AGENTS.md.
 
-1. Create an organization on expo.dev (suggest slug: `rise-again-team`
-   or just `rise-ministries` — whatever reads right; free tier is fine).
-2. Invite Hayden's Expo account email as a member (owner role).
-
-Then an AI assistant with the repo open runs the migration:
-
-3. `app.json`: `owner` → the org, `extra.eas.projectId` + `updates.url`
-   → the new project under the org (`eas init` inside the org creates
-   it and fills the id).
-4. Republish the `preview` channel, re-share the channel link (old
-   links die with the old project — that's expected, say so to testers).
-5. Update AGENTS.md/TEST_WEEK.md links; Hayden can then `eas update`
-   and later `eas build` without borrowing Trint's login.
-
-## Then — the paid step
+## The paid step
 
 - [ ] Apple Developer Program, $99/yr (Trint, individual membership).
       This is the only required money for iPhone.

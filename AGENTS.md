@@ -52,6 +52,22 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
   redirects `/` to `/today` (the app has no index route).
 - Testing note (web): AsyncStorage v2 keeps its data in IndexedDB, not
   localStorage — to reset the app, clear the site's full data.
+- Publishing an update to the testers' phones (the `preview` channel):
+
+  ```bash
+  npx tsc --noEmit
+  npx expo export --platform ios --platform web
+  git add -A && git commit && git push
+  npx eas-cli update --branch preview --message "what changed" \
+    --environment production --non-interactive
+  ```
+
+  Bump the `BUILD` constant in `app/you.tsx` in the same commit so a
+  tester can confirm which publish the phone is on. The project lives
+  under the **rise-again** organization on EAS — Trint and Hayden are
+  both owners, so either can publish with their own
+  `npx eas-cli login`. Phones get the update on next open of the
+  channel link.
 
 ## Map of the code
 

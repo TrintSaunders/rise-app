@@ -69,6 +69,14 @@ line — `git log` has the rest.
   Trint pick one; then derive every slot the way `design/asset-derivatives`
   does.
 
+### 2026-09-29 — Trint — "The org was already the org"
+- `rise-again` was created as an organization from the start; the
+  project (`@rise-again/rise`) was born under it, so adding Hayden as
+  a member finished the setup — no migration, nothing repointed,
+  every channel link keeps working.
+- AGENTS.md now documents the publish ritual (gates → commit →
+  `eas update` → BUILD stamp) for both owners. RELEASE.md updated.
+
 ### 2026-09-29 — Trint — "Release prep: sample history retired, release map, privacy policy"
 - The Patterns sample tool is gone — store actions, `lib/sample.ts`,
   the card. On load, demo entries already on a tester's phone retire
