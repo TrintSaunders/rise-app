@@ -57,6 +57,20 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Trint — "Lamp: the AI is the catch"
+- Premium re-centered on Trint's call: an AI that narrates his
+  patterns, walks him through restriction choices, and builds verse
+  folders. Runs on Apple's on-device model — the privacy vow becomes
+  the headline ("the AI that reads your patterns — on your phone,
+  nowhere else"). Three hard disciplines written in: never quotes
+  Scripture from memory (selects from the typed database only), never
+  free-form counsels (structured outputs, crisis routes to humans),
+  cloud never unless he asks.
+- Scrapped per Trint: all narration audio (a voice is a person or
+  it's silence), the Mentor Portal, spouse mode. Sequencing re-cut:
+  guardrails 1.1, **Lamp 1.2 as the marketing beat**, server era 1.3,
+  presence 1.4, ally locks 1.5.
+
 ### 2026-09-29 — Trint — "The post-Opal reality check: bigger reasons"
 - Opal blocks an app for free, so PREMIUM.md grew Pillar 5 — the
   features a secular utility structurally can't copy: **Watch SOS**

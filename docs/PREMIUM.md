@@ -67,11 +67,10 @@ from. Two things are decided in spirit already:
 
 ## Pillar 3 — Depth
 
-- Audio: a narrated SOS (voice-guided breathing, the verse read over
-  him) for when reading is too much.
 - Guided walks: a 30-day plan, a "seven rises" plan built on the
   Proverbs 24:16 story, each day pairing the word with the rhythm.
-- Armory pro: audio memory, more packs, print-ready verse cards.
+- Armory pro: more packs, print-ready verse cards. (No narration —
+  in this app, a voice is a person or it's silence.)
 
 ## Pillar 4 — Continuity
 
@@ -81,49 +80,81 @@ from. Two things are decided in spirit already:
   does.
 - Keepsake export: the story-so-far as a printable testimony.
 
-## Pillar 5 — The other big reasons (the post-Opal reality check)
+## Pillar 5 — Lamp: the intelligence that never leaves the phone
 
-Opal blocks one app for free; guardrails alone make us a paid copy of
-a free tool. The moat has to be what a secular screen-time utility
-*structurally cannot have*: allies, Scripture, the shepherd shape.
-These are the features that make someone pay for Rise knowing Opal
-exists.
+The big catch. Opal's free tier makes blocking a commodity, and their
+AI coaching lives in the cloud — so Rise's AI inverts that: **it runs
+on his phone, on Apple's on-device model, and the story still never
+leaves the device.** The privacy vow that has been the app's spine
+becomes the AI's headline instead of its casualty. Name it **Lamp**
+(Psalm 119:105 — a lamp to his feet: it lights the data, the Word and
+the brothers do the walking; alternative, "The Scribe").
 
-- **Watch SOS — help that lives outside the trap.** The real insight
-  of the whole category: opening the iPhone to get help means entering
-  the room where the temptation lives. An Apple Watch app flips that —
-  breathing on the wrist, one tap to signal allies, the day's verse as
-  a complication, never a phone unlock. No secular blocker will build
-  this because no secular blocker has anyone to signal. Probably the
-  single strongest reason to own Rise+.
+Three jobs, one discipline:
+
+- **Pattern analysis, said out plain.** "Your falls cluster 10pm to
+  midnight, mostly on days without a check-in, and this month it's
+  boredom more than loneliness." Lamp reads the same honest data
+  Patterns charts, but narrates it — cross-referencing hours, feelings,
+  check-in gaps, and rises — and proposes one next step, never a
+  verdict.
+- **The restriction walkthrough.** Instead of a settings form, a
+  conversation: Lamp asks about the habits ("what does 11pm usually
+  look like?"), drafts a Guardrails plan — shield these apps, dark
+  hours 10–6, a 20-minute budget there — and applies it only when he
+  approves each line. Conversational setup is genuinely better UX
+  than Opal's forms, and it's setup for guardrails he'll actually
+  keep, because he chose them out loud.
+- **The scribe.** "Make me a folder for late-night fear." Lamp selects
+  and arranges verses from the app's own verse database into a folder,
+  ready for the Armory's spaced repetition. It solves Armory's
+  cold-start problem in one sentence.
+
+**The discipline — three hard rules, because an AI loose in a Bible
+app is a liability:**
+
+1. **Lamp never quotes Scripture from memory.** It can only select
+   and arrange from the human-typed verse database. A misquoted verse
+   in this app would be unforgivable; this makes it impossible.
+2. **Lamp doesn't free-form pastor.** It works in structured outputs —
+   summaries, plan drafts, folder drafts — rendered in the app's own
+   vetted, shame-free voice. The worst moments route to humans: SOS,
+   allies, crisis lines. The lamp doesn't talk you through the night;
+   it shows you where you put the phone down.
+3. **On-device first, cloud never unless he asks.** Apple's Foundation
+   Models framework (iOS 26+, iPhone 15 Pro and newer) is free at
+   runtime and reads nothing off the phone. Older iPhones get the
+   deterministic insight engine (today's `buildInsight`, extended) —
+   same truths, template prose. If a cloud boost is ever added, it's
+   opt-in, disclosed, aggregate-only, and the privacy policy's second
+   chapter ships first.
+
+Expo note: Lamp needs a dev build with a small Swift module bridging
+Foundation Models; the app itself stays React Native.
+
+## Pillar 6 — Presence (the human moat)
+
+What a secular utility structurally cannot have: allies, Scripture,
+the shepherd shape.
+
+- **Watch SOS — help that lives outside the trap.** Opening the iPhone
+  to get help means entering the room where the temptation lives. An
+  Apple Watch app flips that — breathing on the wrist, one tap to
+  signal allies, the day's verse as a complication, never a phone
+  unlock. No secular blocker will build this because no secular
+  blocker has anyone to signal.
 - **Sit with me — live co-presence.** When he taps SOS at 1am, the
   ally's phone lights up *now*: "he's in it — two taps to let him know
-  you're praying." And an opt-in shared breathing session: both
-  screens breathe in the same rhythm, an ocean apart. Technically a
-  websocket and a shared timer; emotionally the loneliness-killer the
-  category has never built. Covenant Eyes ships cold weekly reports;
-  nobody ships warmth in real time.
+  you're praying." An opt-in shared breathing session: both screens
+  breathe in the same rhythm, an ocean apart. Covenant Eyes ships cold
+  weekly reports; nobody ships warmth in real time.
 - **Ally voice notes.** An ally records 30 seconds — "you're going to
   make it, I've been there" — and it plays the next time SOS opens.
-  Cheapest feature in this document; the one nobody would ever leave.
-- **The Mentor Portal.** The ally experience as its own surface: a
-  pastor walking with twelve men sees exactly what each chose to share
-  (streaks kept, "he asked for prayer last night"), nothing else, ever.
-  Churches buy blocks of subscriptions — the ministry sales channel
-  Covenant Eyes proved, without the surveillance aftertaste.
-- **Pattern-aware shepherding.** Patterns already knows his dark hours
-  and triggers; premium reads them pastorally — "your late nights
-  moved an hour earlier this month; tonight's word is picked for
-  exactly that." On-device, no cloud AI, just the app knowing his
-  story well enough to hand him Psalm 4:8 at 11pm instead of a random
-  verse.
-- **Spouse mode.** The category's most-requested pairing — walking
-  together, opt-in from both sides, visibility he *chooses* moment to
-  moment. Needs the most pastoral care in the copy; do it last and do
-  it right.
+  (A friend's voice, not narration — audio only ever human.) Cheapest
+  feature in this document; the one nobody would ever leave.
 
-Of these, Watch SOS and Sit-with-me are the headline pair: one moves
-rescue outside the phone, the other makes it human in real time.
+Lamp is the headline; Presence is why nobody copies Rise at any
+price.
 
 ## The line between free and paid
 
@@ -132,11 +163,11 @@ rescue outside the phone, the other makes it human in real time.
 | Daily rhythm, SOS, Patterns, Armory | ✓ | ✓ |
 | Local ally texts | ✓ | ✓ |
 | Guardrails (shields, budgets, dark hours) | | ✓ |
+| **Lamp** (pattern analysis, restriction walkthrough, verse folders) | | ✓ |
 | Ally-held locks + release requests | | ✓ |
 | Live alerts, check-on-me, weekly digest | | ✓ |
-| **Watch SOS + Sit with me + voice notes** | | ✓ |
-| Mentor Portal, spouse mode | | ✓ |
-| Audio, guided walks, sync | | ✓ |
+| Watch SOS + Sit with me + voice notes | | ✓ |
+| Guided walks, sync | | ✓ |
 
 ## Money (comps, not decisions)
 
@@ -145,10 +176,12 @@ Fortify, Ever Accountable) — most of it charging for surveillance,
 which we deliberately don't do. Room to be the merciful, cheap one:
 **$4.99/mo, $39.99/yr** (annual pitch: "less than a coffee a month to
 keep the walls up"), 7-day trial, and **gift a year** — pastors and
-fathers buying it for men is the ministry angle. StoreKit 2 native or
-RevenueCat; decide at build time. Requires an Apple push/subscription
-setup either way, and the first real *account* in Rise — identity on
-the server, story still on the phone.
+fathers buying it for men is the ministry angle. The listing headline
+writes itself: **the AI that reads your patterns — on your phone,
+nowhere else.** StoreKit 2 native or RevenueCat; decide at build time.
+Requires an Apple push/subscription setup either way, and the first
+real *account* in Rise — identity on the server, story still on the
+phone.
 
 ## Sequencing (each phase shippable on its own)
 
@@ -156,24 +189,34 @@ the server, story still on the phone.
    gate. No server, no accounts — Family Controls entitlement (Apple
    wants a short form explaining the use) and premium unlocks via a
    simple one-time "Rise+ early" purchase if we don't want StoreKit
-   subscriptions yet. This alone is worth the price.
-2. **1.2 — The server era.** Accounts + subscriptions + push; weekly
-   digest (maybe free), live alerts.
-3. **1.3 — The headline pair.** Watch SOS and Sit with me (plus ally
-   voice notes — small once push exists). This is the marketing beat:
-   after this, Rise+ has reasons Opal can't copy at any price.
-4. **1.4 — Ally-held locks** with release requests.
-5. **Then** — Mentor Portal, audio, walks, sync, small groups, spouse
-   mode (last, and carefully). VPN/DNS filtering stays parked: heavy,
-   scrutinized, and the roadmap already called it scaffolding.
+   subscriptions yet. Form-based setup for now; Lamp takes over the
+   walkthrough in 1.2.
+2. **1.2 — Lamp.** Pattern analysis, the restriction walkthrough, the
+   scribe's verse folders — on-device, no server (the App Store bills
+   the subscription; nothing of his goes anywhere). Needs a dev build
+   with the Foundation Models bridge. **This is the marketing beat.**
+3. **1.3 — The server era.** Accounts + push; weekly digest (maybe
+   free), live alerts, check-on-me.
+4. **1.4 — Presence.** Watch SOS, Sit with me, ally voice notes.
+5. **1.5 — Ally-held locks** with release requests.
+6. **Then** — walks, sync, small groups. VPN/DNS filtering stays
+   parked: heavy, scrutinized, and the roadmap already called it
+   scaffolding.
 
 ## Open questions for Trint and Hayden
 
+- Lamp or The Scribe — and Rise+ vs "Rise Together" for the tier?
+- Device floor: Lamp needs iOS 26 on iPhone 15 Pro or newer. Older
+  phones get template-prose insights — is that an honest tier, or do
+  we discount for them?
+- Does a cloud boost *ever* happen (opt-in, aggregate-only), or is
+  "never leaves the phone" the forever line we market?
 - Subscriptions vs one-time for 1.1's simple unlock?
 - Is the weekly digest free (the bridge) or paid (the hook)?
-- Name: **Rise+**? "Rise Together"? Something with more gospel in it?
 - When accounts arrive, the privacy policy needs its second chapter —
   write it *before* the first login screen, not after.
-- App Review note: Screen Time apps get a careful read from Apple.
-  Purpose strings and the Family Controls entitlement request should
-  quote this document's mercy-not-cage framing.
+- App Review notes: Screen Time apps get a careful read from Apple —
+  purpose strings and the Family Controls entitlement request should
+  quote this document's mercy-not-cage framing. And Apple's AI rules
+  forbid overclaiming; Lamp is an analyst and a scribe, never a
+  counselor, in every line of copy.
