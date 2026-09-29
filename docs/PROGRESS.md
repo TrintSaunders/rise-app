@@ -57,6 +57,17 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Trint — "Dawn gold icon shipped"
+- Picked the blueprint chevron in bold gold-dawn ombré on mist
+  (`design/icon-review/e-gold-dawn-on-mist`) as the app icon. The
+  construction-guide motif stays: a guideline, drawn like a plan.
+- Wired into every slot: `icon.png`, `splash-icon.png` (transparent art
+  over the native cream splash), `favicon.png`, and the Android adaptive
+  foreground (66% safe zone) / background (mist) / monochrome layers.
+  Derivation SVGs live in `design/asset-derivatives/`.
+- Icon and adaptive colors only fully appear in an installed build;
+  OTA-testers see the new splash and the BUILD stamp in "you & settings".
+
 ### 2026-09-28 — Hayden (with Claude) — "Reminders and the battle plan editor"
 - Built on top of Trint's "you" screen (now titled "you & settings")
   rather than adding a second settings page.
