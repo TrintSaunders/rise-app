@@ -42,7 +42,7 @@ const THEME_OPTIONS: Array<{ mode: ThemeMode; label: string; note: string; icon:
 
 // Shown at the foot of "the story so far". Bumped with every publish so a
 // tester can always confirm which build the phone is running.
-const BUILD = 'dawn gold icon (Sep 29)';
+const BUILD = 'loading page (Sep 29)';
 
 /**
  * The "you" screen: name, life verse, and Night Watch, edited in place and

@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
+import { Loading } from '@/components/Loading';
 import { Onboarding } from '@/components/Onboarding';
 import { ReminderSync } from '@/components/ReminderSync';
 import { StoreProvider, useStore } from '@/lib/store';
@@ -39,7 +40,8 @@ export default function RootLayout() {
   }, [error]);
 
   if (!loaded) {
-    return null;
+    // Fonts aren't in yet, so no text — just the mark, breathing, on theme.
+    return <Loading wordmark={false} />;
   }
 
   return (
@@ -70,7 +72,9 @@ function RootNavigator() {
   }, [ready]);
 
   if (!ready) {
-    return null;
+    // The store is reading the day off the disk; hold on the loading page
+    // instead of a blank frame.
+    return <Loading />;
   }
 
   if (!data.profile) {

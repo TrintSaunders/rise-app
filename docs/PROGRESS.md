@@ -57,6 +57,15 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Trint — "A loading page under the splash"
+- `components/Loading.tsx`: while fonts load, just the rise mark
+  breathing in dawn gold (no text, so no fallback-font flash); once
+  fonts are in but the store still reads the disk, the wordmark and
+  "the day is waking" join it. Theme by the clock, so night gets night.
+- Wired into both boot gaps in `app/_layout.tsx` (was `return null` —
+  a blank frame in Expo Go and web; installed builds hid it behind the
+  native splash, which still hides then reveals this).
+
 ### 2026-09-29 — Trint — "Dawn gold icon shipped"
 - Picked the blueprint chevron in bold gold-dawn ombré on mist
   (`design/icon-review/e-gold-dawn-on-mist`) as the app icon. The
