@@ -113,7 +113,7 @@ function buildInsight(f: ReturnType<typeof fortnight>) {
  * never verdicts. Everything here is read-only; history is never erased.
  */
 export default function PatternsScreen() {
-  const { data, seedSampleData, clearSampleData } = useStore();
+  const { data } = useStore();
   const t = useAppTheme();
   const styles = useMemo(() => createStyles(t), [t]);
   const f = fortnight(data);
@@ -122,10 +122,6 @@ export default function PatternsScreen() {
   const peakBucket = f.buckets.indexOf(maxBucket);
   const rankedFeelings = [...f.feelings.entries()].sort((a, b) => b[1] - a[1]);
   const maxFeelingCount = rankedFeelings[0]?.[1] ?? 1;
-  const hasSample =
-    data.temptations.some((t) => t.demo) ||
-    data.victories.some((v) => v.demo) ||
-    data.rises.some((r) => r.demo);
 
   const Stat = ({ value, label }: { value: number; label: string }) => (
     <View style={styles.stat}>
@@ -253,23 +249,6 @@ export default function PatternsScreen() {
           </View>
           <Text style={styles.riseVerse}>“{RISE_VERSE.text}”</Text>
           <Text style={styles.riseVerseRef}>{RISE_VERSE.ref}</Text>
-        </Reveal>
-
-        <Reveal delay={350} style={styles.card}>
-          <Text style={styles.cardLabel}>trying the app?</Text>
-          <Text style={styles.tryNote}>
-            This screen fills in as you live: ‘log a struggle’ on Today, evening
-            check-ins, SOS victories. To see it full right now, add two weeks of
-            sample entries. They only touch this screen; your real history,
-            counters, and profile stay exactly as they are.
-          </Text>
-          <SpringPress
-            style={styles.tryButton}
-            onPress={hasSample ? clearSampleData : seedSampleData}>
-            <Text style={styles.tryButtonText}>
-              {hasSample ? 'clear sample history' : 'fill with sample history'}
-            </Text>
-          </SpringPress>
         </Reveal>
       </ScrollView>
     </SafeAreaView>
@@ -480,23 +459,5 @@ const createStyles = (t: Theme) =>
       color: t.textSoft,
       textAlign: 'center',
       marginTop: 6,
-    },
-    tryNote: {
-      fontFamily: fonts.sans,
-      fontSize: 13,
-      lineHeight: 19,
-      color: t.textSoft,
-    },
-    tryButton: {
-      backgroundColor: t.track,
-      borderRadius: radius.button,
-      paddingVertical: 12,
-      alignItems: 'center',
-      marginTop: 14,
-    },
-    tryButtonText: {
-      fontFamily: fonts.sansMedium,
-      fontSize: 14,
-      color: t.text,
     },
   });

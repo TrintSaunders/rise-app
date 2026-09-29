@@ -63,8 +63,8 @@ No Mac needs to stay on. The update lives on Expo's servers.
 - Reminders are local notifications. If they never arrive on an Android
   phone inside Expo Go, that's an Expo Go limit, not the app; iPhone is the
   reliable test.
-- The Patterns "sample history" button is still there on purpose for
-  testing; it comes out before any public release.
+- The Patterns "sample history" button is gone as of release prep (any
+  sample entries already on a phone retire themselves on next launch).
 
 ## After the week
 

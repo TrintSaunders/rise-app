@@ -57,6 +57,17 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Trint — "Release prep: sample history retired, release map, privacy policy"
+- The Patterns sample tool is gone — store actions, `lib/sample.ts`,
+  the card. On load, demo entries already on a tester's phone retire
+  themselves; they were never his history.
+- `completeRise` keeps `todayStr` **on purpose**: a small-hours rise
+  counts from the new day so the fallen day never reads clean. The old
+  review P3 was wrong; the why now lives as a comment there.
+- `docs/RELEASE.md` is the road to the App Store (org → Apple → store);
+  `docs/privacy.md` is the policy, served from GitHub Pages.
+- TEST_WEEK.md and AGENTS.md updated to match.
+
 ### 2026-09-29 — Trint — "A loading page under the splash"
 - `components/Loading.tsx`: while fonts load, just the rise mark
   breathing in dawn gold (no text, so no fallback-font flash); once

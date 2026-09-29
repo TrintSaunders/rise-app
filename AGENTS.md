@@ -94,9 +94,8 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
   The server path always falls back to the local group text.
 - `server/ally-alert/` — optional Deno Edge Function for the server path;
   not deployed, excluded from the app's tsconfig. See `server/README.md`.
-- `lib/verses.ts` — verse of the day; `lib/sample.ts` — flagged demo data
-  behind the Patterns "sample history" button (removable before release);
-  `lib/haptics.ts` — `hapticTap()` for completions only, never for falls.
+- `lib/verses.ts` — verse of the day; `lib/haptics.ts` — `hapticTap()`
+  for completions only, never for falls.
 - `components/` — `Breathing` (the calm loop), `SpringPress` (use for
   every tappable), `Reveal` (staggered entrances), `StarField` (night
   backdrop), `Onboarding`, `ComingSoon` (placeholder scaffold).

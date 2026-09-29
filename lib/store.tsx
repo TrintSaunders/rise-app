@@ -13,7 +13,6 @@ import type { BattleStep } from './battlePlan';
 import type { MemoryData, MemoryVerse } from './memory';
 import { newProgress, nextProgress } from './memory';
 import type { Verse } from './verses';
-import { sampleHistory } from './sample';
 
 // ─── The record ──────────────────────────────────────────────────────────────
 // Everything lives on this device alone (sacred privacy, DESIGN.md).
@@ -230,9 +229,6 @@ type StoreApi = {
   ) => void;
   logVictory: () => void;
   completeRise: () => void;
-  /** Demo tool on Patterns: two weeks of flagged entries, real history untouched. */
-  seedSampleData: () => void;
-  clearSampleData: () => void;
   setThemeMode: (mode: ThemeMode) => void;
   /** Edit the profile from the "you" screen. `startedOn` never changes. */
   updateProfile: (name: string, lifeVerse: Verse | null) => void;
@@ -290,8 +286,17 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       if (raw) {
         try {
           const saved = JSON.parse(raw) as Partial<StoreData> | null;
-          // Merge over defaults so an older save survives new fields.
-          if (alive) setData({ ...EMPTY, ...saved });
+          // Merge over defaults so an older save survives new fields. The
+          // Patterns sample tool died with release prep — quietly retire any
+          // demo entries it left on a tester's phone; they were never his.
+          if (alive)
+            setData({
+              ...EMPTY,
+              ...saved,
+              temptations: (saved?.temptations ?? EMPTY.temptations).filter((t) => !t.demo),
+              victories: (saved?.victories ?? EMPTY.victories).filter((v) => !v.demo),
+              rises: (saved?.rises ?? EMPTY.rises).filter((r) => !r.demo),
+            });
         } catch {
           // Unreadable store — set the damaged copy aside, never erase it,
           // then start fresh rather than crash his morning.
@@ -371,28 +376,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       completeRise: () =>
         update((prev) => ({
           ...prev,
+          // todayStr, not checkInDayStr: a rise finished in the small hours
+          // starts the count on the new calendar day, so the day that fell
+          // never gets counted as clean.
           cleanSince: todayStr(),
           needsRise: false,
           lastRisenAt: new Date().toISOString(),
           rises: [...prev.rises, { id: newId(), at: new Date().toISOString() }],
-        })),
-      seedSampleData: () =>
-        update((prev) => {
-          if (prev.temptations.some((t) => t.demo)) return prev; // already filled
-          const sample = sampleHistory();
-          return {
-            ...prev,
-            temptations: [...prev.temptations, ...sample.temptations],
-            victories: [...prev.victories, ...sample.victories],
-            rises: [...prev.rises, ...sample.rises],
-          };
-        }),
-      clearSampleData: () =>
-        update((prev) => ({
-          ...prev,
-          temptations: prev.temptations.filter((t) => !t.demo),
-          victories: prev.victories.filter((v) => !v.demo),
-          rises: prev.rises.filter((r) => !r.demo),
         })),
       setThemeMode: (mode) => update((prev) => ({ ...prev, themeMode: mode })),
       updateProfile: (name, lifeVerse) =>
