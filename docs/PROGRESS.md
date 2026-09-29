@@ -57,6 +57,14 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Trint — "Store listing drafted while Apple verifies"
+- `docs/STORE_LISTING.md`: name/subtitle/keywords/description in the
+  app's voice (no shame, no "brother"), privacy answers, age-rating
+  notes, screenshot shot-list. Trint hasn't read it yet — it's a draft
+  until he edits or blesses it.
+- Apple Developer payment made; enrollment verification pending. Icon
+  comparison opened for the blueprint-vs-sunrise pick.
+
 ### 2026-09-29 — Hayden (with Claude) — "Icon concepts: the rise as a sunrise"
 - Two concepts in `design/icon-review/` (SVG source + 1024 PNG):
   `f-sunrise-rise-on-night` (Night Watch indigo, faint stars) and
