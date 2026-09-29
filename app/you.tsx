@@ -40,6 +40,10 @@ const THEME_OPTIONS: Array<{ mode: ThemeMode; label: string; note: string; icon:
   { mode: 'day', label: 'Day', note: 'held until you change it', icon: 'sunny' },
 ];
 
+// Shown at the foot of "the story so far". Bumped with every publish so a
+// tester can always confirm which build the phone is running.
+const BUILD = 'keyboard fix + build stamp (Sep 28)';
+
 /**
  * The "you" screen: name, life verse, and Night Watch, edited in place and
  * saved as he types. Still no account, still nothing off this phone. The
@@ -263,6 +267,7 @@ export default function YouScreen() {
                 {story.victories === 1 ? 'victory' : 'victories'}.
               </Text>
               <Text style={styles.storyNote}>Nothing is ever erased.</Text>
+              <Text style={styles.buildNote}>running: {BUILD}</Text>
             </View>
           )}
         </ScrollView>
@@ -437,5 +442,12 @@ const createStyles = (t: Theme) =>
       fontSize: 13.5,
       color: t.textSoft,
       marginTop: 10,
+    },
+    buildNote: {
+      fontFamily: fonts.sans,
+      fontSize: 11,
+      color: t.textSoft,
+      marginTop: 12,
+      opacity: 0.75,
     },
   });
