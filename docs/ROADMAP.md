@@ -32,7 +32,9 @@
 
 ## Later (post-1.0)
 
-- DNS-level filtering profile; Screen Time / Family Controls integration
+- Guardrails, allies-live, and the paid tier are thought through in
+  [PREMIUM.md](PREMIUM.md) — sequencing starts there, not here
+- DNS-level filtering profile stays parked (see PREMIUM.md)
 - Small-group mode (3–5 men)
 - Home-screen widget: today's verse + SOS shortcut
 

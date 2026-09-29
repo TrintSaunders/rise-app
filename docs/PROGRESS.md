@@ -57,6 +57,16 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-09-29 — Trint — "Premium tier thought through"
+- `docs/PREMIUM.md`: Trint's guardrail ideas (ally-held app shields,
+  time budgets) grounded in what iOS's Screen Time API really allows,
+  plus allies-live, depth, and sync pillars; free/paid line holds the
+  vow that everything in 1.0 stays free; pricing comps and a
+  four-phase sequence starting with local-only guardrails.
+- ROADMAP's "Later" now points there instead of duplicating.
+- Open questions waiting on Trint + Hayden (pricing shape, digest
+  free-vs-paid, the name, the privacy policy's second chapter).
+
 ### 2026-09-29 — Trint — "Store listing drafted while Apple verifies"
 - `docs/STORE_LISTING.md`: name/subtitle/keywords/description in the
   app's voice (no shame, no "brother"), privacy answers, age-rating
