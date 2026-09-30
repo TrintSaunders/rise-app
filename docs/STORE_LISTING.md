@@ -98,3 +98,62 @@ shames — it just remembers you rose.
 build: Today (day), Evening check-in, SOS help view, Patterns with a
 week of real use, Armory review card, "you & settings". Real use beats
 staged data — and the sample tool is gone on purpose.
+
+---
+
+## Added by Hayden (with Claude), 2026-09-30
+
+Fills in what submission day also asks for. Trint's copy above stays the
+draft of record.
+
+### URLs and contact
+
+| Field | Value |
+|---|---|
+| Support URL | https://trintsaunders.github.io/rise-app/support (move to riseagainapp.com once the site is up) |
+| Marketing URL (optional) | https://trintsaunders.github.io/rise-app/ (later: https://riseagainapp.com) |
+| Privacy policy URL | https://trintsaunders.github.io/rise-app/privacy |
+| Support email | support@riseagainapp.com (now on the support page and in the privacy policy) |
+| Copyright | 2026 Trint Saunders (must match the developer account name) |
+
+### Content rights
+
+"Does your app contain, show, or access third-party content?" **Yes**, and
+you have the rights: the ESV® and NASB® quotations are used under each
+publisher's quotation permission, with their notices in the Armory.
+
+### iPhone only, no export question
+
+`app.json` now has `supportsTablet: false` (no iPad screenshots or iPad
+review) and `ITSAppUsesNonExemptEncryption: false` (no encryption question
+on every build). Both apply from the next native build.
+
+### Notes for App Review
+
+Paste into App Review Information → Notes. No demo account needed.
+
+```
+Rise needs no account. On first launch, enter any name (the life verse is optional).
+
+Main flows:
+1. SOS tab: press the large button to open the help page and the user's battle plan.
+2. Allies: on Today, add an ally with any phone number. On SOS, "tell my allies I'm tempted" opens the Messages composer with a short pre-written text. Nothing is sent unless the user taps Send.
+3. Evening check-in and "Log a struggle" on Today. Answering "I fell" opens Rise Again, a grace-focused recovery screen.
+4. Reminders: the person icon on Today opens "you & settings". Notifications are scheduled locally.
+5. Armory: Scripture memory with spaced repetition. Copyright notices are at the bottom.
+
+All data stays on the device. The app collects no data, has no analytics, and makes no network requests of its own. It addresses sexual temptation from a Christian perspective and contains no explicit content.
+```
+
+### Two things to settle before submitting
+
+1. **Age rating.** Apple's questionnaire asks about "Mature or suggestive
+   themes" separately from sexual content. Rise names lust and porn
+   plainly (onboarding, Patterns, the Armory), so "Infrequent/Mild" on
+   that one question is the safer honest answer (likely 13+). A rating
+   Apple thinks is too low is a common rejection; one that's slightly
+   high costs nothing for this audience.
+2. **Em dashes.** The in-app copy rule (AGENTS.md house rule 3) keeps em
+   dashes out of on-screen text; the store copy above still has several
+   ("The daily fight for purity — without shame."). Worth matching the
+   app's voice before pasting.

@@ -37,10 +37,33 @@ channel links are all unchanged. Publishing steps now live in AGENTS.md.
       on-device; ally texts go through his own Messages app.
 - [ ] Version: bump `app.json` to 1.0.0 at build time (runtimeVersion
       is appVersion — each bump starts a fresh OTA track).
-- [ ] Listing: name, subtitle, keywords, description, screenshots
-      (an AI with the repo can draft these from the web build).
+- [x] Listing drafted in `docs/STORE_LISTING.md` (Trint's copy, plus
+      URLs, content rights, and App Review notes). Waiting on Trint's read
+      and the two open points at its end (age rating, em dashes).
+- [ ] Screenshots: iPhone 6.7"/6.9", from the TestFlight build.
+- [x] Support page (`docs/support.md`, with support@riseagainapp.com)
+      and a landing page (`docs/index.md`) for the Support and Marketing
+      URLs.
+- [x] iPhone-only (`supportsTablet: false`, so no iPad screenshots or
+      iPad review) and `ITSAppUsesNonExemptEncryption: false` in
+      `app.json`.
 - [ ] Age rating questionnaire (answer honestly; no gambling, no
       user-generated content).
+
+## Domain and email (bought 2026-09-30, Hayden)
+
+| Address | Purpose | Status |
+|---|---|---|
+| riseagainapp.com | marketing website | domain owned; site not built |
+| app.riseagainapp.com | the web app | domain owned; not deployed |
+| support@riseagainapp.com | support | live; on the support page and privacy policy |
+| hello@riseagainapp.com | general contact | live |
+
+To move the store URLs onto the domain later: point riseagainapp.com at
+GitHub Pages (DNS records at the registrar, then set the custom domain in
+the repo's Pages settings), and only then add a `docs/CNAME`. Adding the
+CNAME first would send the live privacy page to a domain that doesn't
+resolve yet.
 
 ## Later / optional
 

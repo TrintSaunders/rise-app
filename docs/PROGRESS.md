@@ -36,7 +36,10 @@ line — `git log` has the rest.
 
 ## Waiting on a decision
 
-- **Sample-data button** on Patterns must come out before release.
+- **Store listing** (`docs/STORE_LISTING.md`): Trint's read, plus the two
+  open points at its end: age rating and em dashes in the store copy.
+- **Icon:** current blueprint chevron vs. the sunrise concepts in
+  `design/icon-review/`.
 
 ## Decided
 
@@ -56,6 +59,23 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-09-30 — Hayden (with Claude) — "Domain and support email; store listing additions"
+- Hayden bought **riseagainapp.com**: riseagainapp.com (marketing site,
+  later), app.riseagainapp.com (web app, later), support@ (live), hello@
+  (live). Recorded in RELEASE.md with the safe order for moving Pages onto
+  the domain (DNS first, `docs/CNAME` last).
+- support@riseagainapp.com is now the contact on the privacy policy and
+  a new support page (`docs/support.md`); `docs/index.md` is a small
+  landing page. Both publish on the existing GitHub Pages site.
+- `docs/STORE_LISTING.md` (Trint's draft) gained what submission also
+  needs: URLs, content rights, App Review notes, and two points to settle
+  (age rating, em dashes in store copy). Claude's parallel draft was
+  dropped so there's one listing.
+- `app.json`: iPhone-only and no export-encryption question (next native
+  build). Reminders now plan two weeks ahead instead of one.
+- Cleared stale notes: the sample-data item (Trint already retired it)
+  and AGENTS.md's mention of an SOS button on Today.
 
 ### 2026-09-29 — Trint — "Lamp: the AI is the catch"
 - Premium re-centered on Trint's call: an AI that narrates his

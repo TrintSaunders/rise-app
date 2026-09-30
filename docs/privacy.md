@@ -30,6 +30,6 @@ the Armory screen for the full copyright notices).
 **Deletion:** delete the app and everything is gone — there is no copy
 anywhere else, because there is no anywhere else.
 
-**Contact:** https://github.com/TrintSaunders/rise-app
+**Contact:** support@riseagainapp.com
 
 _Last updated: September 2026_

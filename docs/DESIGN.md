@@ -231,7 +231,7 @@ Purpose: make getting back up easier and faster than falling.
 ### You & settings (`app/you.tsx`)
 
 - Name, life verse, Night Watch, and the story so far
-- **Reminders** (built): a morning verse and an evening check-in, each off by default with its own time in 15-minute steps. Scheduled on the phone a week ahead; the evening one is skipped for any day already checked in. Lock-screen text stays discreet ("Before you sleep: thirty seconds of truth"). Tapping one opens Today or the check-in. Phones only; web shows a note
+- **Reminders** (built): a morning verse and an evening check-in, each off by default with its own time in 15-minute steps. Scheduled on the phone two weeks ahead; the evening one is skipped for any day already checked in. Lock-screen text stays discreet ("Before you sleep: thirty seconds of truth"). Tapping one opens Today or the check-in. Phones only; web shows a note
 - A preview of the battle plan, linking to the editor
 
 ---

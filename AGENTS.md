@@ -74,9 +74,9 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 - `app/_layout.tsx` — root: StoreProvider, first-launch onboarding gate,
   modal stack (`rise-again` is fullScreenModal; `checkin` +
   `log-struggle` are card modals).
-- `app/(tabs)/` — `today` (dawn arc, streak counters, SOS button),
+- `app/(tabs)/` — `today` (dawn arc, streak counters, allies card),
   `sos` (the Way of Escape: opens on a single button, pressing it shows
-  the help; `?now=1` from Today skips the button; always night colors, its
+  the help; `?now=1` skips the button; always night colors, its
   tab bar too; resets on blur; holds the "your allies" card), `patterns` (honest-data
   readback), `armory` (verse memory; the old placeholder shows if
   `flags.armoryMemory` is turned off).

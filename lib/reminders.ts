@@ -12,8 +12,13 @@ export const remindersSupported = Platform.OS !== 'web';
 
 const TAG = 'rise-reminder';
 const CHANNEL = 'reminders';
-/** Scheduled a week ahead as one-off dates, so tonight's can be skipped once he's checked in. */
-const DAYS_AHEAD = 7;
+/**
+ * Scheduled as one-off dates, so tonight's can be skipped once he's checked
+ * in. Two weeks ahead: they're re-planned each time he opens the app, and a
+ * man who hasn't opened it in a week is the one who most needs the nudge.
+ * 28 at most, well under iOS's 64 pending-notification cap.
+ */
+const DAYS_AHEAD = 14;
 
 const CONTENT = {
   morning: {
