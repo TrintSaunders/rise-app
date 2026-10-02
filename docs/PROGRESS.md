@@ -43,6 +43,11 @@ line — `git log` has the rest.
 
 ## Decided
 
+- **2026-10-02 — Trint — Store name is "Rise-Again":** "Rise" and
+  "Rise Again" were already taken on the App Store; the ASC record was
+  created as **Rise-Again** (exact-string uniqueness makes the hyphen a
+  distinct listing). The domain, support email, EAS org, and in-app
+  wordmark keep their names.
 - **2026-09-28 — Ally alerts stay local (Trint):** SOS keeps the manual
   path: "tell my allies I'm tempted" opens his Messages app with the
   text ready, and he taps Send. The server path stays built but off
@@ -59,6 +64,20 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-02 — Trint (with ZCode) — "The store name: Rise-Again"
+- "Rise" and "Rise Again" were both taken; the App Store Connect app
+  record was created as **Rise-Again**. STORE_LISTING's identity field
+  updated, the decision recorded under "Decided", and RELEASE's map
+  caught up (enrollment verified, 1.0.0 bump, ASC record done).
+- Hayden-as-owner pass: EAS already has him as owner. GitHub's API
+  refused the admin grant for Makohroni (422 validation; likely the
+  account being new) — flip it in Settings → Collaborators on the web,
+  where the real reason will show if it refuses too. Apple can't share
+  an individual membership; that path is noted in RELEASE.
+- Next: `eas build --profile production --platform ios`, then submit to
+  the Rise-Again record for TestFlight. No iOS build exists yet;
+  preview-channel testers got "1.0.0 prep" today.
 
 ### 2026-10-02 — Trint — "1.0.0: the store build"
 - Apple Developer enrollment verified; App Store Connect API key

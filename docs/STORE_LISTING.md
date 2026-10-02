@@ -6,9 +6,11 @@ and calls it his.
 
 ## Identity
 
-- **App name (30):** `Rise`
-  — Check availability in App Store Connect; if taken, fall back to
-  `Rise — daily strength` (19).
+- **App name (30):** `Rise-Again` (10)
+  — Claimed in App Store Connect 2026-10-02: "Rise" and "Rise Again"
+  were both taken, and the exact-string rule makes the hyphen a
+  distinct listing. The name under the home-screen icon stays set by
+  `app.json` (`expo.name`: `Rise`).
 - **Subtitle (30):** `honest help for the fight` (25)
 - **Primary category:** Lifestyle · **Secondary:** Health & Fitness
 - **Bundle ID:** com.trintsaunders.rise (already set)

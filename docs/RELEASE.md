@@ -24,10 +24,16 @@ channel links are all unchanged. Publishing steps now live in AGENTS.md.
 
 ## The paid step
 
-- [ ] Apple Developer Program, $99/yr (Trint, individual membership).
-      This is the only required money for iPhone.
-- [ ] `eas build --profile production --platform ios` once enrolled;
+- [x] Apple Developer Program, $99/yr (Trint, paid 2026-09-29;
+      enrollment verified 2026-10-02).
+- [x] ASC app record created as **Rise-Again** (2026-10-02) — "Rise"
+      and "Rise Again" were both taken.
+- [ ] `eas build --profile production --platform ios` (not run yet);
       internal distribution → TestFlight for the two of them first.
+- Sharing App Store Connect with Hayden: an individual membership
+      can't add users. It would take an Organization enrollment
+      (D-U-N-S number, same $99/yr) — decide before the first
+      submission, while the record is still cheap to move.
 
 ## Store submission
 
@@ -36,8 +42,8 @@ channel links are all unchanged. Publishing steps now live in AGENTS.md.
       support@riseagainapp.com).
 - [ ] App Store privacy answers: collects no data. Everything is
       on-device; ally texts go through his own Messages app.
-- [ ] Version: bump `app.json` to 1.0.0 at build time (runtimeVersion
-      is appVersion — each bump starts a fresh OTA track).
+- [x] Version 1.0.0 (bumped 2026-10-02; runtimeVersion is appVersion —
+      the store build gets its own OTA track).
 - [x] Listing drafted in `docs/STORE_LISTING.md` (Trint's copy, plus
       URLs, content rights, and App Review notes). Waiting on Trint's read
       and the two open points at its end (age rating, em dashes).
