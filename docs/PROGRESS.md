@@ -60,6 +60,15 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-10-02 — Trint — "1.0.0: the store build"
+- Apple Developer enrollment verified; App Store Connect API key
+  secured (never in the repo — lives at `~/.rise/asc/`).
+- `app.json` version → 1.0.0 (runtimeVersion appVersion: the store
+  build gets its own OTA track; Expo Go ignores runtime policy, so
+  the preview channel testers are unaffected). BUILD stamp →
+  "first store build (Oct 2)".
+- Next: ASC app record, EAS production build, TestFlight.
+
 ### 2026-10-02 — Trint — "Privacy policy contact: the company email"
 - Contact swapped to support@riseagainapp.com — same intent and line
   as Hayden's Sep-30 change, so the two landed as one. STORE_LISTING
