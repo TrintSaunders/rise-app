@@ -15,6 +15,13 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "ascAppId": "6818577524",
+        "ascApiKeyPath": "/Users/trintsaunders/.rise/asc/AuthKey_3LZPTJY7Z8.p8",
+        "ascApiKeyId": "3LZPTJY7Z8",
+        "ascApiKeyIssuerId": "ea97beea-a90f-442b-ba10-ff247aa4ec6f"
+      }
+    }
   }
 }

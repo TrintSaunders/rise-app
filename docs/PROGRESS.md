@@ -16,6 +16,10 @@ line — `git log` has the rest.
 
 ## Current state
 
+- **Store build:** iOS 1.0.0 build 9 is **VALID** on the Rise-Again ASC
+  record, ready for TestFlight. Build and submit now run unattended
+  (Apple credentials on EAS; submit config pinned in `eas.json`).
+  Remaining: TestFlight pass, listing completion, Submit for Review.
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
@@ -64,6 +68,27 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-02 — Trint (with ZCode) — "iOS store build 9: built, submitted, VALID in ASC"
+- First `eas build -p ios --profile production` run unattended, riding
+  the ASC API key at `~/.rise/asc/`: Apple team **6TF9F7YLUY**
+  (Individual) confirmed, distribution certificate + provisioning
+  profile stored on EAS — future builds need no Apple prompts.
+  PUSH_NOTIFICATIONS was enabled on the bundle ID via the ASC API
+  directly (an eas-cli capability-sync bug sent Apple an invalid
+  request); the build ran with `EXPO_NO_CAPABILITY_SYNC=1`. No APNs key
+  was created: the app only uses local notifications.
+- Build **9 of 1.0.0** (commit f60aef4) finished on EAS and was
+  submitted to the Rise-Again record (ascAppId 6818577524). ASC reports
+  the build **VALID** — ready for TestFlight internal testing. The
+  failed first attempts burned build numbers 6–8; harmless.
+- `eas.json` submit profile now pins `ascAppId` plus the ASC key
+  path/id/issuer, so `eas submit --latest` runs unattended. The key path
+  is Trint-machine-specific: elsewhere it warns and falls back to
+  prompting (graceful).
+- Left open (human steps in ASC): TestFlight sanity pass on a real
+  phone, listing completion (screenshots, age rating, privacy label,
+  pricing), then Submit for Review.
 
 ### 2026-10-02 — Trint (with ZCode) — "The store name: Rise-Again"
 - "Rise" and "Rise Again" were both taken; the App Store Connect app
