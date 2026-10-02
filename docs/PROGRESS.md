@@ -60,6 +60,11 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-10-02 — Trint — "Privacy policy contact: the company email"
+- Contact swapped to support@riseagainapp.com — same intent and line
+  as Hayden's Sep-30 change, so the two landed as one. STORE_LISTING
+  and RELEASE updated to match; the privacy-policy box is ticked.
+
 ### 2026-09-30 — Hayden (with Claude) — "Domain and support email; store listing additions"
 - Hayden bought **riseagainapp.com**: riseagainapp.com (marketing site,
   later), app.riseagainapp.com (web app, later), support@ (live), hello@

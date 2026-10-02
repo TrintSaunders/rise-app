@@ -32,4 +32,4 @@ anywhere else, because there is no anywhere else.
 
 **Contact:** support@riseagainapp.com
 
-_Last updated: September 2026_
+_Last updated: October 2026_

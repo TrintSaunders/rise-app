@@ -81,8 +81,7 @@ shames — it just remembers you rose.
 - Collects data: **No**. Track you: **No**. No analytics, no ads, no
   accounts, no third-party SDKs doing either.
 - Privacy policy URL: https://trintsaunders.github.io/rise-app/privacy
-  — swap the GitHub contact at the bottom for an email Trint is okay
-  publishing before submitting.
+  — contact is support@riseagainapp.com.
 
 ## Age rating questionnaire (answer honestly, it self-computes)
 

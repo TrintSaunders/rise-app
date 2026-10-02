@@ -31,8 +31,9 @@ channel links are all unchanged. Publishing steps now live in AGENTS.md.
 
 ## Store submission
 
-- [ ] Privacy policy live at the GitHub Pages URL (see
-      `docs/privacy.md`; set the contact email before submitting).
+- [x] Privacy policy live at the GitHub Pages URL
+      (https://trintsaunders.github.io/rise-app/privacy; contact:
+      support@riseagainapp.com).
 - [ ] App Store privacy answers: collects no data. Everything is
       on-device; ally texts go through his own Messages app.
 - [ ] Version: bump `app.json` to 1.0.0 at build time (runtimeVersion
