@@ -3,7 +3,9 @@
 Rise is a grace-forward companion app for men fighting for sexual purity —
 built on mercy, not shame. Before writing any code, read
 `docs/PROGRESS.md` (what's been done lately, and what's waiting on a
-decision), then `README.md`, `docs/DESIGN.md`, and `docs/ROADMAP.md`. The design doc is the source of
+decision), then `README.md`, `docs/DESIGN.md`, and `docs/ROADMAP.md`.
+Planned changes, written up ready to build, live in `docs/UPDATES.md`;
+when one ships, log it in PROGRESS.md and remove it from UPDATES.md. The design doc is the source of
 truth for tone, palette, and screen behavior; when code and doc disagree,
 stop and ask which should change.
 

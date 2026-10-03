@@ -94,6 +94,16 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Plan: welcome read-through and guided tour"
+- New `docs/UPDATES.md` for planned changes, ready to build. First entry:
+  a four-page welcome before onboarding (why Rise exists, how it works,
+  privacy) and a guided tour after it (dimmed screen, one spotlighted
+  button at a time, ten steps across Today, SOS, Patterns, Armory, and
+  settings; never creates records; skip and replay; existing users get a
+  one-time card).
+- Plan only, nothing built. Open: page 2 needs Trint and Hayden's own
+  words on why they made Rise.
+
 ### 2026-10-03 — Hayden (with Claude) — "1.0 polish: tests, encrypted backup, accessibility, store assets, site"
 - **Tests:** Jest via jest-expo, 36 tests in `__tests__/` (days and
   streaks, falls, memory, reminders, backup, phone numbers, hour labels).
