@@ -95,6 +95,14 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Website: one journey count"
+- The three privacy cards are now one: "[number] people have started their
+  journey with Rise", from `website/stats.json` (App Store Connect
+  downloads, set by hand). Before launch: "Day 1: The first people start
+  their journey at launch." Tested with a sample number, reset to null.
+- Option to automate it nightly from the App Store Connect API noted in
+  WEBSITE.md.
+
 ### 2026-10-03 — Trint (with ZCode) — "1.0.0 is in App Review"
 - Build 10 (Hayden's day: encrypted backup, accessibility pass, SOS
   breathing fix, midnight label) built, submitted, and attached to the
@@ -112,7 +120,6 @@ Hayden asked for this batch to go to Apple. In order:
   Release is manual — nothing goes live until Trint presses it.
 - Open: Apple's verdict (24–48h typical). On approval, press Release.
 
-D
 ### 2026-10-03 — Hayden (with Claude) — "Website review: self-hosted fonts, real download count, 100s"
 - Full review (details in WEBSITE.md "Review"): Lighthouse now 98–100 on
   every page, accessibility 100. Fonts self-hosted (Google Fonts leaked

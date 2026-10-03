@@ -173,12 +173,12 @@
       <p class="kicker">Private by design</p>
       <h2>Your story lives on your phone. Nowhere else.</h2>
       <p class="lede">The only things that ever leave your phone are messages you send yourself. Back it up to a file only your passphrase can open.</p>
-      <div class="zero-grid">
-        <!-- Real count from App Store Connect, set by hand in /stats.json.
-             Until there's a number, it invites instead of inventing one. -->
-        <div class="zero stat reveal" id="men-rising"><b>1st</b><span>Be among the first men to rise with Rise</span></div>
-        <div class="zero reveal"><b>0</b><span>trackers, ads, or accounts</span></div>
-        <div class="zero reveal"><b>0</b><span>bytes of your story on our servers</span></div>
+      <!-- One honest number: first-time downloads from App Store Connect,
+           read from /stats.json. Until there is one, it says "Day 1". -->
+      <div class="journey reveal" id="men-rising">
+        <b>Day 1</b>
+        <span>The first people start their journey at launch.</span>
+        <small>Counted from App Store downloads. Rise itself tracks no one.</small>
       </div>
     </div>
   </section>
@@ -257,7 +257,7 @@
       var n = Number(d && d.menRising);
       if (!n || n < 1) return;
       var b = card.querySelector('b'), label = card.querySelector('span');
-      label.textContent = 'men rising with Rise';
+      label.textContent = n === 1 ? 'person has started their journey with Rise' : 'people have started their journey with Rise';
       var fmt = function (x) { return Math.round(x).toLocaleString('en-US'); };
       if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { b.textContent = fmt(n); return; }
       b.textContent = '0';

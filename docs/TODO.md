@@ -66,8 +66,9 @@ the EIN letter, and a bank account. Then tasks 🅣5, 🅣6, and 🅗4 can start
 
 ---
 
-### 3. Keep the website's "men rising" number current (after launch, 5 minutes a month)
-*Either of you. The site shows "Be among the first" until there's a real number.*
+### 3. Keep the website's journey count current (after launch, 5 minutes a month)
+*Either of you. The site shows "Day 1" until there's a real number. Can be
+automated later (WEBSITE.md, review notes).*
 - [ ] App Store Connect → Rise-Again → **Analytics** → Acquisition →
   total **first-time downloads** (all time).
 - [ ] Edit `website/stats.json`: set `"menRising"` to that number (no

@@ -144,11 +144,18 @@ Best Practices 100, SEO 100. Home LCP 3.3s → 2.3s, layout shift 0.
   structured data for the app on the home page; decorative verse
   marquees have a screen-reader version; cache rules for fonts, CSS, and
   `stats.json` in `_headers`.
-- Hayden's asks: the "Scroll" cue is gone, and the first privacy zero is
-  now **men rising with Rise**, a real count from App Store Connect set by
-  hand in `website/stats.json` (TODO "Keep the website's number current").
-  Until there's a number it reads "1st: Be among the first men to rise
-  with Rise". Rise itself still tracks no one.
+- Hayden's asks: the "Scroll" cue is gone, and the three privacy cards
+  became **one journey count**: "[number] people have started their
+  journey with Rise", a real count of App Store first-time downloads set
+  in `website/stats.json` (TODO "Keep the website's number current").
+  Until there's a number it reads "Day 1: The first people start their
+  journey at launch." The page reads the file on every visit; the number
+  itself is updated by hand monthly for now.
+- **To make it update itself (optional, later):** a nightly GitHub Action
+  using the App Store Connect API key Trint already has (stored as a repo
+  secret) reads the Analytics Reports API and rewrites `stats.json`.
+  Apple's reports lag about a day, so "live" means daily. Aggregate
+  numbers from Apple only; the app still tracks no one.
 
 ## Built so far (phase 1)
 
