@@ -110,6 +110,25 @@ decisions below are made)**
 5. **Phase 3:** not yet decided; recommended to start with the allies
    page soon after launch.
 
+## Design direction: Opal's playbook, Rise's soul (2026-10-03, Hayden)
+
+Hayden asked for the site reimagined after Opal's (opal.so). Taken from
+Opal: a dark, cinematic, scroll-paced page; a two-line headline over a
+night sky; a bold statement that lights up as you read; one feature per
+"chapter" with a large phone; a drifting gallery (their gems, our verses);
+a counter (their hours saved, our honest zeros); FAQ; a closing call.
+Not taken: their brand, art, or claims. No invented testimonials, ratings,
+or user counts; add real ones only once they exist.
+
+The site is now Night Watch only (deep indigo, gold accent), matching the
+app at the hour it matters most. Motion respects Reduce Motion, and with
+JavaScript off every section is simply visible.
+
+Home sections, in order: hero ("Fall seven times. Rise again."),
+statement, six chapters (SOS, Allies, the dawn arc, Rise Again, Patterns,
+the Armory), drifting verses, privacy zeros, who makes Rise, FAQ, finale
+("The sun rose again. So will you.").
+
 ## Built so far (phase 1)
 
 Preview it locally with `npm run preview:site` (http://localhost:8081).

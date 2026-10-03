@@ -94,6 +94,19 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Website: About page, design review, Opal-style home"
+- `/about`: why Rise exists, the five beliefs, Trint and Hayden as
+  co-founders (monograms until photos; founder sentences are drafts to
+  replace in their own words).
+- Review fixes: stretched phone screenshots (real proportions now),
+  cropped middle screen, sticky nav with About and Get the app, no seam
+  under the header, balanced headings, icons, keyboard focus.
+- Home reimagined after opal.so (WEBSITE.md "Design direction"): night
+  sky hero, scroll-lit statement, six feature chapters, drifting verses,
+  privacy zeros, FAQ with the 988 line, sunrise finale. Whole site is now
+  Night Watch. No invented testimonials or numbers.
+- Preview: `npm run preview:site` → http://localhost:8081.
+
 ### 2026-10-03 — Hayden (with Claude) — "Website phase 1 in website/"
 - Hayden's decisions (WEBSITE.md): Cloudflare Pages from `website/`,
   discreet home title, Cloudflare cookieless analytics, founders by name
