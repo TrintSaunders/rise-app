@@ -197,6 +197,42 @@ are attached.*
 
 ---
 
+## 🤝 Outreach: Christian podcasts
+
+*Start once the app is approved and riseagainapp.com is live, so every
+listener has somewhere to go. Pitching can be split; record the episode
+together if you can.*
+
+**Targets** (add more as you find them; confirm each show's current name
+and booking contact on its website before pitching):
+
+| Show | Host | Why it fits | Status |
+|---|---|---|---|
+| The Bryce Crawford Podcast | Bryce Crawford | Speaks directly to young Christian men about lust and purity | not pitched |
+| Becoming Something | JP Pokluda | Large audience of young adults; JP talks openly about purity and discipleship | not pitched |
+| *(next)* | | Pick shows where hosts already talk about porn, purity, or men's discipleship | |
+
+**Steps for each show**
+- [ ] Find the booking route on the show's website (a guest form or a
+  booking email), not a personal DM.
+- [ ] Ask Claude for a pitch tailored to that show (it drafts from your
+  story, WEBSITE.md, and the store listing). Send it from
+  **hello@riseagainapp.com**, short: who you are, why you built Rise, one
+  story or idea that would help their listeners (not just the app), and
+  the link.
+- [ ] Follow up once after about 10 days if there's no reply. Then let it
+  go.
+- [ ] Before recording: listen to two recent episodes, prepare three
+  stories in your own words, and have a simple call to action ready
+  ("search Rise-Again on the App Store" or "riseagainapp.com").
+- [ ] Update the table's Status column (pitched, booked, recorded, aired).
+
+**Ground rules:** never imply an endorsement a host hasn't given; never
+share a user's story without permission (Rise can't see them anyway);
+keep the message about grace, not the product.
+
+---
+
 ## 🤖 For an AI with the repo (ask it when you're ready)
 
 - [x] **Build `website/`** phase 1: home, support, privacy, terms, 404,
@@ -208,6 +244,9 @@ are attached.*
   review with the LLC). Still to link from "you & settings".
 - [ ] **Giving page** with the Stripe link (🅗4), marked "not
   tax-deductible".
+- [ ] **Press kit page** (`/press`): one-paragraph description, the
+  founders' story, icon, screenshots, contact. Podcast hosts look for it.
+- [ ] **Podcast pitch drafts**, one per show in the outreach table.
 - [x] 988 crisis line on the support and terms pages.
 - [ ] **Decision pending:** also add a quiet 988 line inside the app (SOS
   help page and "you & settings")? Recommended.

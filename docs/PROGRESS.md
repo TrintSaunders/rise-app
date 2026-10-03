@@ -95,6 +95,14 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "To-do: Christian podcast outreach"
+- TODO.md gains "Outreach: Christian podcasts": Bryce Crawford and JP
+  Pokluda (Becoming Something) first, steps per show, ground rules, and
+  AI tasks for a /press page and tailored pitch drafts. Starts after
+  approval and the domain going live.
+- riseagainapp.com still waits on the two CNAME records (TODO 🅗2); the
+  site itself is up at https://rise-site-4wf.pages.dev.
+
 ### 2026-10-03 — Hayden (with Claude) — "Website deployed to Cloudflare Pages"
 - Hayden approved Cloudflare and signed in (wrangler OAuth). Created the
   Pages project `rise-site` (classic Pages; the new Workers path wanted a
