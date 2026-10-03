@@ -23,10 +23,15 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header>
+<header class="site">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/img/icon.png" alt="">Rise</a>
-    <nav><a href="#features">Features</a><a href="#private">Privacy</a><a href="/support">Support</a></nav>
+    <a class="brand" href="/"><img src="/img/icon.png" alt="" width="32" height="32">Rise</a>
+    <nav aria-label="Main">
+      <a class="hide-sm" href="/#features">How it works</a>
+      <a href="/about">About</a>
+      <a href="/support">Support</a>
+      <a class="pill primary small" href="/#get">Get the app</a>
+    </nav>
   </div>
 </header>
 
@@ -36,55 +41,75 @@
       <p class="verse">“Though the righteous fall seven times, they rise again.” Proverbs 24:16</p>
       <h1>Grace for the fight for purity.</h1>
       <p class="lede">A companion for Christian men, built on mercy, not shame. Help in the moment it’s hard, and everything stays on your phone.</p>
-      <div class="cta">
+      <div class="cta" id="get">
         <!-- Swap for the App Store badge and link once Apple approves (WEBSITE.md, phase 2). -->
         <span class="pill primary">Coming soon to the App Store</span>
         <a class="pill quiet" href="mailto:hello@riseagainapp.com">Say hello</a>
       </div>
       <p class="note">Free. No account. No tracking.</p>
     </div>
-    <div class="phones">
-      <img src="/img/screen-1-today.png" alt="Today: a life verse, the dawn arc filled gold, 23 days honest and 10 days clean." width="440" height="956">
-      <img src="/img/screen-3-plan.png" alt="SOS: a breathing circle, a verse, and a battle plan with buttons to text allies." width="440" height="956">
-      <img src="/img/screen-5-patterns.png" alt="Patterns: two weeks of struggles by hour and feeling, with one suggestion." width="440" height="956">
+    <div class="phones" aria-label="Screens from the app">
+      <img class="phone" src="/img/screen-1-today.jpg" alt="Today: a life verse, the dawn arc filled gold, 23 days honest and 10 days clean." width="880" height="1912">
+      <img class="phone lift" src="/img/screen-2-sos.jpg" alt="SOS: one large breathing button that says I'm struggling right now." width="880" height="1912">
+      <img class="phone" src="/img/screen-5-patterns.jpg" alt="Patterns: two weeks of struggles by hour and feeling, with one suggestion." width="880" height="1912">
+      <img class="phone extra" src="/img/screen-3-plan.jpg" alt="The battle plan on SOS, with buttons to text and call allies." width="880" height="1912" loading="lazy">
     </div>
+    <p class="swipe-hint center">Swipe to see more</p>
   </div>
 
   <section id="features">
     <div class="wrap">
-      <p class="kicker">What it does</p>
-      <h2>There in the moment it matters.</h2>
+      <div class="section-head">
+        <p class="kicker">How it works</p>
+        <h2>There in the moment it matters.</h2>
+        <p>Six simple parts, built around one idea: getting back up should be easier than falling.</p>
+      </div>
       <div class="grid">
-        <div class="feature"><h3>SOS, one tap away</h3><p>Breathe with it, read a verse, and follow the way out you chose yourself, in your own order. One tap tells your allies you’re being tempted. Never why.</p></div>
-        <div class="feature"><h3>Every day</h3><p>A verse in the morning and a 30-second check-in at night. Honest days are counted first, because telling the truth is the muscle that wins.</p></div>
-        <div class="feature"><h3>Rise Again</h3><p>After a fall, the sun comes back up. A short guided confession, the clean count starts over, and your history is never erased.</p></div>
-        <div class="feature"><h3>Patterns, told gently</h3><p>When it’s hardest, what usually comes first, and one practical thing worth trying. Facts and suggestions, never verdicts.</p></div>
-        <div class="feature"><h3>The Armory</h3><p>Hide the Word in your heart with gentle spaced repetition. Start with verses for the fight, and memorize together with a friend.</p></div>
-        <div class="feature"><h3>Allies</h3><p>Up to five people who will pray when you text. They don’t need the app, and they only ever hear what you choose to send.</p></div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="6.5" opacity=".6"/><circle cx="12" cy="12" r="10" opacity=".3"/></svg>
+          <h3>SOS, one tap away</h3><p>Breathe with it, read a verse, and follow the way out you chose yourself, in your own order. One tap tells your allies you’re being tempted. Never why.</p></div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
+          <h3>Every day</h3><p>A verse in the morning and a 30-second check-in at night. Honest days are counted first, because telling the truth is the muscle that wins.</p></div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 18.5h19"/><path d="M6.5 18.5a5.5 5.5 0 0 1 11 0"/><path d="M12 6.5v3M5.4 9.8l1.9 1.6M18.6 9.8l-1.9 1.6"/></svg>
+          <h3>Rise Again</h3><p>After a fall, the sun comes back up. A short guided confession, the clean count starts over, and your history is never erased.</p></div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20v-7M10 20V7M15 20v-9M20 20V4"/></svg>
+          <h3>Patterns, told gently</h3><p>When it’s hardest, what usually comes first, and one practical thing worth trying. Facts and suggestions, never verdicts.</p></div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>The Armory</h3><p>Hide the Word in your heart with gentle spaced repetition. Start with verses for the fight, and memorize together with a friend.</p></div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.6 14.3c3 .3 5.4 2.6 5.4 5.7"/></svg>
+          <h3>Allies</h3><p>Up to five people who will pray when you text. They don’t need the app, and they only ever hear what you choose to send.</p></div>
       </div>
     </div>
   </section>
 
   <section id="private" class="center">
     <div class="wrap">
-      <p class="kicker">Private by design</p>
-      <h2>Your story lives on your phone. Nowhere else.</h2>
-      <p>No account, no servers, no analytics in the app. The only things that ever leave your phone are messages you send yourself. Back it up to a file only your passphrase can open.</p>
+      <div class="section-head">
+        <p class="kicker">Private by design</p>
+        <h2>Your story lives on your phone. Nowhere else.</h2>
+        <p>No account, no servers, no analytics in the app. The only things that ever leave your phone are messages you send yourself. Back it up to a file only your passphrase can open.</p>
+      </div>
       <ul class="checks">
         <li>No sign-up</li><li>No tracking or ads</li><li>Encrypted backups</li><li>Discreet reminders</li>
       </ul>
     </div>
   </section>
 
-  <!-- Founders: shows once Trint and Hayden send their story and photo
-       (save the photo as /img/founders.jpg, then remove `hidden`). -->
-  <section id="founders" hidden>
-    <div class="wrap founders">
-      <img src="/img/founders.jpg" alt="Trint Saunders and Hayden Pugh" width="640" height="640">
-      <div>
-        <p class="kicker">Who made Rise</p>
-        <h2>Trint Saunders and Hayden Pugh</h2>
-        <p><!-- Their story, in their own words. --></p>
+  <section class="center">
+    <div class="wrap">
+      <div class="band">
+        <p class="kicker">Who makes Rise</p>
+        <h2>Built by two men who believe mercy is bigger than your worst night.</h2>
+        <div class="people">
+          <div class="person"><div class="monogram" aria-hidden="true">TS</div><div><strong>Trint Saunders</strong><span>Co-founder</span></div></div>
+          <div class="person"><div class="monogram" aria-hidden="true">HP</div><div><strong>Hayden Pugh</strong><span>Co-founder</span></div></div>
+        </div>
+        <a class="pill quiet" href="/about">Why we made Rise</a>
       </div>
     </div>
   </section>
@@ -99,8 +124,9 @@
 
 <footer>
   <div class="wrap">
-    <nav><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@riseagainapp.com">hello@riseagainapp.com</a></nav>
-    <span>Scripture quotations from the ESV® Bible, © 2001 by Crossway. Used by permission.</span>
+    <a class="brand" href="/"><img src="/img/icon.png" alt="" width="26" height="26">Rise</a>
+    <nav aria-label="Footer"><a href="/about">About</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@riseagainapp.com">hello@riseagainapp.com</a></nav>
+    <small>Scripture quotations are from the ESV® Bible, © 2001 by Crossway, used by permission, and the NASB®, © The Lockman Foundation, used by permission.</small>
   </div>
 </footer>
 </body>

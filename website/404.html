@@ -12,19 +12,31 @@
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<header>
+<header class="site">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/img/icon.png" alt="">Rise</a>
-    <nav><a href="/support">Support</a></nav>
+    <a class="brand" href="/"><img src="/img/icon.png" alt="" width="32" height="32">Rise</a>
+    <nav aria-label="Main">
+      <a class="hide-sm" href="/#features">How it works</a>
+      <a href="/about">About</a>
+      <a href="/support">Support</a>
+      <a class="pill primary small" href="/#get">Get the app</a>
+    </nav>
   </div>
 </header>
-<main class="page center">
+<main id="main" class="page center">
   <div class="wrap narrow">
     <p class="verse">“The sun rose again. So will you.”</p>
     <h1>This page isn’t here.</h1>
-    <p class="lede" style="text-align:center">It may have moved. Everything else is a tap away.</p>
+    <p class="lede">It may have moved. Everything else is a tap away.</p>
     <p><a class="pill primary" href="/">Back home</a></p>
   </div>
 </main>
+<footer>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/img/icon.png" alt="" width="26" height="26">Rise</a>
+    <nav aria-label="Footer"><a href="/about">About</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@riseagainapp.com">hello@riseagainapp.com</a></nav>
+    <small>Scripture quotations are from the ESV® Bible, © 2001 by Crossway, used by permission, and the NASB®, © The Lockman Foundation, used by permission.</small>
+  </div>
+</footer>
 </body>
 </html>
