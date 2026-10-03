@@ -9,6 +9,7 @@ import { SpringPress } from '@/components/SpringPress';
 import { StarField } from '@/components/StarField';
 import { colors, fonts, radius } from '@/constants/theme';
 import { useAppTheme } from '@/lib/theme';
+import { hourLabel } from '@/lib/time';
 import type { Theme } from '@/lib/theme';
 import { shiftDay, todayStr, useStore } from '@/lib/store';
 import type { Feeling, StoreData } from '@/lib/store';
@@ -36,11 +37,6 @@ type DayAgg = { struggles: number; falls: number; rises: number; victories: numb
 
 function dayKey(iso: string): string {
   return todayStr(new Date(iso));
-}
-
-function hourLabel(hour: number): string {
-  const twelve = hour % 12 === 0 ? 12 : hour % 12;
-  return `${twelve}${hour < 12 ? 'am' : 'pm'}`;
 }
 
 function fortnight(data: StoreData) {

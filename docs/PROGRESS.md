@@ -38,12 +38,37 @@ line — `git log` has the rest.
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
+## Next for Trint: build 10 for the App Store
+
+Hayden asked for this batch to go to Apple. In order:
+
+1. **Make a new store build, not an OTA update.** This batch adds native
+   modules (expo-sharing, expo-document-picker, expo-file-system,
+   expo-crypto) for encrypted backup. Build 9 doesn't have them, and both
+   builds share runtime 1.0.0, so **never publish an OTA update to the
+   1.0.0 production track while build 9 exists**: the backup screen would
+   crash on it. Run all three gates, bump `BUILD` in `app/you.tsx`, then
+   `eas build -p ios --profile production` and `eas submit --latest`.
+   Replace build 9 with 10 in TestFlight.
+2. **TestFlight pass on a real phone** (TEST_WEEK.md list), plus the new
+   bits: make a backup and save it to Files, delete and reinstall the app,
+   restore it; turn on a reminder; VoiceOver on SOS and Today; Settings →
+   Accessibility → Larger Text at a big size.
+3. **Finish the listing in App Store Connect** from STORE_LISTING.md:
+   upload the six screenshots in `design/app-store/` (iPhone 6.9"), paste
+   the copy, age rating answers (expect 13+), App Privacy "Data Not
+   Collected", price Free, then Submit for Review.
+4. **Request the Family Controls entitlement now** (Apple Developer →
+   Request entitlement → Family Controls, distribution). 1.1's guardrails
+   depend on it and approval can take weeks.
+
 ## Waiting on a decision
 
-- **Store listing** (`docs/STORE_LISTING.md`): Trint's read, plus the two
-  open points at its end: age rating and em dashes in the store copy.
 - **Icon:** current blueprint chevron vs. the sunrise concepts in
   `design/icon-review/`.
+- **DNS for riseagainapp.com** (Hayden): point it at GitHub Pages, then
+  add `docs/CNAME` (order matters; see RELEASE.md). The new marketing page
+  is already live at the Pages URL.
 
 ## Decided
 
@@ -68,6 +93,26 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-03 — Hayden (with Claude) — "1.0 polish: tests, encrypted backup, accessibility, store assets, site"
+- **Tests:** Jest via jest-expo, 36 tests in `__tests__/` (days and
+  streaks, falls, memory, reminders, backup, phone numbers, hour labels).
+  `npm test` is now the third gate in AGENTS.md.
+- **Encrypted backup** on "you & settings": AES-256-GCM, key from his
+  passphrase via PBKDF2-SHA256 (150k rounds, @noble). Saved through the
+  share sheet, restored through the document picker; restoring merges and
+  never erases. Adds four native modules, so it needs build 10 (see above).
+- **Bug found by the screenshots:** Patterns said "between 10pm and 12pm"
+  for the last window; now "12am" (`lib/time.ts`, tested).
+- **Accessibility:** every tappable announces as a button, icon-only
+  back/close buttons are labeled, disabled state is announced, the dawn
+  arc describes itself; text inside fixed shapes caps its scaling.
+- **Store listing:** em dashes out of the pasteable copy; age rating
+  settled at 13+ (Hayden); six framed 6.9" screenshots in
+  `design/app-store/` with the scripts that make them.
+- **Marketing page:** `docs/index.html` (light and Night Watch, phone and
+  laptop), live on the Pages site now and on riseagainapp.com after DNS.
+- Breathing-circle fix from earlier today rides along.
 
 ### 2026-10-03 — Hayden (with Claude) — "SOS: the breathing circle no longer covers its label"
 - On the SOS help page the circle swells 35% (150 to ~203px), but a scale

@@ -47,7 +47,12 @@ channel links are all unchanged. Publishing steps now live in AGENTS.md.
 - [x] Listing drafted in `docs/STORE_LISTING.md` (Trint's copy, plus
       URLs, content rights, and App Review notes). Waiting on Trint's read
       and the two open points at its end (age rating, em dashes).
-- [ ] Screenshots: iPhone 6.7"/6.9", from the TestFlight build.
+- [x] Screenshots: six framed iPhone 6.9" in `design/app-store/`
+      (regenerate with `design/app-store/tools/`).
+- [x] Encrypted backup (Files / iCloud Drive), tests as a third gate, and
+      an accessibility pass. These need store **build 10** (new native
+      modules); never OTA-update build 9.
+- [x] Marketing page `docs/index.html`, ready for riseagainapp.com.
 - [x] Support page (`docs/support.md`, with support@riseagainapp.com)
       and a landing page (`docs/index.md`) for the Support and Marketing
       URLs.

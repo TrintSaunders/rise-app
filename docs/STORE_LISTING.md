@@ -27,17 +27,17 @@ repeats.)
 ## Description (first 3 lines carry the fold)
 
 ```
-The daily fight for purity — without shame.
+The daily fight for purity, without shame.
 
 Rise walks with you through the day and the night: Scripture close at
 hand, the truth told honestly, and a way out when it gets hard.
 
-"The righteous fall seven times and rise again." — Proverbs 24:16
+"Though the righteous fall seven times, they rise again." (Proverbs 24:16)
 
 THIS DAY
 A verse to carry, a gentle arc of daylight, and two honest numbers:
 how many days you've told the truth, and how many you've stood. A fall
-never erases the record — it starts a rise.
+never erases the record. It starts a rise.
 
 EVENING CHECK-IN
 Thirty seconds: how the day went, whether you were tempted, one thing
@@ -46,20 +46,21 @@ worth thanking God for. Past midnight still counts for the day before.
 WHEN IT'S HARD
 One tap opens SOS: a breathing rhythm to steady you, the word ready
 to hand, your plan for the moment, and a text to the friends you
-chose — it tells them you're tempted, never why.
+chose. It tells them you're tempted, never why.
 
 THE PATTERN, TOLD GENTLY
-Two weeks of honest data — when the dark hours land, what usually
-goes on — read back like a friend who wants to help, not a judge.
+Two weeks of honest data (when the dark hours land, what usually
+goes on) read back like a friend who wants to help, not a judge.
 
 HIDE THE WORD
 An Armory of verses in spaced-repetition memory, your own folders,
 and sets to share with the people walking with you.
 
 PRIVATE BY DESIGN
-No account. No servers. Everything — every check-in, every victory,
-every fall you were honest about — lives on your phone and nowhere
-else. Delete the app and it's gone.
+No account. No servers. Every check-in, every victory, every fall
+you were honest about lives on your phone and nowhere else. Back it
+up to a file only your passphrase can open, and bring it to your
+next phone.
 ```
 
 ## Promotional text (170, editable without review)
@@ -75,7 +76,7 @@ your phone.
 ```
 First release. The whole rhythm is here: mornings with the word,
 evenings of truth, SOS with your people, and a record that never
-shames — it just remembers you rose.
+shames. It just remembers you rose.
 ```
 
 ## Privacy (App Store Connect answers)
@@ -89,18 +90,28 @@ shames — it just remembers you rose.
 
 - Unrestricted web access: No · Gambling: No · User-generated content
   shared publicly: No
-- The app discusses lust and temptation in pastoral language. If the
-  questionnaire asks about sexual content, answer "None" — it's
-  support and Scripture, not depiction. Expect a 4+ or 9+ result.
+- Sexual content or nudity: **None**. It's support and Scripture, not
+  depiction.
+- Mature or suggestive themes: **Infrequent/Mild**. Rise names lust
+  and porn plainly. Expect **13+** (decided by Hayden, 2026-10-03: a
+  rating Apple thinks is too low is a common rejection; slightly high
+  costs nothing for this audience).
 
-## Screenshots (needed before submission)
+## Screenshots
 
-6.7" (iPhone) required; 6.5" auto-fills. Take them from the TestFlight
-build: Today (day), Evening check-in, SOS help view, Patterns with a
-week of real use, Armory review card, "you & settings". Real use beats
-staged data — and the sample tool is gone on purpose.
+Six framed iPhone 6.9" screenshots (1320 × 2868) are ready in
+`design/app-store/`, in upload order:
 
----
+1. Today: "Start with a verse. End with the truth."
+2. SOS: "Help is one tap away."
+3. Battle plan on SOS: "Your way out, in your order."
+4. Rise Again: "After a fall, grace. Not shame."
+5. Patterns: "See when it's hardest."
+6. Armory: "Hide the Word in your heart."
+
+They show a seeded month of sample use (`design/app-store/tools/`), which
+Apple allows. Swap in TestFlight captures later if real use looks better.
+iPhone-only, so no iPad set is needed.
 
 ## Added by Hayden (with Claude), 2026-09-30
 
@@ -146,15 +157,9 @@ Main flows:
 All data stays on the device. The app collects no data, has no analytics, and makes no network requests of its own. It addresses sexual temptation from a Christian perspective and contains no explicit content.
 ```
 
-### Two things to settle before submitting
+### Settled (Hayden, 2026-10-03)
 
-1. **Age rating.** Apple's questionnaire asks about "Mature or suggestive
-   themes" separately from sexual content. Rise names lust and porn
-   plainly (onboarding, Patterns, the Armory), so "Infrequent/Mild" on
-   that one question is the safer honest answer (likely 13+). A rating
-   Apple thinks is too low is a common rejection; one that's slightly
-   high costs nothing for this audience.
-2. **Em dashes.** The in-app copy rule (AGENTS.md house rule 3) keeps em
-   dashes out of on-screen text; the store copy above still has several
-   ("The daily fight for purity — without shame."). Worth matching the
-   app's voice before pasting.
+1. **Age rating: 13+.** See the questionnaire answers above.
+2. **No em dashes in the store copy**, matching the app's house rule.
+   The pasteable blocks above are cleaned; Trint's wording is otherwise
+   unchanged.
