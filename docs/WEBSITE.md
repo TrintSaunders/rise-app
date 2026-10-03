@@ -112,6 +112,8 @@ decisions below are made)**
 
 ## Built so far (phase 1)
 
+Preview it locally with `npm run preview:site` (http://localhost:8081).
+
 `website/`: home, support (with backup steps and the 988 crisis line),
 privacy (with backups and the website's analytics), plain-language terms
 (draft: have the attorney review it with the LLC), a 404 page,

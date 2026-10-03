@@ -26,7 +26,9 @@ const types = {
 http
   .createServer((req, res) => {
     let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    if (pathname === '/') {
+    // The app has no index route, so "/" jumps to Today; the website has
+    // an index.html and serves it.
+    if (pathname === '/' && !existsSync(join(process.cwd(), root, 'index.html'))) {
       res.writeHead(302, { location: '/today' });
       return res.end();
     }
