@@ -50,7 +50,8 @@
     "web": "expo start --web",
     "preview": "node scripts/preview-server.mjs dist 8080",
     "test": "jest",
-    "preview:site": "node scripts/preview-server.mjs website 8081"
+    "preview:site": "node scripts/preview-server.mjs website 8081",
+    "deploy:site": "npx wrangler pages deploy website --project-name rise-site --branch main"
   },
   "private": true,
   "jest": {

@@ -133,22 +133,26 @@ automated later (WEBSITE.md, review notes).*
 - [ ] Answer the open questions in WEBSITE.md (pages, voice, the "why we
   made Rise" story). Claude then builds the pages.
 
-### 2. Put the website on riseagainapp.com (about 20 minutes)
-*Your domain is already on Cloudflare (your emails route through it).
-Needs 🅣2. Claude must have built the `website/` folder first.*
-- [ ] Cloudflare dashboard → **Workers & Pages** → Create → **Pages** →
-  Connect to Git → pick `TrintSaunders/rise-app` (Trint approves, 🅣2).
-- [ ] Settings: project name `rise-site`, production branch `main`,
-  framework preset **None**, build command empty, **output directory
-  `website`**. Deploy.
-- [ ] Project → **Custom domains** → add `riseagainapp.com`, then
-  `www.riseagainapp.com`. Cloudflare adds the DNS records itself.
-  **Don't touch the MX records** (they carry support@ and hello@).
-- [ ] Project → **Metrics** (or Analytics) → turn on **Web Analytics**.
-  It's cookieless and counts visits without identifying anyone.
-- [ ] Open https://riseagainapp.com/support and /privacy to check, then
-  tell Claude ("the site is live") so it switches the app's links and
-  asks Trint for 🅣3.
+### 2. Put the website on riseagainapp.com
+*Done by Claude on 2026-10-03 except the two DNS records below: the site
+is deployed to the Cloudflare Pages project `rise-site` and both domains
+are attached.*
+- [x] Pages project created and `website/` deployed
+  (https://rise-site-4wf.pages.dev).
+- [x] riseagainapp.com and www.riseagainapp.com attached to the project.
+- [ ] **Add the two DNS records** (2 minutes): Cloudflare dashboard →
+  riseagainapp.com → **DNS** → Records → **Add record**, twice:
+  - Type `CNAME`, Name `@`, Target `rise-site-4wf.pages.dev`, Proxy
+    **on** (orange cloud).
+  - Type `CNAME`, Name `www`, Target `rise-site-4wf.pages.dev`, Proxy
+    **on**.
+  (Or: Workers & Pages → rise-site → Custom domains → click each domain
+  → **Activate domain**, which adds the same record.) Don't touch the MX
+  or TXT records; they carry support@ and hello@.
+- [ ] Workers & Pages → rise-site → **Metrics** → turn on **Web
+  Analytics** (cookieless).
+- [ ] Tell Claude "DNS is in": it checks HTTPS, switches the app's links,
+  and asks Trint to point App Store Connect at the domain (🅣3).
 
 ### 3. Claim the social media handles (about 45 minutes)
 - [ ] Check `@riseagainapp` everywhere at once (instantusername.com).

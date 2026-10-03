@@ -95,6 +95,19 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Website deployed to Cloudflare Pages"
+- Hayden approved Cloudflare and signed in (wrangler OAuth). Created the
+  Pages project `rise-site` (classic Pages; the new Workers path wanted a
+  workers.dev name that was taken) and deployed `website/`: every page,
+  headers, fonts, and stats.json verified at
+  https://rise-site-4wf.pages.dev.
+- riseagainapp.com and www attached; they go live once the two CNAME
+  records exist (TODO 🅗2; the sign-in can read but not write DNS). Email
+  routing (MX) untouched.
+- A first wrangler attempt auto-wrote a Workers config and edited
+  package.json/.gitignore; all reverted before anything was committed.
+  New `npm run deploy:site` uploads only `website/`.
+
 ### 2026-10-03 — Hayden (with Claude) — "Website: one journey count"
 - The three privacy cards are now one: "[number] people have started their
   journey with Rise", from `website/stats.json` (App Store Connect

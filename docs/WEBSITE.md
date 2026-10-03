@@ -98,6 +98,21 @@ decisions below are made)**
   Privacy URLs in App Store Connect (TODO 🅣3), and the AI updates
   `lib/links.ts` and STORE_LISTING.md.
 
+## Publishing (live setup)
+
+- Cloudflare Pages project **rise-site** in Hayden's Cloudflare account
+  (the same account as the riseagainapp.com zone). Temporary address:
+  https://rise-site-4wf.pages.dev
+- Deploys are uploads, not Git-connected: after a website change is
+  committed, run `npm run deploy:site` (needs `npx wrangler login` once on
+  that Mac, with an account that can reach the project). It uploads only
+  `website/`.
+- Custom domains riseagainapp.com and www.riseagainapp.com are attached
+  to the project; each needs a proxied CNAME to `rise-site-4wf.pages.dev`
+  in the zone's DNS (TODO 🅗2).
+- Trint can be invited to the Cloudflare account (Manage Account →
+  Members) so he can deploy too.
+
 ## Decided (Hayden, 2026-10-03)
 
 1. **Hosting:** Cloudflare Pages, from the `website/` folder.
