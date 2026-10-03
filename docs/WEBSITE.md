@@ -98,18 +98,32 @@ decisions below are made)**
   Privacy URLs in App Store Connect (TODO 🅣3), and the AI updates
   `lib/links.ts` and STORE_LISTING.md.
 
-## Decisions for Hayden (open)
+## Decided (Hayden, 2026-10-03)
 
-1. **Hosting:** Cloudflare Pages (recommended) or stay on GitHub Pages?
-2. **How public to be in page titles:** findable ("help to quit porn,
-   Christian") or discreet ("Rise: grace for the fight for purity")?
-   Browser history and shared links show the title. Recommend: discreet
-   titles on the home page, findable wording inside the articles.
-3. **Analytics:** none, or Cloudflare's cookieless counts? Recommend
-   cookieless counts, so you know if launch worked.
-4. **The founders:** names and a photo on the home and press pages, or
-   just "made by two friends who've been in this fight"? And the "why we
-   made Rise" story in your own words (shared with the app's welcome
-   pages, UPDATES.md #1).
-5. **Phase 3:** start the allies guide and church page soon after launch?
-   Recommend yes, allies page first.
+1. **Hosting:** Cloudflare Pages, from the `website/` folder.
+2. **Titles:** discreet on the home page ("Rise: grace for the fight for
+   purity"); plain search wording inside future articles.
+3. **Analytics:** Cloudflare Web Analytics only (cookieless), switched on
+   in the Pages project; no code on the site.
+4. **Founders:** Trint and Hayden by name, with a photo and the story in
+   their own words. The section is built and hidden until both arrive.
+5. **Phase 3:** not yet decided; recommended to start with the allies
+   page soon after launch.
+
+## Built so far (phase 1)
+
+`website/`: home, support (with backup steps and the 988 crisis line),
+privacy (with backups and the website's analytics), plain-language terms
+(draft: have the attorney review it with the LLC), a 404 page,
+`robots.txt`, `sitemap.xml`, security and caching headers (`_headers`),
+and a link-preview image (`img/og.png`, uses the current icon; regenerate
+when the icon is chosen). `docs/index.html` and the Markdown pages keep
+serving the GitHub Pages address until the switch; after it, `website/` is
+the only source.
+
+## Still to come
+
+- Founders' story and photo (both of you; then remove `hidden` on the
+  founders section and save the photo as `website/img/founders.jpg`).
+- Phase 2 when the app is approved and Stripe exists: App Store badge,
+  `/give`, `/press`, universal links.

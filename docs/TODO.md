@@ -55,6 +55,17 @@ the EIN letter, and a bank account. Then tasks 🅣5, 🅣6, and 🅗4 can start
 
 ---
 
+### 2. Founders' story and photo for the website
+*Can be done apart, but agree on it together.*
+- [ ] Write 3 to 5 sentences in your own words: who you are, why this
+  fight matters to you, why mercy and not shame. The same words open the
+  app's welcome pages later (UPDATES.md #1).
+- [ ] One photo of the two of you, at least 1200px wide, natural light.
+- [ ] Send both to Claude: it adds them to the site and turns the section
+  on.
+
+---
+
 ## 🅣 Trint
 
 ### 1. Store build 10 and submit for review
@@ -121,6 +132,8 @@ Needs 🅣2. Claude must have built the `website/` folder first.*
 - [ ] Project → **Custom domains** → add `riseagainapp.com`, then
   `www.riseagainapp.com`. Cloudflare adds the DNS records itself.
   **Don't touch the MX records** (they carry support@ and hello@).
+- [ ] Project → **Metrics** (or Analytics) → turn on **Web Analytics**.
+  It's cookieless and counts visits without identifying anyone.
 - [ ] Open https://riseagainapp.com/support and /privacy to check, then
   tell Claude ("the site is live") so it switches the app's links and
   asks Trint for 🅣3.
@@ -170,16 +183,15 @@ Needs 🅣2. Claude must have built the `website/` folder first.*
 
 ## 🤖 For an AI with the repo (ask it when you're ready)
 
-- [ ] **Build `website/`** from WEBSITE.md once Hayden answers its
-  questions: home, support, privacy, terms, and later the giving page, as
-  real HTML pages (Cloudflare serves files as-is, so the Markdown privacy
-  and support pages get converted).
+- [x] **Build `website/`** phase 1: home, support, privacy, terms, 404,
+  sitemap, link preview (2026-10-03).
 - [ ] **Switch the app's links** to riseagainapp.com (`lib/links.ts`)
   after 🅗2, and update STORE_LISTING.md's URLs.
 - [ ] **Social design kit** (🅗5).
-- [ ] **Terms of Use page** (plain language: not therapy or medical care,
-  limits of liability), linked from the site footer and "you & settings".
+- [x] **Terms of Use page** drafted at `website/terms.html` (attorney to
+  review with the LLC). Still to link from "you & settings".
 - [ ] **Giving page** with the Stripe link (🅗4), marked "not
   tax-deductible".
-- [ ] **Decision pending:** add a quiet crisis line ("call or text 988")
-  to the support page and SOS? Recommended.
+- [x] 988 crisis line on the support and terms pages.
+- [ ] **Decision pending:** also add a quiet 988 line inside the app (SOS
+  help page and "you & settings")? Recommended.

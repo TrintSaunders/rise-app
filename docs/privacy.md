@@ -18,6 +18,10 @@ us.
 
 **Reminders:** scheduled locally on your device. No server involved.
 
+**Backups:** a file the app makes on your device, encrypted with a
+passphrase only you know. You choose where to save it. We never receive
+it and can't open it.
+
 **Sharing memory folders:** only by a code you copy and hand to someone
 yourself.
 

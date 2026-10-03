@@ -94,6 +94,18 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Website phase 1 in website/"
+- Hayden's decisions (WEBSITE.md): Cloudflare Pages from `website/`,
+  discreet home title, Cloudflare cookieless analytics, founders by name
+  with a photo.
+- Built `website/`: home, support (backup steps, 988 crisis line),
+  privacy (backups, the site's analytics), draft terms (attorney review
+  with the LLC), 404, robots, sitemap, security headers, link-preview
+  image. Founders section built but hidden until their story and photo.
+- Live GitHub Pages copies of support and privacy updated to match.
+- Next: Trint approves Cloudflare's GitHub access (TODO 🅣2), Hayden
+  connects the Pages project and the domain (🅗2).
+
 ### 2026-10-03 — Hayden (with Claude) — "Founders' to-do list, website plan, in-app support links"
 - `docs/TODO.md`: the shared checklist with step-by-step instructions,
   split 🤝 together (the LLC), 🅣 Trint (build 10, Cloudflare approval and
