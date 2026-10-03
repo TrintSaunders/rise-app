@@ -94,6 +94,22 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Founders' to-do list, website plan, in-app support links"
+- `docs/TODO.md`: the shared checklist with step-by-step instructions,
+  split 🤝 together (the LLC), 🅣 Trint (build 10, Cloudflare approval and
+  Hayden's GitHub admin, App Store Connect URLs, Family Controls, D-U-N-S
+  and the Apple company account, Bible licensing emails, a GitHub org),
+  🅗 Hayden (website decisions and domain, social handles, Stripe, the
+  social design agent), and 🤖 AI tasks.
+- `docs/WEBSITE.md`: direction for riseagainapp.com. The domain and email
+  are already on Cloudflare, so the site goes on Cloudflare Pages from a
+  `website/` folder; phases from launch pages to an allies guide and the
+  web app; five decisions open for Hayden.
+- App: "help & support" card on "you & settings" (questions page, email
+  with the build pre-filled, privacy policy). All outside links now live
+  in `lib/links.ts`, pointing at the GitHub Pages site until the domain
+  is live.
+
 ### 2026-10-03 — Hayden (with Claude) — "Plan: Support Rise giving page"
 - `docs/UPDATES.md` entry 2: a Bible-App-style giving page. Because Rise
   is published by an individual account, not an approved nonprofit, the

@@ -1,9 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 import { StatusBar } from 'expo-status-bar';
 import { useMemo, useState } from 'react';
 import {
   KeyboardAvoidingView,
+  Linking,
   Platform,
   Pressable,
   ScrollView,
@@ -19,6 +21,7 @@ import { BackupCard } from '@/components/BackupCard';
 import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius } from '@/constants/theme';
 import { iconFor } from '@/lib/battlePlan';
+import { LINKS } from '@/lib/links';
 import {
   ensurePermission,
   formatTime,
@@ -258,6 +261,29 @@ export default function YouScreen() {
 
           <BackupCard t={t} />
 
+          <View style={styles.card}>
+            <Text style={styles.cardLabel}>help & support</Text>
+            {[
+              { icon: 'help-circle-outline', label: 'Questions and help', onPress: () => WebBrowser.openBrowserAsync(LINKS.support) },
+              {
+                icon: 'mail-outline',
+                label: 'Email us',
+                onPress: () =>
+                  Linking.openURL(
+                    `mailto:${LINKS.supportEmail}?subject=${encodeURIComponent(`Rise support (${BUILD})`)}`
+                  ).catch(() => {}),
+              },
+              { icon: 'shield-checkmark-outline', label: 'Privacy policy', onPress: () => WebBrowser.openBrowserAsync(LINKS.privacy) },
+            ].map((row) => (
+              <SpringPress key={row.label} style={styles.linkRow} onPress={row.onPress}>
+                <Ionicons name={row.icon as 'mail-outline'} size={19} color={t.textSoft} />
+                <Text style={styles.linkLabel}>{row.label}</Text>
+                <Ionicons name="chevron-forward" size={16} color={t.textSoft} />
+              </SpringPress>
+            ))}
+            <Text style={styles.cardNote}>{LINKS.supportEmail}</Text>
+          </View>
+
           {started && (
             <View style={styles.storyCard}>
               <Text style={styles.cardLabel}>the story so far</Text>
@@ -403,6 +429,20 @@ const createStyles = (t: Theme) =>
       lineHeight: 18,
       color: colors.ember,
       marginTop: 12,
+    },
+    linkRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+      paddingVertical: 12,
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderTopColor: t.track,
+    },
+    linkLabel: {
+      flex: 1,
+      fontFamily: fonts.sansMedium,
+      fontSize: 15,
+      color: t.text,
     },
     linkTop: {
       flexDirection: 'row',
