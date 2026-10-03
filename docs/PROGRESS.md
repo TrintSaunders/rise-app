@@ -16,10 +16,11 @@ line — `git log` has the rest.
 
 ## Current state
 
-- **Store build:** iOS 1.0.0 build 9 is **VALID** on the Rise-Again ASC
-  record, ready for TestFlight. Build and submit now run unattended
-  (Apple credentials on EAS; submit config pinned in `eas.json`).
-  Remaining: TestFlight pass, listing completion, Submit for Review.
+- **Store build:** iOS **1.0.0 build 10 is WAITING_FOR_REVIEW** on the
+  Rise-Again ASC record (submitted 2026-10-03). Listing complete
+  (text, age rating 13+, screenshots, content rights, privacy label).
+  Release is manual after approval. Build and submit run unattended
+  (credentials on EAS; submit config in `eas.json`).
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
@@ -94,6 +95,24 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Trint (with ZCode) — "1.0.0 is in App Review"
+- Build 10 (Hayden's day: encrypted backup, accessibility pass, SOS
+  breathing fix, midnight label) built, submitted, and attached to the
+  1.0.0 version. Pipeline fully unattended now: build + submit, no
+  prompts.
+- The whole listing went in through the ASC API: description, keywords,
+  promo text, subtitle, URLs, copyright, the 22-question age rating
+  (everything NONE but mature themes Infrequent/Mild → 13+), and the
+  six 6.9" screenshots from `design/app-store/` (the API's 6.7" bucket).
+- Content rights declared via API (third-party content, permission
+  held: ESV/NASB). Trint finished the UI-only items in ASC: review
+  contact with sign-in not required, medical-device No, App Privacy
+  "data not collected".
+- **Submitted for review 2026-10-03 (~2 AM ET): WAITING_FOR_REVIEW.**
+  Release is manual — nothing goes live until Trint presses it.
+- Open: Apple's verdict (24–48h typical). On approval, press Release.
+
+D
 ### 2026-10-03 — Hayden (with Claude) — "Website review: self-hosted fonts, real download count, 100s"
 - Full review (details in WEBSITE.md "Review"): Lighthouse now 98–100 on
   every page, accessibility 100. Fonts self-hosted (Google Fonts leaked
@@ -153,6 +172,7 @@ Hayden asked for this batch to go to Apple. In order:
   Rise Again, the check-in, or after a fall; at most one gentle card after
   a milestone. Needs Trint for App Store Connect agreements and banking.
 - Plan only, nothing built.
+
 
 ### 2026-10-03 — Hayden (with Claude) — "Plan: welcome read-through and guided tour"
 - New `docs/UPDATES.md` for planned changes, ready to build. First entry:
