@@ -94,6 +94,16 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Website review: self-hosted fonts, real download count, 100s"
+- Full review (details in WEBSITE.md "Review"): Lighthouse now 98–100 on
+  every page, accessibility 100. Fonts self-hosted (Google Fonts leaked
+  visitor IPs), right-sized images, contrast, meta tags, structured data,
+  cache rules.
+- "Scroll" cue removed. First privacy card is now "men rising with Rise"
+  from `website/stats.json` (App Store Connect downloads, updated by hand
+  monthly; shows "Be among the first" until set). Tested with a sample
+  value, then reset to null.
+
 ### 2026-10-03 — Hayden (with Claude) — "Website: About page, design review, Opal-style home"
 - `/about`: why Rise exists, the five beliefs, Trint and Hayden as
   co-founders (monograms until photos; founder sentences are drafts to

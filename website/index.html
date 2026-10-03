@@ -15,17 +15,19 @@
 <meta name="theme-color" content="#12152b">
 <link rel="icon" href="/img/icon.png">
 <link rel="apple-touch-icon" href="/img/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 <script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Rise","alternateName":"Rise-Again","operatingSystem":"iOS","applicationCategory":"LifestyleApplication","description":"A free companion for Christian men in the fight for purity: help in the moment it's hard, grace after a fall, and everything stays on your phone.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://riseagainapp.com/","author":[{"@type":"Person","name":"Trint Saunders"},{"@type":"Person","name":"Hayden Pugh"}]}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/img/icon.png" alt="" width="32" height="32">Rise</a>
+    <a class="brand" href="/"><img src="/img/icon-64.png" alt="" width="32" height="32">Rise</a>
     <nav aria-label="Main">
       <a class="hide-sm" href="/#features">How it works</a>
       <a href="/about">About</a>
@@ -46,7 +48,7 @@
       <p class="lede">The companion for Christian men in the fight for purity. Help in the moment it’s hard, grace after a fall, and everything stays on your phone.</p>
       <div class="cta" id="get">
         <!-- Becomes the real App Store link once Apple approves (WEBSITE.md, phase 2). -->
-        <span class="store" aria-label="Coming soon on the App Store">
+        <span class="store" role="img" aria-label="Coming soon on the App Store">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>
           <span><small>Coming soon on the</small><strong>App Store</strong></span>
         </span>
@@ -54,7 +56,6 @@
       </div>
       <div class="proof"><span>Free</span><span>No account</span><span>Nothing leaves your phone</span></div>
     </div>
-    <a class="scroll-cue" href="#why" aria-label="Scroll to learn more">Scroll</a>
   </div>
 
   <!-- 2. Statement -->
@@ -73,7 +74,7 @@
         <p>When it’s hard, open the SOS tab and press the button. Rise slows your breathing, puts Scripture in front of you, and walks you through the way out you chose yourself.</p>
         <ul><li>A breathing rhythm to steady you</li><li>Your battle plan, in your order</li><li>Nothing is logged unless you choose</li></ul>
       </div>
-      <div class="stage reveal" style="--glow-c: rgba(224,122,95,.28)"><img class="phone" src="/img/screen-2-sos.jpg" alt="SOS: one large breathing button that says I'm struggling right now." width="880" height="1912" loading="lazy"></div>
+      <div class="stage reveal" style="--glow-c: rgba(224,122,95,.28)"><img class="phone" src="/img/screen-2-sos-600.jpg" srcset="/img/screen-2-sos-600.jpg 600w, /img/screen-2-sos.jpg 880w" sizes="(max-width: 640px) 74vw, 300px" alt="SOS: one large breathing button that says I'm struggling right now." width="880" height="1912" loading="lazy"></div>
     </div>
   </section>
 
@@ -85,7 +86,7 @@
         <p>Add up to five people who’ll pray when you text. One tap tells them you’re being tempted. Never why, never what. They don’t need the app.</p>
         <ul><li>Text or call an ally right from SOS</li><li>Messages go from your own phone</li><li>They only hear what you send</li></ul>
       </div>
-      <div class="stage reveal"><img class="phone" src="/img/screen-3-plan.jpg" alt="The battle plan on SOS, with buttons to text and call allies." width="880" height="1912" loading="lazy"></div>
+      <div class="stage reveal"><img class="phone" src="/img/screen-3-plan-600.jpg" srcset="/img/screen-3-plan-600.jpg 600w, /img/screen-3-plan.jpg 880w" sizes="(max-width: 640px) 74vw, 300px" alt="The battle plan on SOS, with buttons to text and call allies." width="880" height="1912" loading="lazy"></div>
     </div>
   </section>
 
@@ -97,7 +98,7 @@
         <p>A verse in the morning. Thirty seconds of truth at night. The arc fills gold when the day is done, and Rise counts the days you told the truth before the days you stood.</p>
         <ul><li>A daily verse, or your life verse</li><li>An evening check-in in thirty seconds</li><li>Discreet reminders, if you want them</li></ul>
       </div>
-      <div class="stage reveal"><img class="phone" src="/img/screen-1-today.jpg" alt="Today: a life verse, the dawn arc filled gold, 23 days honest and 10 days clean." width="880" height="1912" loading="lazy"></div>
+      <div class="stage reveal"><img class="phone" src="/img/screen-1-today-600.jpg" srcset="/img/screen-1-today-600.jpg 600w, /img/screen-1-today.jpg 880w" sizes="(max-width: 640px) 74vw, 300px" alt="Today: a life verse, the dawn arc filled gold, 23 days honest and 10 days clean." width="880" height="1912" loading="lazy"></div>
     </div>
   </section>
 
@@ -109,7 +110,7 @@
         <p>The most important screen in the app. The sun comes back up, 1 John 1:9 reminds you He is faithful to forgive, and a short confession puts you back on your feet.</p>
         <ul><li>The clean count starts over</li><li>Your history is never erased</li><li>Every rise is part of the story</li></ul>
       </div>
-      <div class="stage reveal"><img class="phone" src="/img/screen-4-rise.jpg" alt="Rise Again: a rising sun, 1 John 1:9, and a short guided confession." width="880" height="1912" loading="lazy"></div>
+      <div class="stage reveal"><img class="phone" src="/img/screen-4-rise-600.jpg" srcset="/img/screen-4-rise-600.jpg 600w, /img/screen-4-rise.jpg 880w" sizes="(max-width: 640px) 74vw, 300px" alt="Rise Again: a rising sun, 1 John 1:9, and a short guided confession." width="880" height="1912" loading="lazy"></div>
     </div>
   </section>
 
@@ -121,7 +122,7 @@
         <p>Log a struggle in seconds. Rise reads the last two weeks back to you gently: the hours that are hardest, the feelings that come first, and one practical thing worth trying.</p>
         <ul><li>The dark hours, at a glance</li><li>What usually comes first</li><li>Suggestions, never verdicts</li></ul>
       </div>
-      <div class="stage reveal" style="--glow-c: rgba(129,178,154,.2)"><img class="phone" src="/img/screen-5-patterns.jpg" alt="Patterns: two weeks of struggles by hour and feeling, with one suggestion." width="880" height="1912" loading="lazy"></div>
+      <div class="stage reveal" style="--glow-c: rgba(129,178,154,.2)"><img class="phone" src="/img/screen-5-patterns-600.jpg" srcset="/img/screen-5-patterns-600.jpg 600w, /img/screen-5-patterns.jpg 880w" sizes="(max-width: 640px) 74vw, 300px" alt="Patterns: two weeks of struggles by hour and feeling, with one suggestion." width="880" height="1912" loading="lazy"></div>
     </div>
   </section>
 
@@ -133,12 +134,13 @@
         <p>Scripture is what’s there when the phone isn’t. Memorize verses for the fight with gentle spaced repetition, alone or together with a friend.</p>
         <ul><li>Verses for the fight, ready to start</li><li>The Topical Memory System</li><li>Share a folder, memorize together</li></ul>
       </div>
-      <div class="stage reveal"><img class="phone" src="/img/screen-6-armory.jpg" alt="The Armory: a verse, your battle plan, and memory folders." width="880" height="1912" loading="lazy"></div>
+      <div class="stage reveal"><img class="phone" src="/img/screen-6-armory-600.jpg" srcset="/img/screen-6-armory-600.jpg 600w, /img/screen-6-armory.jpg 880w" sizes="(max-width: 640px) 74vw, 300px" alt="The Armory: a verse, your battle plan, and memory folders." width="880" height="1912" loading="lazy"></div>
     </div>
   </section>
 
   <!-- 4. The verses, drifting past -->
   <section class="verses" aria-label="Verses for the fight">
+    <p class="sr-only">Verses in the Armory include 1 Timothy 4:7, Hebrews 2:18, Job 31:1, Psalm 119:11, 1 Corinthians 10:13, Lamentations 3:22–23, 1 John 1:9, Philippians 4:8, Galatians 5:16, and Matthew 5:8.</p>
     <div class="marquee" aria-hidden="true">
       <span class="chip-verse"><b>1 Timothy 4:7</b>Discipline yourself for the purpose of godliness.</span>
       <span class="chip-verse"><b>Hebrews 2:18</b>He is able to help those who are being tempted.</span>
@@ -172,8 +174,10 @@
       <h2>Your story lives on your phone. Nowhere else.</h2>
       <p class="lede">The only things that ever leave your phone are messages you send yourself. Back it up to a file only your passphrase can open.</p>
       <div class="zero-grid">
-        <div class="zero reveal"><b>0</b><span>accounts to create</span></div>
-        <div class="zero reveal"><b>0</b><span>trackers or ads</span></div>
+        <!-- Real count from App Store Connect, set by hand in /stats.json.
+             Until there's a number, it invites instead of inventing one. -->
+        <div class="zero stat reveal" id="men-rising"><b>1st</b><span>Be among the first men to rise with Rise</span></div>
+        <div class="zero reveal"><b>0</b><span>trackers, ads, or accounts</span></div>
         <div class="zero reveal"><b>0</b><span>bytes of your story on our servers</span></div>
       </div>
     </div>
@@ -213,7 +217,7 @@
     <div class="wrap">
       <h2>The sun rose again.<br>So will you.</h2>
       <p class="verse">“His mercies never come to an end; they are new every morning.” Lamentations 3:22–23</p>
-      <span class="store" aria-label="Coming soon on the App Store">
+      <span class="store" role="img" aria-label="Coming soon on the App Store">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>
         <span><small>Coming soon on the</small><strong>App Store</strong></span>
       </span>
@@ -223,7 +227,7 @@
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="/"><img src="/img/icon.png" alt="" width="26" height="26">Rise</a>
+    <a class="brand" href="/"><img src="/img/icon-64.png" alt="" width="26" height="26">Rise</a>
     <nav aria-label="Footer"><a href="/about">About</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@riseagainapp.com">hello@riseagainapp.com</a></nav>
     <small>Scripture quotations are from the ESV® Bible, © 2001 by Crossway, used by permission, and the NASB®, © The Lockman Foundation, used by permission.</small>
   </div>
@@ -242,6 +246,28 @@
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -10% 0px' });
     items.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Men rising with Rise: a real number from /stats.json (App Store Connect
+  // downloads, updated by hand), counted up once it scrolls into view.
+  (function () {
+    var card = document.getElementById('men-rising');
+    if (!card || !window.fetch) return;
+    fetch('/stats.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
+      var n = Number(d && d.menRising);
+      if (!n || n < 1) return;
+      var b = card.querySelector('b'), label = card.querySelector('span');
+      label.textContent = 'men rising with Rise';
+      var fmt = function (x) { return Math.round(x).toLocaleString('en-US'); };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { b.textContent = fmt(n); return; }
+      b.textContent = '0';
+      var io = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return; io.disconnect();
+        var t0 = performance.now(), dur = 1600;
+        (function tick(t) { var p = Math.min(1, (t - t0) / dur); b.textContent = fmt(n * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); })(t0);
+      });
+      io.observe(card);
+    }).catch(function () {});
   })();
 </script>
 </body>

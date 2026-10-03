@@ -129,6 +129,27 @@ statement, six chapters (SOS, Allies, the dawn arc, Rise Again, Patterns,
 the Armory), drifting verses, privacy zeros, who makes Rise, FAQ, finale
 ("The sun rose again. So will you.").
 
+## Review, 2026-10-03
+
+Lighthouse (mobile), every page: Performance 98–100, Accessibility 100,
+Best Practices 100, SEO 100. Home LCP 3.3s → 2.3s, layout shift 0.
+
+- **Fonts are self-hosted** (`website/fonts/`, SIL Open Font License).
+  Loading them from Google sent every visitor's IP to Google, which broke
+  the "no trackers" promise, and blocked rendering for about 2 seconds.
+- Screenshots served at 600px with the 880px versions for sharp screens
+  (`srcset`); a 64px icon for header and footer.
+- Footer text contrast raised; jump links clear the sticky header;
+  complete title, description, and link-preview tags on every page;
+  structured data for the app on the home page; decorative verse
+  marquees have a screen-reader version; cache rules for fonts, CSS, and
+  `stats.json` in `_headers`.
+- Hayden's asks: the "Scroll" cue is gone, and the first privacy zero is
+  now **men rising with Rise**, a real count from App Store Connect set by
+  hand in `website/stats.json` (TODO "Keep the website's number current").
+  Until there's a number it reads "1st: Be among the first men to rise
+  with Rise". Rise itself still tracks no one.
+
 ## Built so far (phase 1)
 
 Preview it locally with `npm run preview:site` (http://localhost:8081).

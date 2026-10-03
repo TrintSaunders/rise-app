@@ -66,6 +66,17 @@ the EIN letter, and a bank account. Then tasks 🅣5, 🅣6, and 🅗4 can start
 
 ---
 
+### 3. Keep the website's "men rising" number current (after launch, 5 minutes a month)
+*Either of you. The site shows "Be among the first" until there's a real number.*
+- [ ] App Store Connect → Rise-Again → **Analytics** → Acquisition →
+  total **first-time downloads** (all time).
+- [ ] Edit `website/stats.json`: set `"menRising"` to that number (no
+  quotes) and `"updated"` to today, like `"2026-11-01"`. Commit and push;
+  Cloudflare publishes it in about a minute.
+- [ ] Never estimate or round up. It's a promise of honesty, like the app.
+
+---
+
 ## 🅣 Trint
 
 ### 1. Store build 10 and submit for review
