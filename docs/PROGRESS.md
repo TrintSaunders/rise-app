@@ -94,6 +94,15 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "Plan: Support Rise giving page"
+- `docs/UPDATES.md` entry 2: a Bible-App-style giving page. Because Rise
+  is published by an individual account, not an approved nonprofit, the
+  in-app path is an Apple in-app-purchase tip jar (one-time, unlocks
+  nothing), plus a giving page on riseagainapp.com. Never asks during SOS,
+  Rise Again, the check-in, or after a fall; at most one gentle card after
+  a milestone. Needs Trint for App Store Connect agreements and banking.
+- Plan only, nothing built.
+
 ### 2026-10-03 — Hayden (with Claude) — "Plan: welcome read-through and guided tour"
 - New `docs/UPDATES.md` for planned changes, ready to build. First entry:
   a four-page welcome before onboarding (why Rise exists, how it works,

@@ -138,3 +138,104 @@ here when it's hard." with a single **done** button.
 - Should the tour also offer to set up reminders and the first ally at the
   end ("Want a nudge each night?"), or keep it purely a tour? Recommend: one
   optional "set up reminders" button on the last card; allies stay on Today.
+
+---
+
+## 2. Support Rise: a giving page
+
+*Asked for by Hayden, 2026-10-03. Not started. Needs Trint (App Store
+Connect agreements and banking). Target: after 1.0 is live.*
+
+A calm page, like the Bible App's "Give", that says what Rise costs to make,
+why it's free, and invites people who've been helped to help keep it that
+way.
+
+### What Apple allows (this decides the design)
+
+The Bible App can take donations in the app because its publisher is a
+registered nonprofit in Apple's approved-nonprofit program. Rise is
+published by an individual developer account (Trint), so:
+
+- **Not allowed:** collecting donations in the app with a card form, Stripe,
+  PayPal, or Apple Pay as a "donation" (App Review Guideline 3.2.2(iv)).
+- **Allowed:** an in-app **tip jar** using Apple's in-app purchase
+  (consumable "support" purchases). Apple keeps 15% (Small Business
+  Program) to 30%.
+- **Allowed:** a giving page on the website (riseagainapp.com/give) for
+  people who find Rise there. Whether the app may link to it is a
+  storefront-by-storefront rule that has been changing; check the current
+  guidelines before adding any link, and don't add one in 1.x without that
+  check.
+- **Later:** if Rise becomes a 501(c)(3) and joins Apple's nonprofit
+  program, in-app donations with Apple Pay become possible, like the Bible
+  App.
+
+Check these rules again at build time; this is how they stood when written.
+
+### What he sees
+
+A "Support Rise" row on the "you & settings" screen opens a page:
+
+1. **Why it's free.** "Rise is free and always will be. No ads, no selling
+   your data, nothing locked behind a paywall when it's hard." One verse,
+   e.g. "Freely you have received; freely give." (Matthew 10:8)
+2. **What it costs.** Plainly: Apple's developer fee, building and keeping
+   it working, and the hours of the people making it. Honest, short, no
+   guilt.
+3. **Give.** Four one-time amounts as tiles (for example $2.99, $6.99,
+   $14.99, $29.99), each named gently ("a coffee", "a week of building").
+   Tapping one opens Apple's purchase sheet.
+4. **Thank you.** After a purchase: a warm thank-you screen, and a small
+   "supporter" note on the "you & settings" screen. Nothing else changes;
+   giving never unlocks features (that's Rise+, see PREMIUM.md).
+
+### Rules
+
+- **Never ask during the hard moments.** No giving prompts on SOS, Rise
+  Again, after logging a fall, or in the evening check-in. Ever.
+- **Ask rarely, only from a good moment.** At most one gentle card, ever,
+  after a milestone (for example 30 honest days), and only if he hasn't
+  given or dismissed it. Dismissed means gone for good.
+- **Rescue is never for sale.** Everything in 1.0 stays free (PREMIUM.md's
+  vow). Giving buys nothing.
+- **Privacy stays as it is.** Purchases go through Apple; Rise never sees
+  his name or card. No purchase SDKs that collect data (RevenueCat and
+  similar would change the "Data Not Collected" label), and no server
+  receipt checks.
+
+### How to build it
+
+- **Apple side (Trint):** accept the Paid Applications agreement, add
+  banking and tax info, enroll in the Small Business Program, and create
+  four consumable in-app purchases (for example `rise.support.tier1` to
+  `tier4`) with names and review screenshots.
+- **App:** `expo-iap` (Expo's StoreKit wrapper; install with
+  `npx expo install`), no third-party purchase service. Needs a development
+  or TestFlight build to test; Expo Go can't run in-app purchases.
+- `app/support.tsx`: the page above, reached from "you & settings".
+  Prices come from StoreKit (`fetchProducts`), never hard-coded, so they
+  show in his currency.
+- Store: `support: { gaveAt: string | null; askedAt: string | null }` for
+  the thank-you note and the one-time milestone card.
+- Website: a matching `docs/give.html` on riseagainapp.com, with its own
+  payment link (Stripe or similar) for people who never install the app.
+- Privacy policy: add one line ("purchases are handled by Apple; we never
+  see your payment details").
+
+### Done means
+
+- A sandbox purchase on TestFlight completes, shows the thank-you, and
+  records `gaveAt`; a cancelled purchase changes nothing.
+- No giving prompt can appear on SOS, Rise Again, the check-in, or after a
+  fall (covered by a test on where the card may render).
+- App Review notes explain the tip jar is optional and unlocks nothing.
+- All three gates pass.
+
+### Open questions
+
+- Tip amounts and their names.
+- Is a monthly "supporter" option wanted? It would be an auto-renewing
+  subscription, which overlaps with Rise+ (PREMIUM.md). Recommend: one-time
+  tips only until Rise+ is decided.
+- Should Rise become a nonprofit someday? That's the path to Bible-App-style
+  in-app giving.
