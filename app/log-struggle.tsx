@@ -124,7 +124,7 @@ export default function LogStruggleScreen() {
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <View style={styles.header}>
           <Text style={styles.title}>{fromCheckIn ? 'log a fall' : 'log a struggle'}</Text>
-          <Pressable onPress={() => router.back()} hitSlop={12}>
+          <Pressable onPress={() => router.back()} hitSlop={12} accessibilityRole="button" accessibilityLabel="close">
             <Ionicons name="close" size={22} color={colors.inkSoft} />
           </Pressable>
         </View>

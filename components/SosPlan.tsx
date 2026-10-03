@@ -56,7 +56,7 @@ export function SosPlan() {
       {data.battlePlan.map((step, i) => (
         <View key={step.id} style={styles.step}>
           <View style={styles.stepRow}>
-            <Text style={styles.number}>{i + 1}</Text>
+            <Text style={styles.number} maxFontSizeMultiplier={1.5}>{i + 1}</Text>
             <Ionicons name={iconFor(step)} size={18} color={colors.starlightSoft} />
             <Text style={styles.label}>{step.label}</Text>
           </View>
@@ -66,7 +66,7 @@ export function SosPlan() {
               <View style={styles.actions}>
                 <SpringPress style={styles.pill} onPress={textAllies}>
                   <Ionicons name="chatbubbles" size={14} color={colors.night} />
-                  <Text style={styles.pillText}>text them</Text>
+                  <Text style={styles.pillText} maxFontSizeMultiplier={1.5}>text them</Text>
                 </SpringPress>
                 {textStatus && <Text style={styles.status}>{SENT_NOTE[textStatus]}</Text>}
               </View>
@@ -83,7 +83,7 @@ export function SosPlan() {
                     style={styles.pill}
                     onPress={() => Linking.openURL(`tel:${ally.phone}`).catch(() => {})}>
                     <Ionicons name="call" size={14} color={colors.night} />
-                    <Text style={styles.pillText}>{ally.name}</Text>
+                    <Text style={styles.pillText} maxFontSizeMultiplier={1.5}>{ally.name}</Text>
                   </SpringPress>
                 ))}
               </View>
@@ -103,7 +103,11 @@ export function SosPlan() {
         </View>
       ))}
       <Text style={styles.note}>do the first one before you decide anything</Text>
-      <Pressable style={styles.edit} hitSlop={8} onPress={() => router.push('/battle-plan')}>
+      <Pressable
+        style={styles.edit}
+        hitSlop={8}
+        accessibilityRole="button"
+        onPress={() => router.push('/battle-plan')}>
         <Ionicons name="create-outline" size={15} color={colors.starlightSoft} />
         <Text style={styles.editText}>edit your plan</Text>
       </Pressable>

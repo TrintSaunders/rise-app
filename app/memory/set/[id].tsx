@@ -49,7 +49,7 @@ function SuggestedSet() {
       <StatusBar style={t.isNight ? 'light' : 'dark'} />
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          <Pressable onPress={() => router.back()} hitSlop={12}>
+          <Pressable onPress={() => router.back()} hitSlop={12} accessibilityRole="button" accessibilityLabel="back">
             <Ionicons name="chevron-back" size={22} color={t.textSoft} />
           </Pressable>
           <Text style={styles.headerLabel}>

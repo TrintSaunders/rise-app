@@ -28,12 +28,19 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
   on a decision" sections. Two people's assistants share this repo; the
   log is how each one knows what the other did. If code and a doc now
   disagree because of your change, fix the doc in the same commit.
-- Before every commit, BOTH gates must pass:
+- Before every commit, ALL THREE gates must pass:
 
   ```bash
   npx tsc --noEmit
+  npm test
   npx expo export --platform ios --platform web
   ```
+
+  `npm test` runs the Jest suite in `__tests__/` (jest-expo preset):
+  days and streaks, falls, memory, reminders, backup, phone numbers.
+  Logic changes come with a test. Test files declare their types with
+  `/// <reference types="jest" />` (TypeScript 6 no longer loads them
+  automatically).
 
   Adding or renaming a route? Typed routes live in `.expo/types/`, which
   only the dev server regenerates — run `npx expo start` once (Ctrl-C when
@@ -104,7 +111,15 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 - `lib/battlePlan.ts` + `app/battle-plan.tsx` + `components/SosPlan.tsx` —
   the battle plan (`data.battlePlan`), its editor, and how SOS shows it.
 - `app/you.tsx` — "you & settings": profile, reminders, battle plan
-  preview, Night Watch, the story so far.
+  preview, Night Watch, backup, the story so far.
+- `lib/backup.ts` + `lib/backupFile.ts` + `components/BackupCard.tsx` —
+  encrypted backup (AES-256-GCM, PBKDF2 key from his passphrase, @noble
+  primitives). The file goes out through the share sheet and comes back
+  through the document picker. Restoring merges and never erases
+  (`mergeBackup`). No server, no recovery for a lost passphrase.
+- Accessibility: every tappable has `accessibilityRole="button"` and a
+  label when it's icon-only; text inside fixed shapes (SOS button,
+  counters, pills, tab bar) caps `maxFontSizeMultiplier`.
 - `lib/allyAlert.ts` + `components/SosAllies.tsx` — SOS "tell them I'm
   tempted". Allies live in the store (`data.allies`), on the phone only.
   The server path always falls back to the local group text.

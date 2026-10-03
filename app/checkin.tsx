@@ -89,7 +89,7 @@ export default function CheckInScreen() {
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <View style={styles.header}>
             {step > 0 && step < 3 ? (
-              <Pressable onPress={() => setStep((step - 1) as Step)} hitSlop={12}>
+              <Pressable onPress={() => setStep((step - 1) as Step)} hitSlop={12} accessibilityRole="button" accessibilityLabel="previous question">
                 <Ionicons name="chevron-back" size={22} color={colors.starlightSoft} />
               </Pressable>
             ) : (
@@ -97,7 +97,7 @@ export default function CheckInScreen() {
             )}
             <Text style={styles.title}>evening check-in</Text>
             {step < 3 ? (
-              <Pressable onPress={() => router.back()} hitSlop={12}>
+              <Pressable onPress={() => router.back()} hitSlop={12} accessibilityRole="button" accessibilityLabel="close">
                 <Ionicons name="close" size={22} color={colors.starlightSoft} />
               </Pressable>
             ) : (
@@ -130,10 +130,10 @@ export default function CheckInScreen() {
                               setRating(r.value);
                               setStep(1);
                             }}>
-                            <Text style={[styles.scaleNum, on && styles.scaleNumOn]}>
+                            <Text style={[styles.scaleNum, on && styles.scaleNumOn]} maxFontSizeMultiplier={1.3}>
                               {r.value}
                             </Text>
-                            <Text style={[styles.scaleLabel, on && styles.scaleLabelOn]}>
+                            <Text style={[styles.scaleLabel, on && styles.scaleLabelOn]} maxFontSizeMultiplier={1.3}>
                               {r.label}
                             </Text>
                           </SpringPress>

@@ -115,7 +115,7 @@ function Folder() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <View style={styles.header}>
-            <Pressable onPress={() => router.back()} hitSlop={12}>
+            <Pressable onPress={() => router.back()} hitSlop={12} accessibilityRole="button" accessibilityLabel="back">
               <Ionicons name="chevron-back" size={22} color={t.textSoft} />
             </Pressable>
             <Text style={styles.headerLabel}>memory folder</Text>
@@ -141,7 +141,7 @@ function Folder() {
               </SpringPress>
             </View>
           ) : (
-            <Pressable
+            <Pressable accessibilityRole="button"
               style={styles.titleRow}
               onPress={startRename}
               hitSlop={6}
@@ -210,7 +210,7 @@ function Folder() {
                       <View key={i} style={[styles.dot, i < box && styles.dotOn]} />
                     ))}
                   </View>
-                  <Pressable
+                  <Pressable accessibilityRole="button"
                     hitSlop={10}
                     accessibilityLabel={`remove ${verse.ref}`}
                     onPress={() => removeVerseFromFolder(folder.id, verse.ref)}>
@@ -268,6 +268,7 @@ function Folder() {
           </SpringPress>
 
           <Pressable
+            accessibilityRole="button"
             style={styles.deleteLink}
             onPress={() => {
               if (!confirmDelete) {

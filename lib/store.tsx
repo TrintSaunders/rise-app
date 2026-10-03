@@ -8,6 +8,7 @@ import {
 } from 'react';
 import type { ReactNode } from 'react';
 
+import { mergeBackup } from './backup';
 import { DEFAULT_PLAN } from './battlePlan';
 import type { BattleStep } from './battlePlan';
 import type { MemoryData, MemoryVerse } from './memory';
@@ -187,7 +188,7 @@ export function fallsOnCheckInDay(
 
 const KEY = 'rise.store.v1';
 
-const EMPTY: StoreData = {
+export const EMPTY_STORE: StoreData = {
   version: 1,
   profile: null,
   days: [],
@@ -246,6 +247,8 @@ type StoreApi = {
   removeAlly: (id: string) => void;
   setReminder: (which: keyof Reminders, change: Partial<Reminder>) => void;
   setBattlePlan: (steps: BattleStep[]) => void;
+  /** Adds a decrypted backup's history; never erases what's on this phone. */
+  restoreBackup: (incoming: StoreData) => void;
 };
 
 /** Adds verses a folder doesn't already hold, keeping order. */
@@ -263,7 +266,7 @@ function withVerses(existing: readonly MemoryVerse[], added: readonly MemoryVers
 const StoreContext = createContext<StoreApi | null>(null);
 
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<StoreData>(EMPTY);
+  const [data, setData] = useState<StoreData>(EMPTY_STORE);
   const [ready, setReady] = useState(false);
   // Off only when storage itself failed to read: his history may still be on
   // disk, and writing now would bury it under an empty store.
@@ -291,11 +294,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           // demo entries it left on a tester's phone; they were never his.
           if (alive)
             setData({
-              ...EMPTY,
+              ...EMPTY_STORE,
               ...saved,
-              temptations: (saved?.temptations ?? EMPTY.temptations).filter((t) => !t.demo),
-              victories: (saved?.victories ?? EMPTY.victories).filter((v) => !v.demo),
-              rises: (saved?.rises ?? EMPTY.rises).filter((r) => !r.demo),
+              temptations: (saved?.temptations ?? EMPTY_STORE.temptations).filter((t) => !t.demo),
+              victories: (saved?.victories ?? EMPTY_STORE.victories).filter((v) => !v.demo),
+              rises: (saved?.rises ?? EMPTY_STORE.rises).filter((r) => !r.demo),
             });
         } catch {
           // Unreadable store — set the damaged copy aside, never erase it,
@@ -475,6 +478,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           reminders: { ...prev.reminders, [which]: { ...prev.reminders[which], ...change } },
         })),
       setBattlePlan: (steps) => update((prev) => ({ ...prev, battlePlan: steps })),
+      restoreBackup: (incoming) => update((prev) => mergeBackup(prev, incoming)),
     };
   }, [ready, data]);
 

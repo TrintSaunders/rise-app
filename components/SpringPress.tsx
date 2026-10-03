@@ -58,6 +58,7 @@ export function SpringPress({
       hitSlop={hitSlop}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
+      accessibilityState={{ disabled: !!disabled }}
       style={[style, { transform: [{ scale }] }]}>
       {children}
     </AnimatedPressable>

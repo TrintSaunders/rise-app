@@ -16,6 +16,9 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
+        // Tab labels live in a fixed-height bar; iOS's large-content viewer
+        // (long-press a tab) serves larger text sizes instead.
+        tabBarAllowFontScaling: false,
         tabBarActiveTintColor: t.text,
         tabBarInactiveTintColor: t.textSoft,
         tabBarStyle: {

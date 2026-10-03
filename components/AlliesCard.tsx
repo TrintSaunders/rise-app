@@ -34,7 +34,7 @@ export function AlliesCard() {
               <Text style={styles.allyText}>
                 {ally.name}  <Text style={styles.allyPhone}>{formatPhone(ally.phone)}</Text>
               </Text>
-              <Pressable
+              <Pressable accessibilityRole="button"
                 hitSlop={10}
                 accessibilityLabel={`remove ${ally.name}`}
                 onPress={() => removeAlly(ally.id)}>

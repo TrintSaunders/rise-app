@@ -83,7 +83,7 @@ export default function SosScreen() {
                 accessibilityLabel="I’m struggling right now"
                 onPress={() => setEngaged(true)}>
                 <Ionicons name="bonfire-outline" size={44} color={colors.night} />
-                <Text style={styles.gateButtonText}>I’m struggling{'\n'}right now</Text>
+                <Text style={styles.gateButtonText} maxFontSizeMultiplier={1.2}>I’m struggling{'\n'}right now</Text>
               </SpringPress>
             </Breathing>
             <Text style={styles.gateNote}>
@@ -106,7 +106,7 @@ export default function SosScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <View style={styles.helpHeader}>
-            <Pressable
+            <Pressable accessibilityRole="button"
               hitSlop={12}
               accessibilityLabel="close"
               onPress={() => setEngaged(false)}>

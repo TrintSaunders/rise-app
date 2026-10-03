@@ -82,7 +82,7 @@ export default function BattlePlanScreen() {
           keyboardShouldPersistTaps="handled"
           automaticallyAdjustKeyboardInsets>
           <View style={styles.header}>
-            <Pressable onPress={() => router.back()} hitSlop={12} accessibilityLabel="back">
+            <Pressable accessibilityRole="button" onPress={() => router.back()} hitSlop={12} accessibilityLabel="back">
               <Ionicons name="chevron-back" size={22} color={t.textSoft} />
             </Pressable>
             <Text style={styles.headerLabel}>battle plan</Text>
@@ -97,7 +97,7 @@ export default function BattlePlanScreen() {
           <View style={styles.list}>
             {plan.map((step, i) => (
               <View key={step.id} style={styles.stepCard}>
-                <Text style={styles.stepNumber}>{i + 1}</Text>
+                <Text style={styles.stepNumber} maxFontSizeMultiplier={1.5}>{i + 1}</Text>
                 <Ionicons name={iconFor(step)} size={18} color={t.textSoft} />
                 <View style={styles.stepText}>
                   <Text style={styles.stepLabel}>{step.label}</Text>
@@ -112,14 +112,14 @@ export default function BattlePlanScreen() {
                   )}
                 </View>
                 <View style={styles.stepActions}>
-                  <Pressable
+                  <Pressable accessibilityRole="button"
                     hitSlop={6}
                     disabled={i === 0}
                     accessibilityLabel={`move ${step.label} up`}
                     onPress={() => move(i, -1)}>
                     <Ionicons name="chevron-up" size={18} color={i === 0 ? t.track : t.textSoft} />
                   </Pressable>
-                  <Pressable
+                  <Pressable accessibilityRole="button"
                     hitSlop={6}
                     disabled={i === plan.length - 1}
                     accessibilityLabel={`move ${step.label} down`}
@@ -130,7 +130,7 @@ export default function BattlePlanScreen() {
                       color={i === plan.length - 1 ? t.track : t.textSoft}
                     />
                   </Pressable>
-                  <Pressable
+                  <Pressable accessibilityRole="button"
                     hitSlop={6}
                     disabled={plan.length <= 1}
                     accessibilityLabel={`remove ${step.label}`}

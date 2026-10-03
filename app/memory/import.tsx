@@ -62,7 +62,9 @@ function Import() {
           <View style={styles.header}>
             <Pressable
               onPress={() => (router.canGoBack() ? router.back() : router.replace('/armory'))}
-              hitSlop={12}>
+              hitSlop={12}
+              accessibilityRole="button"
+              accessibilityLabel="back">
               <Ionicons name="chevron-back" size={22} color={t.textSoft} />
             </Pressable>
             <Text style={styles.headerLabel}>a friend’s folder</Text>

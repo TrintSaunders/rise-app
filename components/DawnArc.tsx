@@ -72,7 +72,13 @@ export function DawnArc({ complete, isNight }: DawnArcProps) {
   const sunUp = daylight > 0 && daylight < 1;
 
   return (
-    <View style={{ width: WIDTH, height: HEIGHT }}>
+    <View
+      style={{ width: WIDTH, height: HEIGHT }}
+      accessible
+      accessibilityRole="image"
+      accessibilityLabel={
+        complete ? 'The dawn arc is full: today is complete.' : 'The dawn arc: today’s check-in is still to come.'
+      }>
       <Svg width={WIDTH} height={HEIGHT} viewBox={`0 0 ${WIDTH} ${HEIGHT}`}>
         <Defs>
           <LinearGradient id="domeFill" x1="0" y1="0" x2="0" y2="1">

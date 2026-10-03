@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { BackupCard } from '@/components/BackupCard';
 import { SpringPress } from '@/components/SpringPress';
 import { colors, fonts, radius } from '@/constants/theme';
 import { iconFor } from '@/lib/battlePlan';
@@ -103,7 +104,7 @@ export default function YouScreen() {
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <View style={styles.header}>
             <Text style={styles.title}>you & settings</Text>
-            <Pressable onPress={() => router.back()} hitSlop={12} accessibilityLabel="close">
+            <Pressable accessibilityRole="button" onPress={() => router.back()} hitSlop={12} accessibilityLabel="close">
               <Ionicons name="close" size={22} color={t.textSoft} />
             </Pressable>
           </View>
@@ -183,15 +184,15 @@ export default function YouScreen() {
                   </View>
                   {r.enabled && (
                     <View style={styles.timeRow}>
-                      <Pressable
+                      <Pressable accessibilityRole="button"
                         hitSlop={8}
                         style={styles.timeStep}
                         accessibilityLabel={`${label} 15 minutes earlier`}
                         onPress={() => setReminder(which, shiftTime(r, -15))}>
                         <Ionicons name="remove" size={18} color={t.text} />
                       </Pressable>
-                      <Text style={styles.timeText}>{formatTime(r)}</Text>
-                      <Pressable
+                      <Text style={styles.timeText} maxFontSizeMultiplier={1.5}>{formatTime(r)}</Text>
+                      <Pressable accessibilityRole="button"
                         hitSlop={8}
                         style={styles.timeStep}
                         accessibilityLabel={`${label} 15 minutes later`}
@@ -219,7 +220,7 @@ export default function YouScreen() {
             <Text style={styles.cardNote}>Your way out, in your order. It’s what SOS shows you.</Text>
             {data.battlePlan.slice(0, 3).map((step, i) => (
               <View key={step.id} style={styles.planRow}>
-                <Text style={styles.planNumber}>{i + 1}</Text>
+                <Text style={styles.planNumber} maxFontSizeMultiplier={1.5}>{i + 1}</Text>
                 <Ionicons name={iconFor(step)} size={16} color={t.textSoft} />
                 <Text style={styles.planText} numberOfLines={1}>
                   {step.label}
@@ -254,6 +255,8 @@ export default function YouScreen() {
               );
             })}
           </View>
+
+          <BackupCard t={t} />
 
           {started && (
             <View style={styles.storyCard}>

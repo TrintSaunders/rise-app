@@ -72,7 +72,7 @@ function Review() {
           <Text style={styles.headerLabel}>
             {finished ? 'review' : `${index + 1} of ${queue.length}`}
           </Text>
-          <Pressable onPress={() => router.back()} hitSlop={12}>
+          <Pressable onPress={() => router.back()} hitSlop={12} accessibilityRole="button" accessibilityLabel="close">
             <Ionicons name="close" size={22} color={t.textSoft} />
           </Pressable>
         </View>

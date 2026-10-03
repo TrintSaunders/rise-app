@@ -126,15 +126,15 @@ export default function TodayScreen() {
             <DawnArc complete={checkedIn} isNight={t.isNight} />
             <View style={styles.counters}>
               <View style={styles.counter}>
-                <Text style={styles.counterNumber}>{honest}</Text>
-                <Text style={styles.counterLabel}>
+                <Text style={styles.counterNumber} maxFontSizeMultiplier={1.4}>{honest}</Text>
+                <Text style={styles.counterLabel} maxFontSizeMultiplier={1.4}>
                   {honest === 1 ? 'day honest' : 'days honest'}
                 </Text>
               </View>
               <View style={styles.counterDivider} />
               <View style={styles.counter}>
-                <Text style={styles.counterNumber}>{clean}</Text>
-                <Text style={styles.counterLabel}>
+                <Text style={styles.counterNumber} maxFontSizeMultiplier={1.4}>{clean}</Text>
+                <Text style={styles.counterLabel} maxFontSizeMultiplier={1.4}>
                   {clean === 1 ? 'day clean' : 'days clean'}
                 </Text>
               </View>
