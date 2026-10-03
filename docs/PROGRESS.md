@@ -69,6 +69,15 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-10-03 — Hayden (with Claude) — "SOS: the breathing circle no longer covers its label"
+- On the SOS help page the circle swells 35% (150 to ~203px), but a scale
+  transform doesn't move layout, so at full breath it spilled over
+  "breathe with it". It now sits in a stage sized for the full breath
+  (`BREATH_STAGE` in `app/(tabs)/sos.tsx`). Measured in headless Chrome:
+  widest 202px, never closer than 20px to the label.
+- Not yet published: reaches testers with the next preview update, and
+  store users with the next build or OTA update on the 1.0.0 track.
+
 ### 2026-10-02 — Trint (with ZCode) — "iOS store build 9: built, submitted, VALID in ASC"
 - First `eas build -p ios --profile production` run unattended, riding
   the ASC API key at `~/.rise/asc/`: Apple team **6TF9F7YLUY**

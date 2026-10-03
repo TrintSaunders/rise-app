@@ -18,6 +18,13 @@ const VERSE = {
   ref: '2 Timothy 2:22',
 };
 
+// Scaling doesn't move layout, so the circle gets a stage sized for the
+// top of the breath: at full swell it fills the stage instead of spilling
+// over the words beneath it.
+const BREATH_SIZE = 150;
+const BREATH_DEPTH = 0.35;
+const BREATH_STAGE = Math.ceil(BREATH_SIZE * (1 + BREATH_DEPTH));
+
 const ESCAPE_PROMISE = {
   text: 'God is faithful… he will also provide the way of escape.',
   ref: '1 Corinthians 10:13',
@@ -106,9 +113,11 @@ export default function SosScreen() {
               <Ionicons name="close" size={22} color={colors.starlightSoft} />
             </Pressable>
           </View>
-          <Breathing period={4} depth={0.35}>
-            <View style={styles.breathCircle} />
-          </Breathing>
+          <View style={styles.breathStage}>
+            <Breathing period={4} depth={BREATH_DEPTH}>
+              <View style={styles.breathCircle} />
+            </Breathing>
+          </View>
           <Text style={styles.breatheLabel}>breathe with it: in as it grows, out as it settles</Text>
 
           <Text style={styles.verse}>“{VERSE.text}”</Text>
@@ -211,10 +220,16 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 32,
   },
+  breathStage: {
+    width: BREATH_STAGE,
+    height: BREATH_STAGE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   breathCircle: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+    width: BREATH_SIZE,
+    height: BREATH_SIZE,
+    borderRadius: BREATH_SIZE / 2,
     backgroundColor: 'rgba(224, 122, 95, 0.9)',
     shadowColor: colors.ember,
     shadowOpacity: 0.6,
