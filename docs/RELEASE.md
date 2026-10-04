@@ -28,19 +28,25 @@ channel links are all unchanged. Publishing steps now live in AGENTS.md.
       enrollment verified 2026-10-02).
 - [x] ASC app record created as **Rise-Again** (2026-10-02) — "Rise"
       and "Rise Again" were both taken.
-- [ ] `eas build --profile production --platform ios` (not run yet);
-      internal distribution → TestFlight for the two of them first.
-- Sharing App Store Connect with Hayden: an individual membership
-      can't add users. It would take an Organization enrollment
-      (D-U-N-S number, same $99/yr) — decide before the first
-      submission, while the record is still cheap to move.
+- [x] `eas build --profile production --platform ios` — done 2026-10-03
+      (builds 9 and 10; zero prompts now, credentials on EAS). Commands
+      and rails live in `docs/PIPELINE.md`.
+- Sharing App Store Connect with Hayden: done 2026-10-03. An individual
+  membership can't add team members, but Hayden is in as an ASC user
+  with the **App Manager** role, scoped to Rise-Again — enough to run
+  the store side.
 
 ## Store submission
+
+**Status: 1.0.0 (build 10) submitted 2026-10-03. Apple answered with
+the standard "limited review history" information request; answered the
+same weekend with a device recording and the six points (also saved in
+the App Review notes). Release is manual after approval.**
 
 - [x] Privacy policy live at the GitHub Pages URL
       (https://trintsaunders.github.io/rise-app/privacy; contact:
       support@riseagainapp.com).
-- [ ] App Store privacy answers: collects no data. Everything is
+- [x] App Store privacy answers: collects no data. Everything is
       on-device; ally texts go through his own Messages app.
 - [x] Version 1.0.0 (bumped 2026-10-02; runtimeVersion is appVersion —
       the store build gets its own OTA track).
@@ -59,8 +65,8 @@ channel links are all unchanged. Publishing steps now live in AGENTS.md.
 - [x] iPhone-only (`supportsTablet: false`, so no iPad screenshots or
       iPad review) and `ITSAppUsesNonExemptEncryption: false` in
       `app.json`.
-- [ ] Age rating questionnaire (answer honestly; no gambling, no
-      user-generated content).
+- [x] Age rating questionnaire — 22 answers via the ASC API 2026-10-03;
+      13+ expected (mature themes Infrequent/Mild, per Hayden's call).
 
 ## Domain and email (bought 2026-09-30, Hayden)
 

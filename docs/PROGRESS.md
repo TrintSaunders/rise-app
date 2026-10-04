@@ -95,6 +95,25 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-04 — Trint (with ZCode) — "Pipeline + agent working agreement"
+- `docs/PIPELINE.md`: the runbook for shipping — which rail a change
+  takes (OTA vs store build, and the version-bump rule that keeps
+  runtime tracks intact), preview-before-production ordering, rollback
+  by republish, and the sign-off matrix for what agents may do alone
+  (preview publishes) vs what needs a human go-ahead (production,
+  store, ASC, money).
+- `scripts/gates.sh` (three gates, one command) and `scripts/ota.sh`
+  (gates → BUILD stamp → commit → push → `eas update`), so a publish is
+  one command with the rules built in. AGENTS.md's publish section now
+  points at them, plus a new "How agents work here" agreement: pickup
+  order, gates, claims, copy, secrets.
+- RELEASE.md store boxes ticked to match reality (build 10, privacy
+  answers, age rating, Hayden as ASC App Manager).
+- Shakeout: published a preview OTA through the new script (testers
+  see the BUILD stamp "preview Oct 4"). Open: production branch gets
+  its first publish only after the store review resolves.
+
+D
 ### 2026-10-03 — Hayden (with Claude) — "To-do: Christian podcast outreach"
 - TODO.md gains "Outreach: Christian podcasts": Bryce Crawford and JP
   Pokluda (Becoming Something) first, steps per show, ground rules, and
@@ -123,6 +142,7 @@ Hayden asked for this batch to go to Apple. In order:
   their journey at launch." Tested with a sample number, reset to null.
 - Option to automate it nightly from the App Store Connect API noted in
   WEBSITE.md.
+
 
 ### 2026-10-03 — Trint (with ZCode) — "1.0.0 is in App Review"
 - Build 10 (Hayden's day: encrypted backup, accessibility pass, SOS

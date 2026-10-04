@@ -67,19 +67,51 @@ npx expo start       # dev server; press i (iOS sim), a (Android), w (web)
 - Publishing an update to the testers' phones (the `preview` channel):
 
   ```bash
-  npx tsc --noEmit
-  npx expo export --platform ios --platform web
-  git add -A && git commit && git push
-  npx eas-cli update --branch preview --message "what changed" \
-    --environment production --non-interactive
+  ./scripts/ota.sh preview "what changed"
   ```
 
-  Bump the `BUILD` constant in `app/you.tsx` in the same commit so a
-  tester can confirm which publish the phone is on. The project lives
-  under the **rise-again** organization on EAS — Trint and Hayden are
-  both owners, so either can publish with their own
-  `npx eas-cli login`. Phones get the update on next open of the
-  channel link.
+  The script runs all three gates, stamps the `BUILD` constant in
+  `app/you.tsx` (so a tester can confirm which publish the phone is on),
+  commits, pushes, and publishes. Publishing for **store users** is
+  `production` instead of `preview` and needs a human go-ahead first —
+  the full rules, including when a change needs a store build instead of
+  an update, live in `docs/PIPELINE.md`. The project lives under the
+  **rise-again** organization on EAS — Trint and Hayden are both owners,
+  so either can publish with their own `npx eas-cli login`. Phones get
+  the update on next open of the channel link.
+
+## How agents work here
+
+The working agreement for AI assistants (both of you). It exists so the
+work is the same quality no matter which agent picks it up.
+
+1. **Pickup order:** read `docs/PROGRESS.md` first (current state,
+   waiting-on decisions), then `docs/UPDATES.md` for planned work that
+   is ready to build, then `docs/TODO.md` for context (never do the 🅣
+   and 🅗 items yourself — those are the founders'). Build from the
+   plans in UPDATES.md rather than inventing over them.
+2. **Gates are not optional:** `./scripts/gates.sh` before every commit;
+   a failing gate means stop and fix, never force past. Logic changes
+   come with a test.
+3. **Sign-off matrix (docs/PIPELINE.md has the full table):** local
+   work, commits, pushes, and `preview` publishes are always fine.
+   `production` publishes, store builds and submits, App Store Connect
+   changes, publishing content, spending money, or anything legal need
+   a human's explicit go-ahead in the session first — then execute.
+4. **Two agents, one repo:** before starting anything bigger than a
+   fix, say so in your PROGRESS entry (claim it); if the other agent's
+   plan covers the ground, extend it, don't fork it. After a push,
+   re-read PROGRESS.md before your next task — it is how you learn what
+   happened while you worked.
+5. **Copy is the product:** anything user-facing follows the house
+   rules below and DESIGN.md's copy-tone. When in doubt about tone,
+   ask the owner rather than guessing warmer.
+6. **Secrets never enter the repo.** The ASC key stays at
+   `~/.rise/asc/`; the `eas.json` key path is Trint-machine-specific on
+   purpose (it degrades to a prompt elsewhere).
+7. **If code and a doc disagree, stop and ask the owner which should
+   change** (existing rule, restated because it is the one that
+   protects the founders' intent).
 
 ## Map of the code
 
