@@ -16,11 +16,12 @@ line — `git log` has the rest.
 
 ## Current state
 
-- **Store build:** iOS **1.0.0 build 10 is WAITING_FOR_REVIEW** on the
-  Rise-Again ASC record (submitted 2026-10-03). Listing complete
-  (text, age rating 13+, screenshots, content rights, privacy label).
-  Release is manual after approval. Build and submit run unattended
-  (credentials on EAS; submit config in `eas.json`).
+- **Store build:** iOS **1.0.0 build 10 was REJECTED by App Review.**
+  Submitted 2026-10-03; the state change showed up on an ASC API check
+  2026-10-14 (version and appInfo both REJECTED; the build itself stays
+  VALID, so it resubmits without a rebuild). The reason isn't exposed by
+  the API with our key — it's in ASC's Resolution Center and the email
+  Apple sent the account holder. Release stays manual after approval.
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
@@ -39,29 +40,22 @@ line — `git log` has the rest.
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
-## Next for Trint: build 10 for the App Store
+## Next for Trint: read the App Review rejection
 
-Hayden asked for this batch to go to Apple. In order:
+The listing, build, and submission are all done; Apple's verdict is the
+blocker. In order:
 
-1. **Make a new store build, not an OTA update.** This batch adds native
-   modules (expo-sharing, expo-document-picker, expo-file-system,
-   expo-crypto) for encrypted backup. Build 9 doesn't have them, and both
-   builds share runtime 1.0.0, so **never publish an OTA update to the
-   1.0.0 production track while build 9 exists**: the backup screen would
-   crash on it. Run all three gates, bump `BUILD` in `app/you.tsx`, then
-   `eas build -p ios --profile production` and `eas submit --latest`.
-   Replace build 9 with 10 in TestFlight.
-2. **TestFlight pass on a real phone** (TEST_WEEK.md list), plus the new
-   bits: make a backup and save it to Files, delete and reinstall the app,
-   restore it; turn on a reminder; VoiceOver on SOS and Today; Settings →
-   Accessibility → Larger Text at a big size.
-3. **Finish the listing in App Store Connect** from STORE_LISTING.md:
-   upload the six screenshots in `design/app-store/` (iPhone 6.9"), paste
-   the copy, age rating answers (expect 13+), App Privacy "Data Not
-   Collected", price Free, then Submit for Review.
-4. **Request the Family Controls entitlement now** (Apple Developer →
-   Request entitlement → Family Controls, distribution). 1.1's guardrails
-   depend on it and approval can take weeks.
+1. **Read the rejection.** App Store Connect → Rise-Again → version 1.0 →
+   Resolution Center (same text is in Apple's email to the Apple ID
+   email). Bring back the guideline number and the reviewer's note —
+   the ASC API doesn't expose them, so this is a human step.
+2. **Then we respond:** fix what the note asks, or reply in Resolution
+   Center if we believe the reviewer misread the app. Resubmitting
+   reuses build 10; no EAS rebuild needed unless the fix needs one.
+3. **Request the Family Controls entitlement** if not already sent
+   (Apple Developer → Request entitlement → Family Controls,
+   distribution). 1.1's guardrails depend on it and approval takes
+   weeks — it can run in parallel with the rejection response.
 
 ## Waiting on a decision
 
@@ -95,6 +89,21 @@ Hayden asked for this batch to go to Apple. In order:
 
 ## Log
 
+### 2026-10-14 — Trint (with ZCode) — "App Review verdict: REJECTED"
+- Trint reported no visible change in the review; a direct ASC API check
+  says otherwise: version 1.0 / build 10 moved from WAITING_FOR_REVIEW
+  to **REJECTED** (the app-level appInfo state too; the build itself
+  stays VALID, so a resubmit needs no rebuild). When Apple's email or
+  the dashboard stopped surfacing it is Apple's mystery; the API is the
+  source of truth.
+- The rejection reason isn't readable through the API with our key —
+  it's in ASC's Resolution Center and Apple's email to the account
+  holder. **Open:** Trint reads it, then we fix or reply, then
+  resubmit on build 10.
+- Docs only; no app code touched. PROGRESS "Current state" and "Next
+  for Trint" rewritten around the rejection. Also removed a stray "D"
+  that had drifted into the log above the Oct 3 entry.
+
 ### 2026-10-04 — Trint (with ZCode) — "Pipeline + agent working agreement"
 - `docs/PIPELINE.md`: the runbook for shipping — which rail a change
   takes (OTA vs store build, and the version-bump rule that keeps
@@ -113,7 +122,6 @@ Hayden asked for this batch to go to Apple. In order:
   see the BUILD stamp "preview Oct 4"). Open: production branch gets
   its first publish only after the store review resolves.
 
-D
 ### 2026-10-03 — Hayden (with Claude) — "To-do: Christian podcast outreach"
 - TODO.md gains "Outreach: Christian podcasts": Bryce Crawford and JP
   Pokluda (Becoming Something) first, steps per show, ground rules, and
