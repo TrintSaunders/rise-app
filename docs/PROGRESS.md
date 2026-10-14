@@ -44,22 +44,19 @@ line — `git log` has the rest.
 
 ## Next for Trint: answer the 2.1.0 "Information Needed"
 
-1. **Replies sent (2)** by Trint on 2026-10-14: the full information
-   plus a follow-up. State checked via the ASC API after: still
-   REJECTED — normal until a reviewer picks the thread back up;
-   allow 2–3 business days before escalating (Contact Apple → App
-   Review, or request a call). No more replies meanwhile.
-2. **Notes field updated via the ASC API** (Trint's go-ahead this
-   session): the full drafted text from `docs/REVIEW_REPLY.md` is now
-   in App Review Information → Notes (PATCH verified by read-back).
-   Correction to the last entry: the field was **not** empty — my
-   earlier "empty" reading was a bad check (it swallowed a 404 from a
-   wrong endpoint name). It held 3,981 characters, likely Trint's own
-   paste from reply day, which the push replaced with the drafted
-   1,750-char version. Both answer Apple's same six items; if Trint
-   prefers his wording, paste it over — Resolution Center is
-   unaffected. Lesson recorded: read before writing an ASC field,
-   especially one whose state was misread once already.
+1. **Resubmit version 1.0** — the 10-day silence is explained: the
+   Oct 4 replies + video never requeued the app (API: state REJECTED,
+   no submission record, nothing in review). In ASC, edit-and-submit
+   on the same build 10; the Resolution Center thread, the attached
+   video, and the Notes field all carry over. Expect
+   WAITING_FOR_REVIEW within minutes, review in 24–48h.
+2. **If it stalls again** (3+ days WAITING, or quiet after
+   IN_REVIEW): contact Apple via developer.apple.com/contact/ —
+   ready-to-send text is in `docs/REVIEW_REPLY.md` → "Escalation".
+3. **Request the Family Controls entitlement** if not already sent
+   (Apple Developer → Request entitlement → Family Controls,
+   distribution). 1.1's guardrails depend on it and approval takes
+   weeks — it can run in parallel with the review reply.
 3. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
@@ -96,6 +93,21 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-14 — Trint (with ZCode) — "The 10-day silence explained: never requeued"
+- Trint's timeline: he answered Apple's six items with the video
+  attached on ~Oct 4 and heard nothing for 10 days. API check settled
+  why: version state REJECTED and **no appStoreVersionSubmission
+  record** — the replies never put the app back in the queue, so no
+  reviewer was ever assigned. The Resolution Center reply does not
+  resume a hard-rejected version on its own.
+- Fix (Trint's one click): Submit for Review on version 1.0, same
+  build 10. Thread, video, and Notes all carry over. Escalation text
+  for Contact Apple added to `docs/REVIEW_REPLY.md` in case it stalls
+  again.
+- Correction logged: earlier today's advice ("replies resume review,
+  don't resubmit") was wrong for this reject type — the submission
+  record is the ground truth for whether anything is queued.
 
 ### 2026-10-14 — Trint (with ZCode) — "Notes field pushed to ASC"
 - With Trint's go-ahead in-session, the App Review Information Notes

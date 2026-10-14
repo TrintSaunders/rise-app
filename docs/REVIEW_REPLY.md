@@ -156,6 +156,40 @@ are displayed at the foot of the Armory screen. The app is free;
 written permission will be obtained before any paid use of the texts.
 ```
 
+## Escalation (added 2026-10-14, after 10 days of silence)
+
+**What the API showed:** version state REJECTED, **no
+appStoreVersionSubmission record** (nothing queued), build 10 attached
+and VALID. The Oct 4 replies + video sit in the Resolution Center
+thread, but no review was ever resumed. A reply on a hard-rejected
+version did not requeue it.
+
+**The fix:** resubmit version 1.0 from ASC — the rejected state allows
+edits and Submit for Review; build 10 stays attached (no rebuild), and
+the Resolution Center thread, attached video, and the Notes field all
+carry over. Expect WAITING_FOR_REVIEW within minutes, review in
+24–48h.
+
+**If it stalls again** (3+ days in WAITING, or quiet after IN_REVIEW),
+contact Apple — developer.apple.com/contact/app-store/, topic App
+Review — with this, adjusting the resubmit date:
+
+```text
+Subject: Review status — Rise-Again 1.0 (build 10) — requested
+information provided, no status change
+
+App "Rise-Again" (Apple ID 6818577524), version 1.0 build 10, received
+a 2.1.0 "Information Needed" rejection on October 3. We replied in
+Resolution Center on October 4 with all six items requested, including
+a screen recording captured on a physical device attached to the
+reply, and resubmitted on [date]. The version has shown no status
+change since. Could you confirm the submission is in the review queue
+and let us know if anything further is needed?
+```
+
+An expedited review can also be requested from the same contact page
+(reserved for time-sensitive launches; granted at Apple's discretion).
+
 ## Screen recording shot list (physical iPhone, TestFlight build)
 
 Use Control Center's Screen Recording; one take of about 2 to 3
