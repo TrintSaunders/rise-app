@@ -16,14 +16,13 @@ line — `git log` has the rest.
 
 ## Current state
 
-- **Store build:** iOS **1.0.0 build 10 was REJECTED — Apple's 2.1.0
-  "Information Needed."** Message came 2026-10-03 7:21 PM (the limited
-  App Review history of a new account); read 2026-10-14. Not a defect:
-  Apple wants a device screen recording plus written answers about the
-  app's purpose, setup, services, regions, and Scripture licensing.
-  The full response is drafted paste-ready in `docs/REVIEW_REPLY.md`.
-  The build stays VALID and attached; answering should resume review
-  with no rebuild or new version. Release stays manual after approval.
+- **Store build:** iOS **1.0.0 build 10 is back in the review queue**
+  (resubmitted 2026-10-14 after the 10-day orphaned-thread discovery).
+  ASC API confirms the submission record exists and the state is
+  WAITING_FOR_REVIEW. The 2.1.0 "Information Needed" answers, the
+  device screen recording (Resolution Center), and the Notes field all
+  carry over. Release is manual — nothing goes live until Trint
+  presses Release after approval.
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
@@ -42,21 +41,20 @@ line — `git log` has the rest.
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
-## Next for Trint: answer the 2.1.0 "Information Needed"
+## Next for Trint: watch the review, then press Release
 
-1. **Resubmit version 1.0** — the 10-day silence is explained: the
-   Oct 4 replies + video never requeued the app (API: state REJECTED,
-   no submission record, nothing in review). In ASC, edit-and-submit
-   on the same build 10; the Resolution Center thread, the attached
-   video, and the Notes field all carry over. Expect
-   WAITING_FOR_REVIEW within minutes, review in 24–48h.
-2. **If it stalls again** (3+ days WAITING, or quiet after
+1. **Waiting on Apple.** Expect IN_REVIEW within ~24h and a verdict
+   within 24–48h of that. Ask anytime and the state can be checked
+   through the ASC API (submission record + appStoreState).
+2. **On approval:** press **Release** in ASC — release is manual, so
+   nothing goes live until then.
+3. **If it stalls again** (3+ days WAITING, or quiet after
    IN_REVIEW): contact Apple via developer.apple.com/contact/ —
    ready-to-send text is in `docs/REVIEW_REPLY.md` → "Escalation".
-3. **Request the Family Controls entitlement** if not already sent
+4. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
-   weeks — it can run in parallel with the review reply.
+   weeks — it can run in parallel with the review.
 3. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
@@ -93,6 +91,15 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-14 — Trint (with ZCode) — "Back in the queue"
+- Trint resubmitted version 1.0; the ASC API confirms the submission
+  record now exists and the state is WAITING_FOR_REVIEW — properly
+  queued for the first time since the Oct 3 rejection. All 2.1.0
+  answers, the recording, and the Notes carry over.
+- Waiting on Apple (IN_REVIEW ~24h, verdict 24–48h after). On
+  approval: Trint presses Release (manual). Escalation text stands by
+  in REVIEW_REPLY.md if it stalls.
 
 ### 2026-10-14 — Trint (with ZCode) — "The 10-day silence explained: never requeued"
 - Trint's timeline: he answered Apple's six items with the video
