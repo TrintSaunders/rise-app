@@ -49,10 +49,17 @@ line — `git log` has the rest.
    REJECTED — normal until a reviewer picks the thread back up;
    allow 2–3 business days before escalating (Contact Apple → App
    Review, or request a call). No more replies meanwhile.
-2. **Still open: the Notes field is empty.** Apple asked for the info
-   there too, for future submissions. Paste the drafted Notes text
-   from `docs/REVIEW_REPLY.md` in ASC, or give the word and it can be
-   pushed through the ASC API from here.
+2. **Notes field updated via the ASC API** (Trint's go-ahead this
+   session): the full drafted text from `docs/REVIEW_REPLY.md` is now
+   in App Review Information → Notes (PATCH verified by read-back).
+   Correction to the last entry: the field was **not** empty — my
+   earlier "empty" reading was a bad check (it swallowed a 404 from a
+   wrong endpoint name). It held 3,981 characters, likely Trint's own
+   paste from reply day, which the push replaced with the drafted
+   1,750-char version. Both answer Apple's same six items; if Trint
+   prefers his wording, paste it over — Resolution Center is
+   unaffected. Lesson recorded: read before writing an ASC field,
+   especially one whose state was misread once already.
 3. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
@@ -89,6 +96,19 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-14 — Trint (with ZCode) — "Notes field pushed to ASC"
+- With Trint's go-ahead in-session, the App Review Information Notes
+  were set through the ASC API (PATCH on `appStoreReviewDetails`,
+  verified by read-back). Correct relationship name for the future:
+  `appStoreReviewDetail` on the version — `appReviewDetail` 404s.
+- While pushing: the field held 3,981 characters (likely Trint's
+  paste from reply day), now replaced by the drafted 1,750-char
+  version. The prior entry's "Notes field is empty" was my bad check,
+  not reality. Trint should eyeball the field; his Resolution Center
+  replies are untouched.
+- Fixed before pushing: the Notes draft said 78 ESV wordings; the
+  true count is 88 (77 memory + 11 daily) + 1 NASB = 89.
 
 ### 2026-10-14 — Trint (with ZCode) — "Replies sent; watching the state"
 - Trint replied in Resolution Center twice (full information, then a

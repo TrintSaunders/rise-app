@@ -149,8 +149,8 @@ standard Expo update check (app code only, no user data).
 Regional: identical in all regions; uses the device's local clock and
 calendar.
 
-Third-party content: Scripture only. 89 verses total (78 ESV wordings
-in the memory library and verses of the day, 1 NASB), within each
+Third-party content: Scripture only. 89 verses total (88 ESV wordings,
+77 in the memory library and 11 verses of the day; 1 NASB), within each
 publisher's published 500-verse quotation policy. Copyright notices
 are displayed at the foot of the Armory screen. The app is free;
 written permission will be obtained before any paid use of the texts.
