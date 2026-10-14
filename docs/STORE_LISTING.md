@@ -143,6 +143,9 @@ on every build). Both apply from the next native build.
 ### Notes for App Review
 
 Paste into App Review Information → Notes. No demo account needed.
+**2026-10-14:** Apple's 2.1.0 "Information Needed" reply asked for
+fuller notes; the current paste-ready Notes text now lives in
+`docs/REVIEW_REPLY.md` — use that one until this section catches up.
 
 ```
 Rise needs no account. On first launch, enter any name (the life verse is optional).

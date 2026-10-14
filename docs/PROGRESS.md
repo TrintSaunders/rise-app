@@ -16,12 +16,14 @@ line — `git log` has the rest.
 
 ## Current state
 
-- **Store build:** iOS **1.0.0 build 10 was REJECTED by App Review.**
-  Submitted 2026-10-03; the state change showed up on an ASC API check
-  2026-10-14 (version and appInfo both REJECTED; the build itself stays
-  VALID, so it resubmits without a rebuild). The reason isn't exposed by
-  the API with our key — it's in ASC's Resolution Center and the email
-  Apple sent the account holder. Release stays manual after approval.
+- **Store build:** iOS **1.0.0 build 10 was REJECTED — Apple's 2.1.0
+  "Information Needed."** Message came 2026-10-03 7:21 PM (the limited
+  App Review history of a new account); read 2026-10-14. Not a defect:
+  Apple wants a device screen recording plus written answers about the
+  app's purpose, setup, services, regions, and Scripture licensing.
+  The full response is drafted paste-ready in `docs/REVIEW_REPLY.md`.
+  The build stays VALID and attached; answering should resume review
+  with no rebuild or new version. Release stays manual after approval.
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
@@ -40,22 +42,23 @@ line — `git log` has the rest.
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
-## Next for Trint: read the App Review rejection
+## Next for Trint: answer the 2.1.0 "Information Needed"
 
-The listing, build, and submission are all done; Apple's verdict is the
-blocker. In order:
+Everything is drafted in `docs/REVIEW_REPLY.md` — steps, reply text,
+Notes text, recording shot list. In order:
 
-1. **Read the rejection.** App Store Connect → Rise-Again → version 1.0 →
-   Resolution Center (same text is in Apple's email to the Apple ID
-   email). Bring back the guideline number and the reviewer's note —
-   the ASC API doesn't expose them, so this is a human step.
-2. **Then we respond:** fix what the note asks, or reply in Resolution
-   Center if we believe the reviewer misread the app. Resubmitting
-   reuses build 10; no EAS rebuild needed unless the fix needs one.
-3. **Request the Family Controls entitlement** if not already sent
+1. **Record the screen capture** on a physical iPhone (TestFlight
+   build); shot list is in REVIEW_REPLY.md.
+2. **Reply in Resolution Center** with the drafted text and attach the
+   recording. That is expected to resume review on the same build 10;
+   no resubmit or rebuild.
+3. **Update the Notes field** with the drafted Notes text (paste in
+   ASC, or ask and it can be pushed via the ASC API — needs a
+   go-ahead, it's an ASC change).
+4. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
-   weeks — it can run in parallel with the rejection response.
+   weeks — it can run in parallel with the review reply.
 
 ## Waiting on a decision
 
@@ -88,6 +91,24 @@ blocker. In order:
 ---
 
 ## Log
+
+### 2026-10-14 — Trint (with ZCode) — "2.1.0 response drafted"
+- Trint sent screenshots of the rejection: **Guideline 2.1.0 - App
+  Completeness - Information Needed**, messaged 2026-10-03 7:21 PM
+  (the account's limited review history — routine for a first app, not
+  a defect). Apple asks for: a physical-device screen recording, the
+  app's purpose and audience, setup instructions, external services,
+  regional differences, and protected third-party material.
+- `docs/REVIEW_REPLY.md`: the full response, paste-ready — Resolution
+  Center reply (with the Scripture answer resting on the publishers'
+  published 500-verse quotation policies; actual counts are 11 verses
+  of the day + 77 ESV + 1 NASB = 89 total), a fuller Notes-field
+  replacement, Trint's steps, and a recording shot list. STORE_LISTING
+  now points there for the Notes.
+- Open: Trint records and pastes (the one human pass); Notes can be
+  pushed via the ASC API with his go-ahead. Replying should resume
+  review on build 10 as-is.
+- No app code touched.
 
 ### 2026-10-14 — Trint (with ZCode) — "App Review verdict: REJECTED"
 - Trint reported no visible change in the review; a direct ASC API check
