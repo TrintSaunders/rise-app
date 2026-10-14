@@ -44,18 +44,16 @@ line — `git log` has the rest.
 
 ## Next for Trint: answer the 2.1.0 "Information Needed"
 
-Everything is drafted in `docs/REVIEW_REPLY.md` — steps, reply text,
-Notes text, recording shot list. In order:
-
-1. **Record the screen capture** on a physical iPhone (TestFlight
-   build); shot list is in REVIEW_REPLY.md.
-2. **Reply in Resolution Center** with the drafted text and attach the
-   recording. That is expected to resume review on the same build 10;
-   no resubmit or rebuild.
-3. **Update the Notes field** with the drafted Notes text (paste in
-   ASC, or ask and it can be pushed via the ASC API — needs a
-   go-ahead, it's an ASC change).
-4. **Request the Family Controls entitlement** if not already sent
+1. **Replies sent (2)** by Trint on 2026-10-14: the full information
+   plus a follow-up. State checked via the ASC API after: still
+   REJECTED — normal until a reviewer picks the thread back up;
+   allow 2–3 business days before escalating (Contact Apple → App
+   Review, or request a call). No more replies meanwhile.
+2. **Still open: the Notes field is empty.** Apple asked for the info
+   there too, for future submissions. Paste the drafted Notes text
+   from `docs/REVIEW_REPLY.md` in ASC, or give the word and it can be
+   pushed through the ASC API from here.
+3. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
    weeks — it can run in parallel with the review reply.
@@ -91,6 +89,17 @@ Notes text, recording shot list. In order:
 ---
 
 ## Log
+
+### 2026-10-14 — Trint (with ZCode) — "Replies sent; watching the state"
+- Trint replied in Resolution Center twice (full information, then a
+  follow-up). ASC API check after: version state still REJECTED —
+  expected until a reviewer resumes; no API view of Resolution Center
+  messages, so Apple's answer will land in the UI/email.
+- Found open: the App Review Information **Notes field is empty**
+  (Apple asked for the info there too). Drafted text waits in
+  docs/REVIEW_REPLY.md; can be pushed via the API with a go-ahead.
+- Plan: give Apple 2–3 business days; escalate via Contact Apple →
+  App Review only if the state hasn't moved.
 
 ### 2026-10-14 — Trint (with ZCode) — "2.1.0 response drafted"
 - Trint sent screenshots of the rejection: **Guideline 2.1.0 - App
