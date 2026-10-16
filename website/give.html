@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Give · Rise</title>
+<meta name="description" content="Rise has no ads and sells no data. It stays free because people give. Help the next man find his way back to God.">
+<link rel="canonical" href="https://riseagainapp.com/give">
+<meta property="og:title" content="Give · Rise">
+<meta property="og:description" content="No ads. No data sold. No paywall. Rise stays free because people give.">
+<meta property="og:image" content="https://riseagainapp.com/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#12152b">
+<link rel="icon" href="/img/icon.png">
+<link rel="preload" href="/fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/img/icon-64.png" alt="" width="32" height="32">Rise</a>
+    <nav aria-label="Main">
+      <a class="hide-sm" href="/#features">How it works</a>
+      <a href="/about">About</a>
+      <a href="/give" aria-current="page">Give</a>
+      <a class="hide-sm" href="/support">Support</a>
+      <a class="pill primary small" href="/#get">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap narrow">
+    <p class="kicker">Give</p>
+    <h1>Keep Rise free<br><em>for the next man.</em></h1>
+    <p class="lede">Rise has no ads, sells no data, and never puts help behind a paywall. We don’t make money from the men who use it, and we never want to. Rise runs on the generosity of people who want another man to find his way back to God.</p>
+
+    <div class="pillars">
+      <div class="pillar"><span class="num">01</span><strong>Free for every man</strong><p>Every feature, for anyone who needs it. A man in his worst moment should never see a price tag.</p></div>
+      <div class="pillar"><span class="num">02</span><strong>Private, always</strong><p>No ads, no trackers, nothing sold. Your gift is what makes that possible.</p></div>
+      <div class="pillar"><span class="num">03</span><strong>Reaching more men</strong><p>New tools, more Scripture, and getting Rise into churches and men’s groups.</p></div>
+    </div>
+
+    <!-- Not connected yet. When the Stripe link exists (TODO.md 🅗4), turn
+         the button into <a class="pill primary give-btn" href="STRIPE_LINK">
+         and pass the chosen amount/frequency, or link one Payment Link per
+         option. Keep "not tax-deductible" unless Rise becomes a 501(c)(3)
+         or gets a fiscal sponsor (docs/WEBSITE.md). -->
+    <section class="give-box" aria-labelledby="give-title">
+      <h2 id="give-title">Give a gift</h2>
+      <div class="freq" role="radiogroup" aria-label="How often">
+        <button type="button" role="radio" aria-checked="true" data-freq="once">One time</button>
+        <button type="button" role="radio" aria-checked="false" data-freq="monthly">Monthly</button>
+      </div>
+      <div class="amounts" role="radiogroup" aria-label="Amount">
+        <button type="button" role="radio" aria-checked="false">$10</button>
+        <button type="button" role="radio" aria-checked="true">$25</button>
+        <button type="button" role="radio" aria-checked="false">$50</button>
+        <button type="button" role="radio" aria-checked="false">$100</button>
+      </div>
+      <label class="other">
+        <span>Other amount</span>
+        <span class="field"><span aria-hidden="true">$</span><input type="number" min="1" step="1" inputmode="numeric" placeholder="0"></span>
+      </label>
+      <button class="pill primary give-btn" type="button" disabled>Giving opens soon</button>
+      <p class="fine">We’re setting up secure giving now. Want to know when it opens? Email <a href="mailto:hello@riseagainapp.com">hello@riseagainapp.com</a>.<br>Gifts to Rise are not tax-deductible.</p>
+    </section>
+
+    <h2>Other ways to give</h2>
+    <ul class="beliefs">
+      <li><strong>Pray</strong>For the men using Rise tonight, in the hardest hour. Prayer is the most important gift on this page.</li>
+      <li><strong>Tell your church</strong>Pastors and men’s group leaders are often the first to hear a man ask for help. Rise is free for every one of their guys.</li>
+      <li><strong>Share it with a brother</strong>If you know a man who’s fighting, send him riseagainapp.com. It might be the first time he hears “mercy, not shame.”</li>
+    </ul>
+
+    <blockquote class="scripture">
+      <p>“Each one must give as he has decided in his heart, not reluctantly or under compulsion, for God loves a cheerful giver.”</p>
+      <cite>2 Corinthians 9:7</cite>
+    </blockquote>
+
+    <p>Questions about giving: <a href="mailto:hello@riseagainapp.com">hello@riseagainapp.com</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/img/icon-64.png" alt="" width="26" height="26">Rise</a>
+    <nav aria-label="Footer"><a href="/about">About</a><a href="/give">Give</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@riseagainapp.com">hello@riseagainapp.com</a></nav>
+    <small>Scripture quotations are from the ESV® Bible, © 2001 by Crossway, used by permission, and the NASB®, © The Lockman Foundation, used by permission.</small>
+  </div>
+</footer>
+<script>
+  // Selection UI only. Nothing is submitted until a giving provider is connected.
+  document.querySelectorAll('.freq, .amounts').forEach(function (group) {
+    group.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      group.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-checked', x === b ? 'true' : 'false'); });
+      if (group.classList.contains('amounts')) document.querySelector('.other input').value = '';
+    });
+  });
+  document.querySelector('.other input').addEventListener('input', function () {
+    if (this.value) document.querySelectorAll('.amounts button').forEach(function (x) { x.setAttribute('aria-checked', 'false'); });
+  });
+</script>
+</body>
+</html>

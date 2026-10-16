@@ -92,6 +92,25 @@ line — `git log` has the rest.
 
 ## Log
 
+### 2026-10-16 — Hayden (with Claude) — "Website: About reimagined, /give page"
+- About page rewritten around the real point: help a man through
+  temptation in the body, and point him back to God ("Help in the
+  body. Hope in God."). Dropped "the most loving screen in the app"
+  framing. New beliefs list (God is the point, your body matters, a fall
+  is a turning point, no one fights alone, the Word renews the mind,
+  sacred privacy) and 1 Cor 10:13.
+- "Our stories": a testimony card for Trint and one for Hayden, both
+  showing "story is coming soon" until written. Prompts and photo
+  instructions are in an HTML comment in `website/about.html`.
+- New `/give` page: why Rise is free (no ads, no data sold, no paywall),
+  a one-time/monthly + amount picker, and a disabled "Giving opens soon"
+  button. Not connected to anything yet; "not tax-deductible" per
+  WEBSITE.md. Other ways to give: pray, tell your church, share.
+- "Give" added to the header and footer of every page and to
+  `sitemap.xml`; on phones, Support moves to the footer to make room.
+- Open: Stripe link (TODO 🅗4) to switch the button on; both founders'
+  testimonies and photos.
+
 ### 2026-10-14 — Trint (with ZCode) — "Back in the queue"
 - Trint resubmitted version 1.0; the ASC API confirms the submission
   record now exists and the state is WAITING_FOR_REVIEW — properly

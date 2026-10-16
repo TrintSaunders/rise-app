@@ -185,9 +185,14 @@ when the icon is chosen). `docs/index.html` and the Markdown pages keep
 serving the GitHub Pages address until the switch; after it, `website/` is
 the only source.
 
+`about.html` (help in the body, hope in God; testimony cards for both
+founders) and `give.html` (giving page with the picker built, button
+disabled until the Stripe link exists).
+
 ## Still to come
 
-- Founders' story and photo (both of you; then remove `hidden` on the
-  founders section and save the photo as `website/img/founders.jpg`).
-- Phase 2 when the app is approved and Stripe exists: App Store badge,
-  `/give`, `/press`, universal links.
+- Founders' testimonies and photos on the About page (both of you; see
+  the comment in `website/about.html`).
+- Switch on `/give` once Stripe exists (TODO 🅗4).
+- Phase 2 when the app is approved: App Store badge, `/press`,
+  universal links.
