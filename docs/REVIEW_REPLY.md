@@ -172,23 +172,36 @@ carry over. Expect WAITING_FOR_REVIEW within minutes, review in
 
 **If it stalls again** (3+ days in WAITING, or quiet after IN_REVIEW),
 contact Apple — developer.apple.com/contact/app-store/, topic App
-Review — with this, adjusting the resubmit date:
+Review. **Trigger fired 2026-10-20** (four business days in
+WAITING_FOR_REVIEW since the Oct 14 resubmit; queue record confirmed
+present via the API). Final text:
 
 ```text
-Subject: Review status — Rise-Again 1.0 (build 10) — requested
-information provided, no status change
+Subject: Review status — Rise-Again 1.0 (build 10)
+
+Hello,
 
 App "Rise-Again" (Apple ID 6818577524), version 1.0 build 10, received
 a 2.1.0 "Information Needed" rejection on October 3. We replied in
 Resolution Center on October 4 with all six items requested, including
 a screen recording captured on a physical device attached to the
-reply, and resubmitted on [date]. The version has shown no status
-change since. Could you confirm the submission is in the review queue
-and let us know if anything further is needed?
+reply, and added the same information to the App Review Information
+notes.
+
+The version has been in "Waiting for Review" since we resubmitted on
+October 14 — six days, four of them business days, with no status
+change. Could you confirm the submission is progressing through the
+review queue and let us know if anything further is needed from us?
+
+Thank you,
+Trint Saunders
 ```
 
-An expedited review can also be requested from the same contact page
-(reserved for time-sensitive launches; granted at Apple's discretion).
+Levers if the first reply is slow or unhelpful: Apple Developer Support
+phone/chat (developer.apple.com/contact/ — they can check with App
+Review directly), and an expedited review request from the same contact
+page (granted at Apple's discretion; strongest when a launch date is
+genuinely time-sensitive).
 
 ## Screen recording shot list (physical iPhone, TestFlight build)
 

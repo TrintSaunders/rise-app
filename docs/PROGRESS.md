@@ -16,12 +16,11 @@ line — `git log` has the rest.
 
 ## Current state
 
-- **Store build:** iOS **1.0.0 build 10 is back in the review queue**
-  (resubmitted 2026-10-14 after the 10-day orphaned-thread discovery).
-  ASC API confirms the submission record exists and the state is
-  WAITING_FOR_REVIEW. The 2.1.0 "Information Needed" answers, the
-  device screen recording (Resolution Center), and the Notes field all
-  carry over. Release is manual — nothing goes live until Trint
+- **Store build:** iOS **1.0.0 build 10 has sat in WAITING_FOR_REVIEW
+  since the 2026-10-14 resubmit** — four business days as of 2026-10-20
+  (queue record confirmed present via the API, so it is queued, just
+  not moving). The 2.1.0 answers, the device recording, and the Notes
+  all carry over. Release is manual — nothing goes live until Trint
   presses Release after approval.
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
@@ -41,24 +40,20 @@ line — `git log` has the rest.
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
-## Next for Trint: watch the review, then press Release
+## Next for Trint: send the App Review status inquiry
 
-1. **Waiting on Apple.** Expect IN_REVIEW within ~24h and a verdict
-   within 24–48h of that. Ask anytime and the state can be checked
-   through the ASC API (submission record + appStoreState).
-2. **On approval:** press **Release** in ASC — release is manual, so
+1. **Send the finalized note today** (the 3-business-day trigger fired
+   2026-10-20): developer.apple.com/contact/app-store/, topic App
+   Review, paste the text from `docs/REVIEW_REPLY.md` → "Escalation"
+   (dates already filled in).
+2. **If the reply is slow or a brush-off:** Apple Developer Support
+   phone/chat, and/or an expedited review request — same contact page.
+3. **On approval:** press **Release** in ASC — release is manual, so
    nothing goes live until then.
-3. **If it stalls again** (3+ days WAITING, or quiet after
-   IN_REVIEW): contact Apple via developer.apple.com/contact/ —
-   ready-to-send text is in `docs/REVIEW_REPLY.md` → "Escalation".
 4. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
    weeks — it can run in parallel with the review.
-3. **Request the Family Controls entitlement** if not already sent
-   (Apple Developer → Request entitlement → Family Controls,
-   distribution). 1.1's guardrails depend on it and approval takes
-   weeks — it can run in parallel with the review reply.
 
 ## Waiting on a decision
 
@@ -91,6 +86,20 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-20 — Trint (with ZCode) — "Four business days in WAITING; escalation triggered"
+- API check (after recreating the JWT helper — /tmp had been cleaned):
+  state WAITING_FOR_REVIEW, submission record present. It is queued
+  and not moving. Also assessed Apple's mass guidelines-revision
+  email: nothing in it touches Rise (the dormant server path is a
+  static off flag with no server; screenshots are real screens).
+- The 3-business-day trigger fired: the Contact Apple note is
+  finalized with real dates in REVIEW_REPLY.md → "Escalation". Trint
+  sends it via developer.apple.com/contact/app-store/, topic App
+  Review. Levers behind it: Developer Support phone/chat, expedited
+  review request.
+- Housekeeping: removed a duplicated Family Controls bullet that an
+  earlier edit left in "Next for Trint".
 
 ### 2026-10-16 — Hayden (with Claude) — "Website: About reimagined, /give page"
 - About page rewritten around the real point: help a man through
