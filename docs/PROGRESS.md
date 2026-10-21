@@ -40,14 +40,17 @@ line — `git log` has the rest.
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
-## Next for Trint: send the App Review status inquiry
+## Next for Trint: send the App Review inquiry
 
-1. **Send the finalized note today** (the 3-business-day trigger fired
-   2026-10-20): developer.apple.com/contact/app-store/, topic App
-   Review, paste the text from `docs/REVIEW_REPLY.md` → "Escalation"
-   (dates already filled in).
-2. **If the reply is slow or a brush-off:** Apple Developer Support
-   phone/chat, and/or an expedited review request — same contact page.
+1. **Send it via "Request an expedited app review"** — the App Review
+   form has no plain status topic (options: appeal, expedite,
+   technical question, reinstate). Appeal doesn't fit (the rejection
+   was answered, not contested); expedite is the App Review-facing
+   channel for a pending submission. The adapted reason text is in
+   `docs/REVIEW_REPLY.md` → "Escalation" (2026-10-21 update).
+2. **If denied by form letter and still stuck after a few more
+   days:** Developer Support phone/chat with the plain status note
+   (also in REVIEW_REPLY.md).
 3. **On approval:** press **Release** in ASC — release is manual, so
    nothing goes live until then.
 4. **Request the Family Controls entitlement** if not already sent
@@ -86,6 +89,16 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-21 — Trint (with ZCode) — "Expedite request is the channel"
+- The App Review contact form's topics: appeal a rejection, expedited
+  review, technical question, reinstate program — no plain status
+  inquiry. Pick: **Request an expedited app review** (an appeal would
+  contest a rejection we already answered and resubmitted). The reason
+  text — reframed from status to urgency-plus-status — is in
+  REVIEW_REPLY.md → "Escalation" (2026-10-21 update).
+- Fallback if denied and still stuck: Developer Support phone/chat
+  with the plain status note.
 
 ### 2026-10-20 — Trint (with ZCode) — "Four business days in WAITING; escalation triggered"
 - API check (after recreating the JWT helper — /tmp had been cleaned):

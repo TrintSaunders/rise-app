@@ -197,6 +197,39 @@ Thank you,
 Trint Saunders
 ```
 
+**2026-10-21 update:** the App Review contact form's topics turned out
+to be appeal-a-rejection / expedited review / technical question /
+reinstate program — no plain status inquiry. **Use "Request an
+expedited app review"** (appeal is for contesting a rejection; ours
+was answered and resubmitted). Reason text for the form:
+
+```text
+App: Rise-Again (Apple ID 6818577524), version 1.0, build 10 — our
+first release.
+
+Our submission received a 2.1.0 "Information Needed" rejection on
+October 3. We replied in Resolution Center on October 4 with all six
+requested items, including a screen recording captured on a physical
+device, and added the same information to the App Review notes. After
+resubmitting on October 14, the version has remained in "Waiting for
+Review" for four business days.
+
+We are requesting an expedited review, or simply confirmation that
+the submission is progressing and nothing is stuck. Everything on our
+side has been ready for over two weeks — the listing, the answers,
+and the recording — and we have been unable to launch our first
+release since October 3.
+
+Thank you,
+Trint Saunders
+```
+
+If the expedite is denied with a form letter and the state still
+hasn't moved after a few more days, the remaining lever is Developer
+Support phone/chat (developer.apple.com/contact/), who can open a
+ticket and check with App Review directly; the plain status note
+above works for that channel.
+
 Levers if the first reply is slow or unhelpful: Apple Developer Support
 phone/chat (developer.apple.com/contact/ — they can check with App
 Review directly), and an expedited review request from the same contact
