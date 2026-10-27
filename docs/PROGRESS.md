@@ -23,10 +23,10 @@ line — `git log` has the rest.
   and the review moved after the expedite request. **Decided and done
   same day (Trint): keep the logo, strip every guide** — mist, ground
   line, dawn-gold rise; all six asset PNGs re-rendered from new SVGs.
-  **Build 11** (with the finalized icon, BUILD stamp "store build 11
-  (Oct 27)") is building/submitting to ASC. Remaining human steps: the
-  1024 marketing icon upload in ASC, the Resolution Center reply (draft
-  ready in REVIEW_REPLY.md), resubmit, Release on approval (manual).
+  **Build 11 finished and was uploaded to ASC 2026-10-27** (Apple
+  processing). Remaining human steps: the 1024 marketing icon upload
+  in ASC, the Resolution Center reply (draft ready in
+  REVIEW_REPLY.md), resubmit, Release on approval (manual).
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
@@ -50,16 +50,16 @@ line — `git log` has the rest.
 1. **Upload the finalized 1024 marketing icon** in ASC: Rise-Again →
    version 1.0 → App Store tab → App Store Icon. Use the new
    `assets/images/icon.png` (mist, ground line, rise — no guides).
-2. **Confirm build 11 is attached** to version 1.0 (the ASC API key
-   401s, so check the UI; if the EAS submit failed, attach build 11
-   from the version page's build picker).
+2. **Attach build 11** to version 1.0 (uploaded via EAS Oct 27,
+   processing): version 1.0 page → Build section → remove 10, add 11.
+   (Or mint the new API key first and the agent can PATCH it on.)
 3. **Reply in Resolution Center** with the paste-ready draft in
    `docs/REVIEW_REPLY.md` → 2026-10-27 section.
 4. **Submit for review.** On approval: press **Release** (manual).
-5. **Mint a new ASC API key** (Users and Access → Integrations) and
-   drop it at `~/.rise/asc/` — the current one returns
-   NOT_AUTHORIZED on everything (see the Oct 27 log). Update the key
-   ID in `eas.json` if it changes.
+5. **Mint a new ASC API key** (Users and Access → Integrations →
+   App Store Connect API, App Manager role) and drop the .p8 at
+   `~/.rise/asc/` — the current one is revoked (see the Oct 27 log).
+   Update `eas.json`'s `ascApiKeyId` if the ID changes.
 6. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
@@ -114,13 +114,18 @@ line — `git log` has the rest.
   the logo, remove every guide. New SVGs + all six PNGs re-rendered
   (`icon.png` now RGB/no-alpha); BUILD stamp → "store build 11
   (Oct 27)"; sunrise concepts kept as fallback only.
-- **ASC API key is dead:** every endpoint returns 401 NOT_AUTHORIZED
-  (worked Oct 20; JWT verified well-formed locally, clock checked).
-  Key likely revoked on Apple's side — Trint checks Integrations and
-  mints a new one (Next-for-Trint step 5). The JWT helper now lives at
-  `~/.rise/asc/asc.sh` (not /tmp) with the DER→raw-signature fix, so
-  the next key works immediately. Browser ASC needs his login, so
-  state checks until then are UI-side.
+- **ASC API key is revoked (settled after a false alarm):** every
+  direct API call 401s — general and submit-scope (`/v1/builds`)
+  alike — with a JWT verified well-formed locally and the clock
+  checked. The key (ID 3LZPTJY7Z8, issuer ea97beea…) worked Oct 20
+  and was invalidated on Apple's side since. The confusion: `eas
+  submit` succeeded the same hour — eas-cli was riding Trint's stored
+  Apple session, not the key. Fix: Trint mints a fresh key (Users and
+  Access → Integrations, App Manager role) into `~/.rise/asc/`,
+  updating `eas.json`'s `ascApiKeyId` if the ID changes. The JWT
+  helper is ready at `~/.rise/asc/asc.sh` (not /tmp; includes the
+  DER→raw-signature fix). Until the new key: ASC state checks and the
+  marketing-icon/reply steps are UI-side.
 - Build 11 (production profile, new icon) submitted to ASC after the
   gates; remaining steps are Trint's in the ASC UI (marketing icon,
   reply, resubmit, Release).
