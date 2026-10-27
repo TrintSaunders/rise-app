@@ -5,7 +5,8 @@ PROGRESS.md stays the log, this stays the map.
 
 ## Done
 
-- [x] Real icon in every slot (dawn-gold blueprint; `assets/images/`,
+- [x] Real icon in every slot (dawn-gold rise on mist, construction
+      guides removed 2026-10-27 for the 2.3.8 fix; `assets/images/`,
       sources in `design/asset-derivatives/`).
 - [x] Loading page under the splash (`components/Loading.tsx`).
 - [x] Sample-history tool removed; demo entries retire themselves on

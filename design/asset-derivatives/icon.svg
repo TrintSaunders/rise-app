@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="dawn" x1="0" y1="96" x2="0" y2="861" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E9B44C"/>
+      <stop offset="1" stop-color="#E07A5F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- finalized 2026-10-27 for the 2.3.8 fix: the shipped mark with every
+       construction guide removed — no circles, dashed lines, or crosshair.
+       Only the ground line and the rise remain, on mist. -->
+  <rect width="1024" height="1024" fill="#F1E9DB"/>
+
+  <!-- the ground -->
+  <line x1="0" y1="778" x2="1024" y2="778" stroke="#E9B44C" stroke-opacity="0.9" stroke-width="7"/>
+
+  <!-- the rise: dawn gold at the peak deepening to ember at the ground -->
+  <path d="M 184 778 L 512 179 L 840 778" fill="none" stroke="url(#dawn)"
+        stroke-width="165" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

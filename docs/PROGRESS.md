@@ -16,12 +16,17 @@ line — `git log` has the rest.
 
 ## Current state
 
-- **Store build:** iOS **1.0.0 build 10 has sat in WAITING_FOR_REVIEW
-  since the 2026-10-14 resubmit** — four business days as of 2026-10-20
-  (queue record confirmed present via the API, so it is queued, just
-  not moving). The 2.1.0 answers, the device recording, and the Notes
-  all carry over. Release is manual — nothing goes live until Trint
-  presses Release after approval.
+- **Store build:** iOS 1.0.0 build 10 was **rejected 2026-10-27 —
+  Guideline 2.3.8 (Accurate Metadata): "app icons appear to be
+  placeholder icons"** (the blueprint construction guides in the icon
+  art read as scaffolding; a fair read). The 2.1.0 items were satisfied
+  and the review moved after the expedite request. **Decided and done
+  same day (Trint): keep the logo, strip every guide** — mist, ground
+  line, dawn-gold rise; all six asset PNGs re-rendered from new SVGs.
+  **Build 11** (with the finalized icon, BUILD stamp "store build 11
+  (Oct 27)") is building/submitting to ASC. Remaining human steps: the
+  1024 marketing icon upload in ASC, the Resolution Center reply (draft
+  ready in REVIEW_REPLY.md), resubmit, Release on approval (manual).
 - **Tabs:** Today · SOS · Patterns · Armory. A fuller Allies tab (ally
   management, "check on me tonight", weekly digest) is still v0.3.
 - **Shipped:** onboarding, Today (dawn arc, honest-first counters), SOS tab
@@ -40,34 +45,42 @@ line — `git log` has the rest.
   `npx expo export --platform ios --platform web` both pass as of the latest
   entry. There are no unit tests or lint config yet.
 
-## Next for Trint: send the App Review inquiry
+## Next for Trint: finish the 2.3.8 fix and back into review
 
-1. **Send it via "Request an expedited app review"** — the App Review
-   form has no plain status topic (options: appeal, expedite,
-   technical question, reinstate). Appeal doesn't fit (the rejection
-   was answered, not contested); expedite is the App Review-facing
-   channel for a pending submission. The adapted reason text is in
-   `docs/REVIEW_REPLY.md` → "Escalation" (2026-10-21 update).
-2. **If denied by form letter and still stuck after a few more
-   days:** Developer Support phone/chat with the plain status note
-   (also in REVIEW_REPLY.md).
-3. **On approval:** press **Release** in ASC — release is manual, so
-   nothing goes live until then.
-4. **Request the Family Controls entitlement** if not already sent
+1. **Upload the finalized 1024 marketing icon** in ASC: Rise-Again →
+   version 1.0 → App Store tab → App Store Icon. Use the new
+   `assets/images/icon.png` (mist, ground line, rise — no guides).
+2. **Confirm build 11 is attached** to version 1.0 (the ASC API key
+   401s, so check the UI; if the EAS submit failed, attach build 11
+   from the version page's build picker).
+3. **Reply in Resolution Center** with the paste-ready draft in
+   `docs/REVIEW_REPLY.md` → 2026-10-27 section.
+4. **Submit for review.** On approval: press **Release** (manual).
+5. **Mint a new ASC API key** (Users and Access → Integrations) and
+   drop it at `~/.rise/asc/` — the current one returns
+   NOT_AUTHORIZED on everything (see the Oct 27 log). Update the key
+   ID in `eas.json` if it changes.
+6. **Request the Family Controls entitlement** if not already sent
    (Apple Developer → Request entitlement → Family Controls,
    distribution). 1.1's guardrails depend on it and approval takes
    weeks — it can run in parallel with the review.
 
 ## Waiting on a decision
 
-- **Icon:** current blueprint chevron vs. the sunrise concepts in
-  `design/icon-review/`.
+- **DNS for riseagainapp.com** (Hayden): point it at GitHub Pages, then
 - **DNS for riseagainapp.com** (Hayden): point it at GitHub Pages, then
   add `docs/CNAME` (order matters; see RELEASE.md). The new marketing page
   is already live at the Pages URL.
 
 ## Decided
 
+- **2026-10-27 — Trint — The icon keeps its mark, loses the guides:**
+  answering the 2.3.8 rejection, the finalized icon is the shipped
+  composition with every construction guide removed — mist background,
+  the ground line, and the dawn-gold rise; no circles, dashed lines,
+  or crosshair (sources refreshed in `design/asset-derivatives/`). The
+  sunrise concepts stay in `design/icon-review/` as the fallback if
+  Apple objects again.
 - **2026-10-02 — Trint — Store name is "Rise-Again":** "Rise" and
   "Rise Again" were already taken on the App Store; the ASC record was
   created as **Rise-Again** (exact-string uniqueness makes the hyphen a
@@ -89,6 +102,28 @@ line — `git log` has the rest.
 ---
 
 ## Log
+
+### 2026-10-27 — Trint (with ZCode) — "2.3.8: the icon read as a placeholder; guides stripped, build 11"
+- The review moved at last (expedite worked): verdict on build 10 is
+  **Guideline 2.3.8 — "app icons appear to be placeholder icons"**
+  (reviewed Oct 27, iPhone 17 Pro Max + iPad Air 11 M3; submission
+  0f09f27e). The 2.1.0 answers held — completeness was not re-raised.
+  Full analysis + reply draft: REVIEW_REPLY.md → 2026-10-27.
+- The read was fair: the icon art literally carried blueprint guides
+  (concentric circles, dashed lines, a crosshair). Trint decided: keep
+  the logo, remove every guide. New SVGs + all six PNGs re-rendered
+  (`icon.png` now RGB/no-alpha); BUILD stamp → "store build 11
+  (Oct 27)"; sunrise concepts kept as fallback only.
+- **ASC API key is dead:** every endpoint returns 401 NOT_AUTHORIZED
+  (worked Oct 20; JWT verified well-formed locally, clock checked).
+  Key likely revoked on Apple's side — Trint checks Integrations and
+  mints a new one (Next-for-Trint step 5). The JWT helper now lives at
+  `~/.rise/asc/asc.sh` (not /tmp) with the DER→raw-signature fix, so
+  the next key works immediately. Browser ASC needs his login, so
+  state checks until then are UI-side.
+- Build 11 (production profile, new icon) submitted to ASC after the
+  gates; remaining steps are Trint's in the ASC UI (marketing icon,
+  reply, resubmit, Release).
 
 ### 2026-10-21 — Trint (with ZCode) — "Expedite request is the channel"
 - The App Review contact form's topics: appeal a rejection, expedited

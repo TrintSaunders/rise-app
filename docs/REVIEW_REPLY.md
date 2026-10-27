@@ -1,4 +1,72 @@
-# App Review 2.1.0 response — "Information Needed"
+# App Review — rejection log & responses (Rise-Again 1.0)
+
+## 2026-10-27 — Guideline 2.3.8 "Accurate Metadata": the icon reads as a placeholder
+
+**The verdict** (Resolution Center, pasted by Trint 2026-10-27): the app
+icons "appear to be placeholder icons." Submission
+`0f09f27e-6506-4aac-994d-66411c1631d9`, reviewed 2026-10-27 on iPhone 17
+Pro Max and iPad Air 11-inch (M3), version 1.0 build 10. The 2.1.0
+"Information Needed" items were **not re-raised** — the Oct 4 answers and
+recording satisfied completeness. The review also finally moved after the
+expedite request (submitted Oct 14, reviewed Oct 27). This rejection is
+about one thing only: the icon.
+
+**Why Apple read it that way — a fair read.** The shipped icon is the
+blueprint chevron (`e-gold-dawn-on-mist`): a construction-guide motif
+whose art literally includes blueprint guides — concentric circles, a
+dashed guideline, an angle marker. That is the visual language of a
+design-in-progress sheet. Hayden's 2026-09-29 note already flagged that
+blueprint guides "vanish at home-screen size," and the sunrise concepts
+(`f-sunrise-rise-on-night`, `g-sunrise-rise-on-cream` in
+`design/icon-review/`) were built for exactly this. The icon pick has
+been the open decision in PROGRESS.md since September; Apple just
+weighted it.
+
+**The fix path (an icon swap, not a metadata edit):**
+
+**Decided 2026-10-27 (Trint): keep the current logo, remove every
+construction guide.** The finalized icon is the shipped composition
+minus the drafting scaffolding: mist background, the ground line, and
+the dawn-gold rise — no circles, dashed lines, or crosshair. Done the
+same day in `design/asset-derivatives/` (fresh `icon.svg`/`splash.svg`/
+`fg.svg`/`mono.svg`, all six PNGs re-rendered; `icon.png` is now RGB,
+no alpha). The sunrise concepts stay in `design/icon-review/` as the
+next step if Apple still objects.
+
+1. ~~Pick the icon~~ — decided (above).
+2. ~~Derive every slot~~ — done.
+3. **New binary build (11)** — the home-screen icon is baked into the
+   IPA; an OTA update cannot change it. Trint gave the go-ahead
+   in-session 2026-10-27; `eas build -p ios --profile production`,
+   then submit.
+4. Upload the matching 1024 marketing icon in ASC (version 1.0 → App
+   Store tab → App Store Icon) — UI step for Trint; note the ASC API key
+   currently 401s (see PROGRESS 2026-10-27).
+5. Reply in Resolution Center (draft below), **after** build 11 is
+   attached to the version.
+6. Resubmit for review. On approval: press Release (still manual).
+
+**Reply once build 11 is attached:**
+
+```text
+Hello,
+
+Thank you for the review and the clear note. The construction-guide
+styling in the previous icon was an intentional motif, but we
+understand how it reads as unfinished at icon size. We have finalized
+the app icon: the rise mark now stands alone on its mist background,
+with every construction-guide line removed, used consistently in the
+App Store listing and the app itself. The new build (11) with the
+finalized icon is attached to this version, and we are resubmitting
+for review.
+
+Thank you,
+Trint Saunders
+```
+
+---
+
+## 2026-10-03 — Guideline 2.1.0 "Information Needed" (answered; not re-raised)
 
 Apple's verdict on 1.0 / build 10 (message dated 2026-10-03, 7:21 PM;
 read 2026-10-14): **Guideline 2.1.0 - Performance: App Completeness -
